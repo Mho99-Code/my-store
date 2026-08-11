@@ -14,7 +14,6 @@
     }
     body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background: var(--bg); color: var(--primary); min-height: 100vh; }
 
-    /* ===== Login Screen ===== */
     #loginScreen {
       display: flex; align-items: center; justify-content: center;
       min-height: 100vh; background: linear-gradient(135deg, #2c3e50, #3d5a73);
@@ -25,21 +24,13 @@
     }
     .login-box h2 { font-size: 1.4rem; margin-bottom: 6px; }
     .login-box p  { color: var(--muted); font-size: .88rem; margin-bottom: 24px; }
-    .login-box input {
-      width: 100%; padding: 12px 14px; border: 1.5px solid var(--border);
-      border-radius: 8px; font-size: 1rem; outline: none; margin-bottom: 14px;
-      transition: border .2s; text-align: center; letter-spacing: 4px;
-    }
-    .login-box input:focus { border-color: var(--accent); }
     .login-box button {
       width: 100%; padding: 13px; background: var(--accent); color: #fff;
       border: none; border-radius: 8px; font-size: 1rem; font-weight: 700;
       cursor: pointer; transition: background .2s;
     }
     .login-box button:hover { background: #d35400; }
-    .login-err { color: var(--danger); font-size: .85rem; margin-top: 10px; min-height: 18px; }
 
-    /* ===== App Shell ===== */
     #appShell { display: none; }
     header {
       background: var(--primary); color: #fff; height: 60px;
@@ -60,7 +51,6 @@
     .btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.5); }
     .btn-sm { padding: 5px 11px; font-size: .8rem; }
 
-    /* ===== Stats ===== */
     .stats {
       max-width: 1100px; margin: 24px auto 0; padding: 0 16px;
       display: flex; gap: 14px; flex-wrap: wrap;
@@ -72,7 +62,6 @@
     .stat-num  { font-size: 1.8rem; font-weight: 800; color: var(--accent); }
     .stat-label{ font-size: .8rem; color: var(--muted); margin-top: 2px; }
 
-    /* ===== Toolbar ===== */
     .toolbar {
       max-width: 1100px; margin: 18px auto 0; padding: 0 16px;
       display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
@@ -84,7 +73,6 @@
     .toolbar input:focus, .toolbar select:focus { border-color: var(--accent); }
     .toolbar input[type=text] { flex: 1; min-width: 180px; }
 
-    /* ===== Table ===== */
     .table-wrap {
       max-width: 1100px; margin: 16px auto 40px; padding: 0 16px;
       overflow-x: auto;
@@ -108,7 +96,6 @@
     .price-input { text-align: center; font-weight: 700; color: var(--accent); }
     .actions-cell { display: flex; gap: 6px; justify-content: center; }
 
-    /* ===== Modal ===== */
     .modal-overlay {
       display: none; position: fixed; inset: 0;
       background: rgba(0,0,0,.5); z-index: 200;
@@ -131,7 +118,6 @@
     .field textarea { resize: vertical; min-height: 70px; }
     .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
 
-    /* ===== Toast & Loader ===== */
     .toast {
       position: fixed; bottom: 24px; left: 50%;
       transform: translateX(-50%) translateY(80px);
@@ -158,18 +144,16 @@
   </style>
 </head>
 <body>
-<!-- ==================== Login ==================== -->
+
 <div id="loginScreen">
   <div class="login-box">
-    <div style="font-size:2.2rem;margin-bottom:10px">🔐</div>
+    <div style="font-size:2.2rem;margin-bottom:10px">⚙️</div>
     <h2>لوحة التحكم</h2>
-    <p>جاري تحميل البيانات...</p>
+    <p>جاري الدخول إلى النظام...</p>
     <button onclick="doLogin()">دخول مباشر</button>
-    <p class="login-err" id="loginErr"></p>
   </div>
 </div>
 
-<!-- ==================== App Shell ==================== -->
 <div id="appShell">
   <header>
     <h1>⚙️ لوحة التحكم - المتجر</h1>
@@ -181,10 +165,8 @@
     </div>
   </header>
 
-  <!-- Stats -->
   <div class="stats" id="statsRow"></div>
 
-  <!-- Toolbar -->
   <div class="toolbar">
     <input type="text" id="searchInput" placeholder="🔍 بحث عن منتج..." oninput="renderTable()" />
     <select id="catFilter" onchange="renderTable()">
@@ -202,7 +184,6 @@
     <button class="btn btn-outline" style="color:var(--primary);border-color:var(--border);background:#fff" onclick="exportCSV()">📤 تصدير CSV</button>
   </div>
 
-  <!-- Table -->
   <div class="table-wrap">
     <table id="productsTable">
       <thead>
@@ -218,13 +199,12 @@
         </tr>
       </thead>
       <tbody id="tableBody">
-        <tr class="loading-row"><td colspan="8"><div class="spinner"></div><p>جاري تحميل البيانات من جوجل شيت...</p></td></tr>
+        <tr class="loading-row"><td colspan="8"><div class="spinner"></div><p>جاري تحميل البيانات...</p></td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- ==================== Add/Edit Modal ==================== -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <h3 id="modalTitle">إضافة منتج جديد</h3>
@@ -254,7 +234,6 @@ var password    = "1111";
 var allProducts = [];
 var pendingChanges = {};
 
-// 👑 دالة الاتصال المباشر بالسيرفر بدون مشاكل CORS
 function callAPI(payload) {
   return fetch(API_URL, {
     method: "POST",
@@ -264,7 +243,6 @@ function callAPI(payload) {
   .then(function(r) { return r.json(); });
 }
 
-// ===== Login (دخول تلقائي) =====
 function doLogin() {
   showApp();
 }
@@ -280,10 +258,9 @@ function logout() {
   document.getElementById("appShell").style.display = "none";
 }
 
-// ===== Load =====
 function loadProducts() {
   document.getElementById("tableBody").innerHTML =
-    '<tr class="loading-row"><td colspan="8"><div class="spinner"></div><p>جاري تحميل البيانات من جوجل شيت...</p></td></tr>';
+    '<tr class="loading-row"><td colspan="8"><div class="spinner"></div><p>جاري تحميل البيانات...</p></td></tr>';
   fetch(API_URL)
     .then(function(r){ return r.json(); })
     .then(function(data){
@@ -297,7 +274,6 @@ function loadProducts() {
     .catch(function(e){ showToast("خطأ في التحميل: " + e.message, "error"); });
 }
 
-// ===== Stats =====
 function renderStats() {
   var total    = allProducts.length;
   var inStock  = allProducts.filter(function(p){ return isTrue(p.inStock); }).length;
@@ -314,7 +290,6 @@ function stat(n, l) {
   return '<div class="stat-card"><div class="stat-num">' + n + '</div><div class="stat-label">' + l + '</div></div>';
 }
 
-// ===== Category Filter =====
 function buildCategoryFilter() {
   var cats = [...new Set(allProducts.map(function(p){ return p.category || "عام"; }))];
   var sel = document.getElementById("catFilter");
@@ -325,7 +300,6 @@ function buildCategoryFilter() {
   });
 }
 
-// ===== Render Table =====
 function renderTable() {
   var search = document.getElementById("searchInput").value.trim().toLowerCase();
   var cat    = document.getElementById("catFilter").value;
@@ -367,7 +341,6 @@ function renderTable() {
   }).join("");
 }
 
-// ===== Track Changes =====
 function markChange(id, field, value) {
   if (!pendingChanges[id]) {
     var orig = allProducts.find(function(p){ return String(p.id) === String(id); });
@@ -376,7 +349,6 @@ function markChange(id, field, value) {
   pendingChanges[id][field] = value;
 }
 
-// ===== Save All =====
 function saveAllChanges() {
   var changed = Object.values(pendingChanges);
   if (!changed.length) { showToast("لا توجد تعديلات معلقة", ""); return; }
@@ -392,7 +364,6 @@ function saveAllChanges() {
     .catch(function(e){ showToast("خطأ في الاتصال", "error"); });
 }
 
-// ===== Delete =====
 function deleteProduct(id) {
   if (!confirm("هل أنت متأكد من حذف هذا المنتج؟")) return;
   callAPI({ action: "delete", password: password, id: id })
@@ -402,7 +373,6 @@ function deleteProduct(id) {
     });
 }
 
-// ===== Add Modal =====
 function openAddModal() {
   document.getElementById("modalTitle").textContent = "إضافة منتج جديد";
   ["mId","mName","mCategory","mPrice","mUnit","mDesc"].forEach(function(id){
@@ -439,7 +409,6 @@ function saveModal() {
     });
 }
 
-// ===== Import CSV / Excel =====
 function importFile(e) {
   var file = e.target.files[0];
   if (!file) return;
@@ -479,7 +448,6 @@ function importFile(e) {
   e.target.value = "";
 }
 
-// ===== Export CSV =====
 function exportCSV() {
   if (!allProducts.length) { showToast("لا توجد منتجات للتصدير", ""); return; }
   var headers = ["id","name","category","price","unit","description","inStock"];
@@ -493,7 +461,6 @@ function exportCSV() {
   a.click();
 }
 
-// ===== Helpers =====
 function isTrue(v) { return v === true || v === "true" || v === "TRUE"; }
 function escAttr(s) { return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/'/g,"&#39;"); }
 function escId(s)   { return String(s).replace(/[^a-zA-Z0-9_-]/g,"_"); }
@@ -506,7 +473,6 @@ function showToast(msg, type) {
   setTimeout(function(){ t.classList.remove("show"); }, 2800);
 }
 
-// التشغيل التلقائي المباشر فور تحميل الصفحة
 window.onload = function() {
   showApp();
 };
