@@ -271,8 +271,9 @@ function doLogin() {
   var val = document.getElementById("pwdInput").value.trim();
   if (!val) { showErr("أدخل كلمة المرور"); return; }
   password = val;
-  showErr("جاري الاتصال بالسيرفر...");
-  
+  sessionStorage.setItem(SESSION_KEY, "1");
+  showApp(); // يفتح الواجهة فوراً
+}
   callAPI({ action: "update", password: val, product: { id: "__test__" } })
     .then(function(r){
       if (r.status === "ok" || r.message === "المنتج برقم __test__ غير موجود") {
