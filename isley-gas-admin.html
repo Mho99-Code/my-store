@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة تحكم Isley</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="config.js"></script>
+<style>
+  :root{
+    --bg:#FAFAF8; --surface:#FFFFFF; --ink:#191C22; --ink-soft:#6B7280;
+    --line:#E7E5E0; --accent:#2F5D8A; --accent-dark:#1F4266;
+    --sold:#B4483B; --ok:#3E7A52;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ background:var(--bg); color:var(--ink); font-family:'Tajawal', sans-serif; line-height:1.5; min-height:100vh; }
+  .mono{font-family:'JetBrains Mono', monospace;}
+
+  .login-screen{ min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; }
+  .login-box{ background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:36px 32px; width:100%; max-width:360px; text-align:center; box-shadow:0 10px 30px rgba(25,28,34,0.06); }
+  .login-box .mark{ width:52px; height:52px; border-radius:12px; background:var(--accent-dark); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
+  .login-box .mark svg{ width:28px; height:28px; }
+  .login-box h1{ font-size:20px; font-weight:800; margin-bottom:4px; }
+  .login-box p{ font-size:13px; color:var(--ink-soft); margin-bottom:24px; }
+  .login-box input{ width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:8px; font-family:'Tajawal',sans-serif; font-size:14px; margin-bottom:12px; outline:none; }
+  .login-box input:focus{ border-color:var(--accent); }
+  .login-box button{ width:100%; padding:12px; border:none; border-radius:8px; background:var(--accent); color:#fff; font-weight:700; font-size:14px; cursor:pointer; font-family:'Tajawal',sans-serif; transition:background .15s; }
+  .login-box button:hover{ background:var(--accent-dark); }
+  .login-error{ color:var(--sold); font-size:13px; margin-top:12px; display:none; }
+  .login-error.show{ display:block; }
+
+  .dash{ display:none; }
+  .dash.show{ display:block; }
+  header{ background:var(--surface); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50; }
+  .header-inner{ max-width:1100px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand-mark{ width:38px; height:38px; border-radius:9px; background:var(--accent-dark); display:flex; align-items:center; justify-content:center; }
+  .brand-mark svg{ width:20px; height:20px; }
+  .brand-text h1{ font-size:18px; font-weight:800; }
+  .brand-text span{ font-size:11px; color:var(--ink-soft); }
+  .header-actions{ display:flex; align-items:center; gap:10px; }
+  .btn{ display:inline-flex; align-items:center; gap:6px; padding:9px 16px; border-radius:8px; font-family:'Tajawal',sans-serif; font-weight:700; font-size:13px; cursor:pointer; border:1px solid var(--line); background:var(--surface); color:var(--ink); transition:all .15s; }
+  .btn:hover{ background:var(--bg); }
+  .btn-primary{ background:var(--accent); color:#fff; border-color:var(--accent); }
+  .btn-primary:hover{ background:var(--accent-dark); }
+  .btn svg{ width:15px; height:15px; }
+  #excelInput{ display:none; }
+
+  main{ max-width:1100px; margin:0 auto; padding:24px; }
+  .toolbar{ margin-bottom:16px; }
+  .toolbar p{ font-size:13px; color:var(--ink-soft); }
+
+  table{ width:100%; border-collapse:collapse; background:var(--surface); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  thead th{ background:var(--accent-dark); color:#fff; font-size:12px; padding:12px 14px; text-align:right; font-weight:700; }
+  tbody td{ padding:10px 14px; border-top:1px solid var(--line); font-size:13.5px; vertical-align:middle; }
+  tbody tr:hover{ background:#FAFBFC; }
+  .prod-cell{ display:flex; align-items:center; gap:10px; }
+  .prod-cell img{ width:38px; height:38px; object-fit:contain; background:#F2F1EC; border-radius:6px; padding:4px; }
+  .price-input{ width:110px; padding:7px 10px; border:1px solid var(--line); border-radius:6px; font-family:'JetBrains Mono',monospace; font-size:13px; text-align:center; }
+  .price-input:focus{ outline:none; border-color:var(--accent); }
+  select.status-select{ padding:7px 10px; border:1px solid var(--line); border-radius:6px; font-family:'Tajawal',sans-serif; font-size:13px; background:#fff; }
+  .row-save{ padding:6px 12px; font-size:12px; border-radius:6px; border:none; background:var(--ok); color:#fff; cursor:pointer; font-family:'Tajawal',sans-serif; font-weight:700; }
+  .row-save:hover{ opacity:0.9; }
+  .row-save.saved{ background:var(--ink-soft); }
+  .loading-row{ text-align:center; padding:30px; color:var(--ink-soft); }
+
+  .toast{ position:fixed; bottom:24px; right:50%; transform:translateX(50%); background:var(--ink); color:#fff; padding:12px 22px; border-radius:8px; font-size:14px; font-weight:500; opacity:0; pointer-events:none; transition:opacity .25s, bottom .25s; z-index:100; }
+  .toast.show{ opacity:1; bottom:36px; }
+</style>
+</head>
+<body>
+
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="mark">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="6" cy="6" r="2" stroke="#EAF1F7" stroke-width="1.6"/>
+        <circle cx="18" cy="18" r="2" stroke="#EAF1F7" stroke-width="1.6"/>
+        <path d="M8 6H14C16.2091 6 18 7.79086 18 10V16" stroke="#EAF1F7" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="18" cy="6" r="1.4" fill="#EAF1F7"/>
+      </svg>
+    </div>
+    <h1>لوحة تحكم Isley</h1>
+    <p>خاصة بصاحب المتجر فقط</p>
+    <input type="password" id="passwordInput" placeholder="كلمة المرور">
+    <button onclick="doLogin()">تسجيل الدخول</button>
+    <div class="login-error" id="loginError">كلمة المرور غلط، حاول تاني</div>
+  </div>
+</div>
+
+<div class="dash" id="dash">
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="6" cy="6" r="2" stroke="#EAF1F7" stroke-width="1.6"/>
+            <circle cx="18" cy="18" r="2" stroke="#EAF1F7" stroke-width="1.6"/>
+            <path d="M8 6H14C16.2091 6 18 7.79086 18 10V16" stroke="#EAF1F7" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="18" cy="6" r="1.4" fill="#EAF1F7"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>لوحة تحكم Isley</h1>
+          <span>متصلة بشيت جوجل مباشرة</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn" onclick="document.getElementById('excelInput').click()">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3V15M12 15L8 11M12 15L16 11M4 17V19C4 20.1 4.9 21 6 21H18C19.1 21 20 20.1 20 19V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          استيراد من Excel
+        </button>
+        <input type="file" id="excelInput" accept=".xlsx,.xls">
+        <a class="btn" href="index.html" target="_blank">عرض الموقع ↗</a>
+        <button class="btn" onclick="doLogout()">خروج</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="toolbar">
+      <p>عدّل السعر أو الحالة واضغط "حفظ" جنب كل صف. التعديل بيتسجل في شيت جوجل ويظهر للزوار خلال ثوانٍ.</p>
+    </div>
+    <table>
+      <thead>
+        <tr><th>المنتج</th><th>السعر (جنيه)</th><th>الحالة</th><th></th></tr>
+      </thead>
+      <tbody id="tableBody"><tr><td colspan="4" class="loading-row">جاري التحميل…</td></tr></tbody>
+    </table>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let adminToken = sessionStorage.getItem('isley_admin_token') || null;
+const loginScreen = document.getElementById('loginScreen');
+const dash = document.getElementById('dash');
+const loginError = document.getElementById('loginError');
+const tableBody = document.getElementById('tableBody');
+const toast = document.getElementById('toast');
+
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2800);
+}
+function fmt(n){ return new Intl.NumberFormat('en-US').format(n); }
+
+// ملحوظة: fetch من غير تحديد Content-Type يبعت الطلب كـ text/plain
+// وده يتفادى مشكلة CORS preflight اللي بتحصل مع Google Apps Script
+async function callApi(payload){
+  const res = await fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+  return res.json();
+}
+
+window.doLogin = async function(){
+  const pass = document.getElementById('passwordInput').value;
+  loginError.classList.remove('show');
+  try{
+    const result = await callApi({ action: 'adminLogin', password: pass });
+    if(result.status === 'ok'){
+      adminToken = result.token;
+      sessionStorage.setItem('isley_admin_token', adminToken);
+      showDash();
+    } else {
+      loginError.textContent = result.message || 'كلمة مرور غلط، حاول تاني';
+      loginError.classList.add('show');
+    }
+  } catch(err){
+    loginError.textContent = 'حصل خطأ في الاتصال. تأكد من رابط APPS_SCRIPT_URL';
+    loginError.classList.add('show');
+    console.error(err);
+  }
+};
+
+window.doLogout = function(){
+  sessionStorage.removeItem('isley_admin_token');
+  adminToken = null;
+  loginScreen.style.display = 'flex';
+  dash.classList.remove('show');
+};
+
+function showDash(){
+  loginScreen.style.display = 'none';
+  dash.classList.add('show');
+  loadProducts();
+}
+
+async function loadProducts(){
+  try{
+    const res = await fetch(`${APPS_SCRIPT_URL}?action=products`);
+    const json = await res.json();
+    if(json.status !== 'ok') throw new Error(json.message);
+    renderTable(json.data);
+  } catch(err){
+    tableBody.innerHTML = `<tr><td colspan="4" class="loading-row">حصل خطأ في تحميل المنتجات</td></tr>`;
+    console.error(err);
+  }
+}
+
+function renderTable(products){
+  tableBody.innerHTML = '';
+  products.forEach(p => {
+    const isOut = p.status && p.status.includes('غير');
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>
+        <div class="prod-cell">
+          <img src="${p.img}" onerror="this.style.display='none'">
+          <span>${p.name}</span>
+        </div>
+      </td>
+      <td><input type="number" class="price-input" value="${p.price}" data-id="${p.id}"></td>
+      <td>
+        <select class="status-select" data-id="${p.id}">
+          <option value="متوفر" ${!isOut ? 'selected' : ''}>متوفر</option>
+          <option value="غير متوفر" ${isOut ? 'selected' : ''}>غير متوفر</option>
+        </select>
+      </td>
+      <td><button class="row-save" data-id="${p.id}">حفظ</button></td>
+    `;
+    tableBody.appendChild(tr);
+  });
+
+  tableBody.querySelectorAll('.row-save').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = btn.dataset.id;
+      const priceInput = tableBody.querySelector(`.price-input[data-id="${id}"]`);
+      const statusSelect = tableBody.querySelector(`.status-select[data-id="${id}"]`);
+      btn.textContent = '...';
+      try{
+        const result = await callApi({
+          action: 'updateProduct',
+          token: adminToken,
+          id: id,
+          price: Number(priceInput.value),
+          status: statusSelect.value
+        });
+        if(result.unauthorized){ showToast('الجلسة انتهت، سجل دخول تاني'); doLogout(); return; }
+        if(result.status === 'ok'){
+          btn.textContent = 'اتحفظ ✓';
+          btn.classList.add('saved');
+          setTimeout(() => { btn.textContent = 'حفظ'; btn.classList.remove('saved'); }, 1800);
+          showToast('اتحدّث السعر في الشيت والموقع');
+        } else {
+          btn.textContent = 'حفظ';
+          showToast(result.message || 'حصل خطأ');
+        }
+      } catch(err){
+        btn.textContent = 'حفظ';
+        showToast('حصل خطأ في الاتصال');
+        console.error(err);
+      }
+    });
+  });
+}
+
+// ===== excel bulk import =====
+document.getElementById('excelInput').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = async function(evt){
+    try{
+      const data = new Uint8Array(evt.target.result);
+      const wb = XLSX.read(data, {type:'array'});
+      const sheet = wb.Sheets[wb.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json(sheet, {header:1});
+      let headerIdx = rows.findIndex(r => r.some(c => String(c).includes('معرف') || String(c).toUpperCase().includes('ID')));
+      if(headerIdx === -1) headerIdx = 1;
+
+      const updates = [];
+      for(let i = headerIdx + 1; i < rows.length; i++){
+        const row = rows[i];
+        if(!row || !row[0]) continue;
+        const id = String(row[0]).trim();
+        const price = row[2];
+        const statusRaw = row[3] ? String(row[3]).trim() : null;
+        if(price === undefined || price === '' || isNaN(price)) continue;
+        const upd = { id: id, price: Number(price) };
+        if(statusRaw) upd.status = statusRaw.includes('غير') ? 'غير متوفر' : 'متوفر';
+        updates.push(upd);
+      }
+
+      if(updates.length === 0){ showToast('مفيش صفوف مطابقة في الملف'); return; }
+
+      const result = await callApi({ action: 'bulkUpdate', token: adminToken, updates: updates });
+      if(result.unauthorized){ showToast('الجلسة انتهت، سجل دخول تاني'); doLogout(); return; }
+      if(result.status === 'ok'){
+        showToast(`تم تحديث ${result.updated} منتج من ملف Excel ✅`);
+        loadProducts();
+      } else {
+        showToast(result.message || 'حصل خطأ');
+      }
+    } catch(err){
+      showToast('حصل خطأ في قراءة الملف');
+      console.error(err);
+    }
+    e.target.value = '';
+  };
+  reader.readAsArrayBuffer(file);
+});
+
+// ===== auto-login if session token still valid =====
+if(adminToken){ showDash(); }
+</script>
+
+</body>
+</html>
