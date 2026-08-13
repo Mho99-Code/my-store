@@ -3,159 +3,461 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Isley | متجر الإلكترونيات وأدوات صناعة المشاريع</title>
+<title>ISLEY | متجر الإلكترونيات والأردوينو والروبوتات</title>
+<meta name="description" content="ISLEY — متجر سوداني للإلكترونيات، الأردوينو، الحساسات، ومكونات الروبوتات وبوردات التطوير لصنّاع المشاريع والطلاب والمهندسين.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%230B1220'/%3E%3Ccircle cx='12' cy='12' r='2.2' fill='%2306B6D4'/%3E%3Ccircle cx='28' cy='28' r='2.2' fill='%23A3E635'/%3E%3Cpath d='M14 12H23C25.7614 12 28 14.2386 28 17V26' stroke='%232563EB' stroke-width='2.2' stroke-linecap='round'/%3E%3Ccircle cx='28' cy='12' r='1.6' fill='%232563EB'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <script src="config.js"></script>
 <style>
   :root{
-    --bg:#FAFAF8; --surface:#FFFFFF; --ink:#191C22; --ink-soft:#6B7280;
-    --line:#E7E5E0; --accent:#2F5D8A; --accent-dark:#1F4266;
-    --sold:#B4483B; --ok:#3E7A52;
+    --navy:#0B1220;
+    --blue:#2563EB;
+    --cyan:#06B6D4;
+    --lime:#2563EB;
+    --bg:#F8FAFC;
+    --white:#FFFFFF;
+    --ink:#111827;
+    --muted:#64748B;
+    --line:#E2E8F0;
+    --danger:#DC2626;
+    --radius:14px;
+    --sp1:8px; --sp2:16px; --sp3:24px; --sp4:32px; --sp5:48px;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  body{ background:var(--bg); color:var(--ink); font-family:'Tajawal', sans-serif; line-height:1.5; }
-  .mono{font-family:'JetBrains Mono', monospace;}
-  .trace-line{ position:relative; height:2px; background:linear-gradient(to left, transparent, var(--accent) 15%, var(--accent) 85%, transparent); margin:0 auto; }
-  .trace-line::before, .trace-line::after{ content:''; position:absolute; top:50%; transform:translateY(-50%); width:6px; height:6px; border-radius:50%; background:var(--accent); }
-  .trace-line::before{ right:15%; } .trace-line::after{ left:15%; }
-  header{ background:var(--surface); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50; }
-  .header-inner{ max-width:1200px; margin:0 auto; padding:18px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
-  .brand{ display:flex; align-items:center; gap:12px; }
-  .brand-mark{ width:42px; height:42px; border-radius:10px; background:var(--accent-dark); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .brand-mark svg{ width:24px; height:24px; }
-  .brand-text h1{ font-size:22px; font-weight:800; }
-  .brand-text span{ font-size:12px; color:var(--ink-soft); display:block; margin-top:-2px; }
-  .search-wrap{ flex:1; max-width:340px; min-width:180px; }
-  .search-wrap input{ width:100%; padding:11px 16px; border:1px solid var(--line); border-radius:8px; font-family:'Tajawal', sans-serif; font-size:14px; background:var(--bg); outline:none; transition:border-color .15s; }
-  .search-wrap input:focus{ border-color:var(--accent); }
-  .cart-btn{ position:relative; display:flex; align-items:center; gap:8px; background:var(--accent); color:#fff; border:none; padding:11px 18px; border-radius:8px; font-family:'Tajawal',sans-serif; font-weight:700; font-size:14px; cursor:pointer; }
-  .cart-btn:hover{ background:var(--accent-dark); }
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'IBM Plex Sans Arabic','Inter',sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .num{ font-family:'JetBrains Mono','Inter',monospace; }
+  a{ color:inherit; text-decoration:none; }
+  button{ font-family:inherit; }
+  img{ max-width:100%; display:block; }
+
+  /* ===== announcement bar ===== */
+  .announce{
+    background:var(--navy); color:#fedcdc;
+    text-align:center; font-size:25سpx; font-weight:600;
+    padding:9px 16px; letter-spacing:.2px;
+  }
+  .announce b{ color:var(--lime); }
+
+  /* ===== header ===== */
+  header{
+    background:rgba(255,255,255,0.92); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50;
+  }
+  .header-inner{
+    max-width:1280px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; gap:28px;
+  }
+  .logo{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
+  .logo svg{ width:38px; height:38px; }
+  .logo-word{ font-family:'Inter',sans-serif; font-weight:800; font-size:21px; letter-spacing:0.5px; color:var(--navy); }
+  .logo-word span{ color:var(--blue); }
+
+  nav.cats{ display:flex; gap:4px; flex:1; justify-content:center; flex-wrap:wrap; }
+  .cat-chip{
+    padding:8px 14px; border-radius:20px; font-size:13px; font-weight:600;
+    color:var(--muted); background:transparent; border:1px solid transparent;
+    cursor:pointer; transition:all .15s; white-space:nowrap;
+  }
+  .cat-chip:hover{ color:var(--navy); background:var(--bg); }
+  .cat-chip.active{ color:var(--blue); background:#EFF6FF; border-color:#DBEAFE; }
+
+  .header-actions{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
+  .icon-btn{
+    width:40px; height:40px; border-radius:10px; border:1px solid var(--line); background:var(--white);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--navy); transition:all .15s;
+  }
+  .icon-btn:hover{ border-color:var(--blue); color:var(--blue); }
+  .icon-btn svg{ width:19px; height:19px; }
+  .search-inline{ position:relative; display:none; }
+  .search-inline.show{ display:block; }
+  .search-inline input{
+    width:220px; padding:9px 14px 9px 36px; border:1px solid var(--line); border-radius:10px;
+    font-family:inherit; font-size:13.5px; background:var(--bg); outline:none; transition:border-color .15s;
+  }
+  .search-inline input:focus{ border-color:var(--blue); }
+  .search-inline svg{ position:absolute; left:11px; top:50%; transform:translateY(-50%); width:15px; height:15px; color:var(--muted); }
+
+  .cart-btn{
+    position:relative; display:flex; align-items:center; gap:8px;
+    background:var(--blue); color:#fff; border:none; padding:10px 18px; border-radius:10px;
+    font-weight:700; font-size:13.5px; cursor:pointer; transition:background .15s;
+  }
+  .cart-btn:hover{ background:#1D4ED8; }
   .cart-btn svg{ width:17px; height:17px; }
-  .cart-count{ background:#fff; color:var(--accent-dark); font-size:11px; font-weight:800; width:19px; height:19px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+  .cart-count{ background:var(--lime); color:var(--navy); font-size:11px; font-weight:800; width:19px; height:19px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
 
-  .hero{ max-width:1200px; margin:0 auto; padding:48px 24px 32px; text-align:center; }
-  .eyebrow{ display:inline-block; font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:2px; color:var(--accent); background:#EAF1F7; padding:6px 14px; border-radius:20px; margin-bottom:18px; }
-  .hero h2{ font-size:34px; font-weight:800; max-width:640px; margin:0 auto 12px; line-height:1.35; }
-  .hero p{ color:var(--ink-soft); font-size:16px; max-width:520px; margin:0 auto; }
-  .hero-trace{ margin-top:36px; max-width:400px; }
-  .status-bar{ max-width:1200px; margin:24px auto 0; padding:0 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
-  .status-bar .count{ color:var(--ink-soft); font-size:14px; } .status-bar .count b{ color:var(--ink); }
-  .live-badge{ display:flex; align-items:center; gap:6px; font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--ok); cursor:pointer; background:none; border:none; }
-  .live-dot{ width:7px; height:7px; border-radius:50%; background:var(--ok); animation:pulse 1.8s infinite; }
+  /* ===== hero ===== */
+  .hero{
+    position:relative; overflow:hidden; background:var(--navy);
+    padding:72px 24px 64px; text-align:center;
+  }
+  .hero-pattern{ position:absolute; inset:0; opacity:0.5; }
+  .hero-inner{ position:relative; max-width:760px; margin:0 auto; }
+  .sudan-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14);
+    padding:6px 16px; border-radius:20px; font-size:12.5px; font-weight:600; color:#CBD5E1;
+    margin-bottom:22px;
+  }
+  .sudan-flag{ display:inline-flex; width:16px; height:11px; border-radius:2px; overflow:hidden; flex-shrink:0; }
+  .sudan-flag i{ flex:1; }
+  .sudan-flag i:nth-child(1){ background:#D21034; }
+  .sudan-flag i:nth-child(2){ background:#FFFFFF; }
+  .sudan-flag i:nth-child(3){ background:#000000; }
+  .hero h1{
+    font-family:'Inter',sans-serif; font-weight:800; letter-spacing:1px;
+    font-size:15px; color:var(--cyan); margin-bottom:18px; text-transform:uppercase;
+  }
+  .hero h2{
+    font-size:38px; font-weight:800; color:#fff; line-height:1.4; margin-bottom:16px;
+  }
+  .hero h2 em{ font-style:normal; color:var(--cyan); }
+  .hero p{ color:#94A3B8; font-size:15.5px; max-width:520px; margin:0 auto 30px; }
+  .hero-ctas{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .btn{
+    padding:13px 26px; border-radius:10px; font-weight:700; font-size:14px;
+    cursor:pointer; border:none; transition:all .15s; display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-primary{ background:var(--blue); color:#fff; }
+  .btn-primary:hover{ background:#1D4ED8; transform:translateY(-1px); }
+  .btn-ghost{ background:rgba(255,255,255,0.06); color:#fff; border:1px solid rgba(255,255,255,0.18); }
+  .btn-ghost:hover{ background:rgba(255,255,255,0.12); }
+
+  /* ===== delivery notice ===== */
+  .delivery-strip{
+    max-width:1280px; margin:0 auto; padding:16px 24px;
+  }
+  .delivery-box{
+    background:#ECFEFF; border:1px solid #A5F3FC; border-radius:12px;
+    padding:14px 18px; display:flex; align-items:center; gap:12px; font-size:13.5px; color:#155E75;
+  }
+  .delivery-box svg{ width:20px; height:20px; flex-shrink:0; color:var(--cyan); }
+  .delivery-box b{ color:var(--navy); }
+
+  /* ===== categories section ===== */
+  .section{ max-width:1280px; margin:0 auto; padding:44px 24px; }
+  .section-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:22px; flex-wrap:wrap; gap:8px; }
+  .section-head h3{ font-size:20px; font-weight:800; color:var(--navy); }
+  .section-head span{ font-size:13px; color:var(--muted); }
+
+  .cat-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:14px; }
+  .cat-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px 14px; text-align:center; cursor:pointer; transition:all .15s;
+  }
+  .cat-card:hover{ border-color:var(--blue); transform:translateY(-2px); box-shadow:0 8px 20px rgba(37,99,235,0.08); }
+  .cat-card .icon-wrap{
+    width:46px; height:46px; border-radius:12px; background:#EFF6FF; color:var(--blue);
+    display:flex; align-items:center; justify-content:center; margin:0 auto 12px;
+  }
+  .cat-card .icon-wrap svg{ width:22px; height:22px; }
+  .cat-card span{ font-size:12.5px; font-weight:700; color:var(--ink); }
+
+  /* ===== product grid ===== */
+  .toolbar-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; flex-wrap:wrap; gap:10px; }
+  .live-badge{ display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted); background:none; border:none; cursor:pointer; font-family:inherit; }
+  .live-dot{ width:7px; height:7px; border-radius:50%; background:var(--lime); animation:pulse 1.8s infinite; }
   @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:0.3;} }
-  .grid{ max-width:1200px; margin:0 auto; padding:24px 24px 60px; display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:18px; }
-  .card{ background:var(--surface); border:1px solid var(--line); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; transition:transform .15s, box-shadow .15s, border-color .15s; }
-  .card:hover{ transform:translateY(-3px); box-shadow:0 10px 24px rgba(25,28,34,0.08); border-color:#D7DEE6; }
-  .card-img{ aspect-ratio:1/1; background:#F2F1EC; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
-  .card-img img{ width:100%; height:100%; object-fit:contain; padding:14px; }
-  .badge-sold{ position:absolute; top:10px; left:10px; background:var(--sold); color:#fff; font-size:11px; font-weight:700; padding:4px 10px; border-radius:20px; }
-  .card-body{ padding:14px 16px 16px; display:flex; flex-direction:column; gap:8px; flex:1; }
-  .card-body h3{ font-size:14.5px; font-weight:700; line-height:1.4; min-height:40px; }
-  .card-footer{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; padding-top:8px; border-top:1px dashed var(--line); }
-  .price{ font-family:'JetBrains Mono', monospace; font-weight:700; font-size:16px; color:var(--accent-dark); }
-  .price small{ font-size:11px; color:var(--ink-soft); font-weight:500; margin-right:3px;}
-  .stock-ok{ font-size:12px; color:var(--ok); font-weight:700; } .stock-no{ font-size:12px; color:var(--sold); font-weight:700; }
-  .add-btn{ margin-top:8px; width:100%; padding:9px; border:1px solid var(--accent); background:#fff; color:var(--accent); border-radius:8px; font-family:'Tajawal',sans-serif; font-weight:700; font-size:13px; cursor:pointer; transition:all .15s; }
-  .add-btn:hover{ background:var(--accent); color:#fff; }
-  .add-btn:disabled{ border-color:var(--line); color:var(--ink-soft); cursor:not-allowed; }
-  .add-btn:disabled:hover{ background:#fff; color:var(--ink-soft); }
-  .empty-state, .loading-state{ text-align:center; padding:60px 20px; color:var(--ink-soft); grid-column:1/-1; }
-  .empty-state{ display:none; } .empty-state.show{ display:block; }
-  footer{ background:var(--accent-dark); color:#EAF1F7; padding:36px 24px 24px; text-align:center; }
-  footer .brand-text-f{ font-size:20px; font-weight:800; margin-bottom:6px; }
-  footer p{ font-size:13px; opacity:0.8; }
-  footer .admin-link{ display:inline-block; margin-top:16px; font-size:12px; color:#9FB8CD; text-decoration:none; border-top:1px solid rgba(255,255,255,0.15); padding-top:14px; }
-  footer .admin-link:hover{ color:#fff; }
 
-  .drawer-overlay{ display:none; position:fixed; inset:0; background:rgba(25,28,34,0.5); z-index:200; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:18px; }
+  .card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; display:flex; flex-direction:column; transition:all .18s;
+  }
+  .card:hover{ transform:translateY(-4px); box-shadow:0 14px 30px rgba(15,23,42,0.09); border-color:#CBD5E1; }
+  .card-img{ aspect-ratio:1/1; background:#F1F5F9; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+  .card-img img{ width:100%; height:100%; object-fit:contain; padding:16px; }
+  .badge-sold{ position:absolute; top:10px; right:10px; background:var(--danger); color:#fff; font-size:10.5px; font-weight:700; padding:4px 10px; border-radius:20px; }
+  .badge-low{ position:absolute; top:10px; right:10px; background:var(--lime); color:var(--navy); font-size:10.5px; font-weight:800; padding:4px 10px; border-radius:20px; }
+  .card-body{ padding:14px 16px 16px; display:flex; flex-direction:column; gap:8px; flex:1; }
+  .card-cat{ font-size:10.5px; font-weight:700; color:var(--blue); text-transform:uppercase; letter-spacing:.4px; }
+  .card-body h3{ font-size:14px; font-weight:700; line-height:1.4; min-height:38px; color:var(--ink); }
+  .card-footer{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; padding-top:8px; border-top:1px dashed var(--line); }
+  .price{ font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15.5px; color:var(--navy); }
+  .price small{ font-size:10.5px; color:var(--muted); font-weight:500; margin-right:3px;}
+  .stock-ok{ font-size:11px; color:#059669; font-weight:700; } .stock-no{ font-size:11px; color:var(--danger); font-weight:700; }
+  .add-btn{
+    margin-top:8px; width:100%; padding:10px; border:none; background:var(--navy); color:#fff;
+    border-radius:9px; font-weight:700; font-size:13px; cursor:pointer; transition:all .15s;
+  }
+  .add-btn:hover{ background:var(--blue); }
+  .add-btn:disabled{ background:#E2E8F0; color:var(--muted); cursor:not-allowed; }
+
+  .empty-state, .loading-state{ text-align:center; padding:60px 20px; color:var(--muted); grid-column:1/-1; }
+  .empty-state{ display:none; } .empty-state.show{ display:block; }
+
+  /* ===== trust section ===== */
+  .trust-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:18px; }
+  .trust-item{ display:flex; align-items:flex-start; gap:14px; padding:18px; background:var(--white); border:1px solid var(--line); border-radius:var(--radius); }
+  .trust-item .icon-wrap{ width:42px; height:42px; border-radius:10px; background:#EFF6FF; color:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .trust-item .icon-wrap svg{ width:20px; height:20px; }
+  .trust-item h4{ font-size:14px; font-weight:700; margin-bottom:3px; }
+  .trust-item p{ font-size:12.5px; color:var(--muted); }
+
+  /* ===== footer ===== */
+  footer{ background:var(--navy); color:#94A3B8; position:relative; overflow:hidden; }
+  .footer-inner{ position:relative; max-width:1280px; margin:0 auto; padding:52px 24px 24px; }
+  .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px; margin-bottom:36px; }
+  .footer-brand .logo-word{ color:#fff; }
+  .footer-brand p{ font-size:13px; margin-top:14px; line-height:1.7; max-width:280px; }
+  .footer-sudan{ display:inline-flex; align-items:center; gap:8px; margin-top:16px; font-size:12px; color:#CBD5E1; }
+  .footer-col h5{ color:#fff; font-size:13px; font-weight:700; margin-bottom:14px; }
+  .footer-col a{ display:block; font-size:13px; color:#94A3B8; margin-bottom:10px; transition:color .15s; }
+  .footer-col a:hover{ color:var(--cyan); }
+  .footer-bottom{ border-top:1px solid rgba(255,255,255,0.08); padding-top:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:12px; }
+
+  @media (max-width:900px){
+    nav.cats{ display:none; }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:560px){
+    .header-inner{ padding:12px 16px; gap:12px; }
+    .logo-word{ font-size:17px; }
+    .search-inline{ display:none !important; }
+    .hero{ padding:52px 16px 44px; }
+    .hero h2{ font-size:26px; }
+    .grid{ grid-template-columns:repeat(2, 1fr); gap:10px; }
+    .cat-grid{ grid-template-columns:repeat(3, 1fr); }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+  }
+
+  /* ===== drawer ===== */
+  .drawer-overlay{ display:none; position:fixed; inset:0; background:rgba(11,18,32,0.55); z-index:200; }
   .drawer-overlay.show{ display:block; }
-  .drawer{ position:fixed; top:0; left:0; height:100%; width:100%; max-width:400px; background:var(--surface); z-index:201; transform:translateX(-100%); transition:transform .25s; display:flex; flex-direction:column; }
+  .drawer{ position:fixed; top:0; left:0; height:100%; width:100%; max-width:400px; background:var(--white); z-index:201; transform:translateX(-100%); transition:transform .25s; display:flex; flex-direction:column; }
   .drawer.show{ transform:translateX(0); }
   .drawer-header{ padding:20px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; }
-  .drawer-header h2{ font-size:17px; font-weight:800; }
-  .drawer-close{ background:none; border:none; cursor:pointer; font-size:20px; color:var(--ink-soft); }
+  .drawer-header h2{ font-size:17px; font-weight:800; color:var(--navy); }
+  .drawer-close{ background:none; border:none; cursor:pointer; font-size:20px; color:var(--muted); }
   .drawer-body{ flex:1; overflow-y:auto; padding:16px 20px; }
   .cart-item{ display:flex; gap:10px; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); }
-  .cart-item img{ width:48px; height:48px; object-fit:contain; background:#F2F1EC; border-radius:6px; padding:4px; }
+  .cart-item img{ width:48px; height:48px; object-fit:contain; background:#F1F5F9; border-radius:6px; padding:4px; }
   .cart-item-info{ flex:1; min-width:0; }
   .cart-item-info h4{ font-size:13px; font-weight:700; margin-bottom:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .cart-item-info .cart-price{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink-soft); }
+  .cart-item-info .cart-price{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); }
   .qty-control{ display:flex; align-items:center; gap:6px; }
   .qty-control button{ width:24px; height:24px; border-radius:6px; border:1px solid var(--line); background:#fff; cursor:pointer; font-size:14px; }
   .qty-control span{ font-family:'JetBrains Mono',monospace; font-size:13px; min-width:18px; text-align:center; }
-  .cart-empty{ text-align:center; padding:40px 10px; color:var(--ink-soft); font-size:14px; }
+  .cart-empty{ text-align:center; padding:40px 10px; color:var(--muted); font-size:14px; }
   .drawer-footer{ padding:18px 20px; border-top:1px solid var(--line); }
   .cart-total{ display:flex; justify-content:space-between; margin-bottom:14px; font-weight:700; }
-  .cart-total .amt{ font-family:'JetBrains Mono',monospace; color:var(--accent-dark); }
-  .checkout-btn{ width:100%; padding:13px; background:var(--accent); color:#fff; border:none; border-radius:8px; font-family:'Tajawal',sans-serif; font-weight:700; font-size:14px; cursor:pointer; }
-  .checkout-btn:hover{ background:var(--accent-dark); }
+  .cart-total .amt{ font-family:'JetBrains Mono',monospace; color:var(--navy); }
+  .checkout-btn{ width:100%; padding:13px; background:var(--blue); color:#fff; border:none; border-radius:10px; font-weight:700; font-size:14px; cursor:pointer; }
+  .checkout-btn:hover{ background:#1D4ED8; }
 
-  .checkout-form label{ display:block; font-size:13px; font-weight:700; margin-bottom:6px; margin-top:14px; }
+  .checkout-form label{ display:block; font-size:13px; font-weight:700; margin-bottom:6px; margin-top:14px; color:var(--navy); }
   .checkout-form label:first-of-type{ margin-top:0; }
-  .checkout-form input, .checkout-form textarea{ width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px; font-family:'Tajawal',sans-serif; font-size:14px; outline:none; }
+  .checkout-form input, .checkout-form textarea{ width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:9px; font-family:inherit; font-size:14px; outline:none; }
   .checkout-form textarea{ resize:vertical; min-height:60px; }
-  .checkout-form input:focus, .checkout-form textarea:focus{ border-color:var(--accent); }
-  .order-summary{ background:var(--bg); border-radius:8px; padding:12px; margin-bottom:16px; font-size:13px; color:var(--ink-soft); }
-  .back-link{ background:none; border:none; color:var(--accent); font-family:'Tajawal',sans-serif; font-size:13px; font-weight:700; cursor:pointer; margin-bottom:14px; }
+  .checkout-form input:focus, .checkout-form textarea:focus{ border-color:var(--blue); }
+  .delivery-note-form{ background:#ECFEFF; border:1px solid #A5F3FC; border-radius:8px; padding:10px 12px; font-size:12px; color:#155E75; margin-top:14px; }
+  .order-summary{ background:var(--bg); border-radius:8px; padding:12px; margin-bottom:16px; font-size:13px; color:var(--muted); }
+  .back-link{ background:none; border:none; color:var(--blue); font-size:13px; font-weight:700; cursor:pointer; margin-bottom:14px; font-family:inherit; }
   .success-box{ text-align:center; padding:30px 10px; }
-  .success-box .check{ width:56px; height:56px; border-radius:50%; background:#E5F3E9; color:var(--ok); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:28px; }
-  .success-box h3{ font-size:17px; font-weight:800; margin-bottom:8px; }
-  .success-box p{ color:var(--ink-soft); font-size:14px; margin-bottom:6px; }
-  .success-box .order-num{ font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--accent-dark); font-size:16px; }
-
-  @media (max-width:560px){ .hero h2{ font-size:26px; } .header-inner{ flex-direction:column; align-items:stretch; } .search-wrap{ max-width:none; } .drawer{ max-width:100%; } }
+  .success-box .check{ width:56px; height:56px; border-radius:50%; background:#ECFDF5; color:#059669; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:28px; }
+  .success-box h3{ font-size:17px; font-weight:800; margin-bottom:8px; color:var(--navy); }
+  .success-box p{ color:var(--muted); font-size:14px; margin-bottom:6px; }
+  .success-box .order-num{ font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--blue); font-size:16px; }
 </style>
 </head>
 <body>
 
+<div class="announce"><b>ISLEY</b> 
+</div>
+
 <header>
   <div class="header-inner">
-    <div class="brand">
-      <div class="brand-mark">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="6" cy="6" r="2" stroke="#EAF1F7" stroke-width="1.6"/>
-          <circle cx="18" cy="18" r="2" stroke="#EAF1F7" stroke-width="1.6"/>
-          <path d="M8 6H14C16.2091 6 18 7.79086 18 10V16" stroke="#EAF1F7" stroke-width="1.6" stroke-linecap="round"/>
-          <circle cx="18" cy="6" r="1.4" fill="#EAF1F7"/>
-        </svg>
-      </div>
-      <div class="brand-text">
-        <h1>Isley</h1>
-        <span>مكونات إلكترونية وأدوات صناعة المشاريع</span>
-      </div>
+    <div class="logo">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="9" fill="#0B1220"/>
+        <circle cx="12" cy="12" r="2.2" fill="#06B6D4"/>
+        <circle cx="28" cy="28" r="2.2" fill="#A3E635"/>
+        <path d="M14 12H23C25.7614 12 28 14.2386 28 17V26" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="28" cy="12" r="1.6" fill="#2563EB"/>
+      </svg>
+      <span class="logo-word">ISLEY</span>
     </div>
-    <div class="search-wrap">
-      <input type="text" id="searchInput" placeholder="دور على منتج…">
+
+    <nav class="cats" id="catNav">
+      <button class="cat-chip active" data-filter="">الكل</button>
+      <button class="cat-chip" data-filter="arduino">أردوينو</button>
+      <button class="cat-chip" data-filter="sensor">حساسات</button>
+      <button class="cat-chip" data-filter="module display">وحدات وشاشات</button>
+      <button class="cat-chip" data-filter="servo motor">محركات</button>
+      <button class="cat-chip" data-filter="esp32 board">بوردات تطوير</button>
+    </nav>
+
+    <div class="header-actions">
+      <div class="search-inline" id="searchWrap">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input type="text" id="searchInput" placeholder="فتش  على منتج…">
+      </div>
+      <button class="icon-btn" id="searchToggleBtn" title="بحث">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <button class="cart-btn" id="openCartBtn">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.2 16.5H17M17 16.5C15.9 16.5 15 17.4 15 18.5C15 19.6 15.9 20.5 17 20.5C18.1 20.5 19 19.6 19 18.5C19 17.4 18.1 16.5 17 16.5ZM9 18.5C9 19.6 8.1 20.5 7 20.5C5.9 20.5 5 19.6 5 18.5C5 17.4 5.9 16.5 7 16.5C8.1 16.5 9 17.4 9 18.5Z" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
     </div>
-    <button class="cart-btn" id="openCartBtn">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.2 16.5H17M17 16.5C15.9 16.5 15 17.4 15 18.5C15 19.6 15.9 20.5 17 20.5C18.1 20.5 19 19.6 19 18.5C19 17.4 18.1 16.5 17 16.5ZM9 18.5C9 19.6 8.1 20.5 7 20.5C5.9 20.5 5 19.6 5 18.5C5 17.4 5.9 16.5 7 16.5C8.1 16.5 9 17.4 9 18.5Z" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      السلة <span class="cart-count" id="cartCount">0</span>
-    </button>
   </div>
 </header>
 
 <section class="hero">
-  <span class="eyebrow">ISLEY // ELECTRONICS</span>
-  <h2>كل قطعة محتاجها لمشروعك التالي، اطلبها دلوقتي</h2>
-  <p>سنسورات، بوردات تطوير، سيرفوهات وأدوات — اختار المنتج، حدد الكمية، وابعت طلبك مباشرة.</p>
-  <div class="trace-line hero-trace"></div>
+  <svg class="hero-pattern" viewBox="0 0 800 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M40 0H0V40" fill="none" stroke="#1E293B" stroke-width="1"/>
+      </pattern>
+    </defs>
+    <rect width="800" height="400" fill="url(#grid)"/>
+    <path d="M60 80H220C240 80 250 90 250 110V180" stroke="#2563EB" stroke-width="2" fill="none" opacity="0.5"/>
+    <circle cx="60" cy="80" r="4" fill="#06B6D4"/>
+    <circle cx="250" cy="180" r="4" fill="#2563EB"/>
+    <path d="M740 320H600C580 320 570 310 570 290V240" stroke="#06B6D4" stroke-width="2" fill="none" opacity="0.5"/>
+    <circle cx="740" cy="320" r="4" fill="#A3E635"/>
+    <circle cx="570" cy="240" r="4" fill="#06B6D4"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="sudan-badge">
+      <span class=><i></i><i></i><i></i></span>
+ISLEY    </div>
+    <h1>ISLEY... ELECTRONICS &amp; ROBOTICS</h1>
+    <h2> للجوده عنوان ISLEY</em></h2>
+    <p>كل حاجة  محتاجه عشان تبدأ مشروعك الجاي في الإلكترونيات والأردوينو والروبوتات — بجودة موثوقة وتوصيل لباب بيتك.</p>
+    <div class="hero-ctas">
+      <button class="btn btn-primary" onclick="document.getElementById('productsSection').scrollIntoView({behavior:'smooth'})">
+        تسوق الآن
+        <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="btn btn-ghost" onclick="document.getElementById('catSection').scrollIntoView({behavior:'smooth'})">استكشف الفئات</button>
+    </div>
+  </div>
 </section>
 
-<div class="status-bar">
-  <div class="count"><b id="visibleCount">0</b> منتج متاح للعرض</div>
-  <button class="live-badge" id="refreshBtn" title="اضغط لتحديث الأسعار دلوقتي"><span class="live-dot"></span> تحديث تلقائي — اضغط للتحديث الآن</button>
+<div class="delivery-strip">
+  <div class="delivery-box">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="7" width="15" height="10" rx="1.5" stroke="currentColor" stroke-width="1.8"/><path d="M16 10H19.5L22 13.5V17H16V10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="6" cy="19" r="1.8" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="19" r="1.8" stroke="currentColor" stroke-width="1.8"/></svg>
+    <div><b>يوجد التوصيل فقط حاليًا:</b> ISLEY متجر إلكتروني بالكامل الفترة دي، لا يوجد فرع فعلي للزيارة — كل الطلبات بتوصل للبيت مباشرة.</div>
+  </div>
 </div>
 
-<main class="grid" id="grid">
-  <div class="loading-state" id="loadingState">جاري تحميل المنتجات…</div>
-</main>
-<div class="empty-state" id="emptyState">مفيش منتجات مطابقة لبحثك 🔍</div>
+<section class="section" id="catSection">
+  <div class="section-head">
+    <h3>تسوق حسب الفئة</h3>
+    <span>اختار الفئة وشوف المنتجات المتاحة</span>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card" data-filter="arduino">
+      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="9" y="9" width="6" height="6" stroke="currentColor" stroke-width="1.7"/><path d="M9 2V4M15 2V4M9 20V22M15 20V22M2 9H4M2 15H4M20 9H22M20 15H22" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+      <span>بوردات أردوينو</span>
+    </div>
+    <div class="cat-card" data-filter="sensor">
+      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M8 12C8 9.79 9.79 8 12 8M16 12C16 14.21 14.21 16 12 16M5 12C5 8.13 8.13 5 12 5M19 12C19 15.87 15.87 19 12 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+      <span>حساسات</span>
+    </div>
+    <div class="cat-card" data-filter="module">
+      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M7 6V4M12 6V4M17 6V4M7 20V18M12 20V18M17 20V18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+      <span>وحدات إلكترونية</span>
+    </div>
+    <div class="cat-card" data-filter="motor servo">
+      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M12 2V4M12 20V22M22 12H20M4 12H2M19.07 4.93L17.66 6.34M6.34 17.66L4.93 19.07M19.07 19.07L17.66 17.66M6.34 6.34L4.93 4.93" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+      <span>محركات</span>
+    </div>
+    <div class="cat-card" data-filter="esp32">
+      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="3" width="14" height="18" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M9 8H15M9 12H15M9 16H12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+      <span>بوردات تطوير</span>
+    </div>
+    <div class="cat-card" data-filter="display oled tft">
+      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M8 21H16M12 17V21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+      <span>شاشات</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="productsSection">
+  <div class="toolbar-row">
+    <div class="section-head" style="margin:0;">
+      <h3><span class="num" id="visibleCount">0</span> منتج</h3>
+    </div>
+    <button class="live-badge" id="refreshBtn"><span class="live-dot"></span> ضغط للتحديث الآن</button>
+  </div>
+  <main class="grid" id="grid">
+    <div class="loading-state" id="loadingState">جاري تحميل المنتجات…</div>
+  </main>
+  <div class="empty-state" id="emptyState">مافي  منتجات مطابقة لبحثك 🔍</div>
+</section>
+
+<section class="section">
+  <div class="trust-grid">
+    <div class="trust-item">
+      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L4 5V11C4 16 7.5 20.5 12 22C16.5 20.5 20 16 20 11V5L12 2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+      <div><h4>مكونات أصلية</h4><p>قطع مضمونة الجودة ومختبرة قبل الشحن</p></div>
+    </div>
+    <div class="trust-item">
+      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="7" width="15" height="10" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M16 10H19.5L22 13.5V17H16V10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+      <div><h4>توصيل  داخل ولاية الخرطوم فقط  وقريبا باقي الولايات </h4><p>بنوصل طلبك لعنوانك أينما كنت</p></div>
+    </div>
+    <div class="trust-item">
+      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12L9 18L21 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><h4>الدفع عند الاستلام</h4><p>الدفع عند الاستلام فقط, يوجد معاينه قبل الاستلام </p></div>
+    </div>
+    <div class="trust-item">
+      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17 20.5 20 16 20 11V5L12 2L4 5V11C4 16 7 20.5 12 22Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><h4>دعم فني</h4><p>هنساعدك تختار المكونات المناسبة لمشروعك </p></div>
+    </div>
+  </div>
+</section>
 
 <footer>
-  <div class="brand-text-f">Isley</div>
-  <p>© 2026 Isley — متجر مكونات إلكترونية. كل الحقوق محفوظة.</p>
-  <a class="admin-link" href="admin.html">لوحة التحكم →</a>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="9" fill="#152238"/>
+            <circle cx="12" cy="12" r="2.2" fill="#06B6D4"/>
+            <circle cx="28" cy="28" r="2.2" fill="#A3E635"/>
+            <path d="M14 12H23C25.7614 12 28 14.2386 28 17V26" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="28" cy="12" r="1.6" fill="#2563EB"/>
+          </svg>
+          <span class="logo-word">ISLEY</span>
+        </div>
+        <p>ISLEY  وجهتك للإلكترونيات والأردوينو والروبوتات ومكونات بوردات التطوير — بنساعد الطلاب والمهندسين يحولوا أفكارهم لمشاريع حقيقية.</p>
+        <div class="footer-sudan"><span class=><i></i><i></i><i></i></span>  اول متجر اكتروني سوداني لي بيع قطع الاكترونيات و الاردوينو والربوتات و مكونات البوردات </div>
+      </div>
+      <div class="footer-col">
+        <h5>الفئات</h5>
+        <a href="#" data-filter="arduino">أردوينو</a>
+        <a href="#" data-filter="sensor">حساسات</a>
+        <a href="#" data-filter="motor servo">محركات</a>
+        <a href="#" data-filter="esp32">بوردات تطوير</a>
+      </div>
+      <div class="footer-col">
+        <h5>خدمة العملاء</h5>
+        <a href="#">التوصيل والدفع</a>
+        <a href="#">الأسئلة الشائعة</a>
+        <a href="#">تتبع طلبك</a>
+      </div>
+      <div class="footer-col">
+        <h5>عن ISLEY</h5>
+        <a href="#">التقه </a>
+                <a href="#">الجوده</a>
+        <a href="#">خدمة ما بعد البيع </a>
+
+        <a href="+249111328634">تواصل معنا</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ISLEY. كل الحقوق محفوظة.</span>
+      <span>متجر إلكتروني — توصيل فقط، لا يوجد فرع حاليًا</span>
+    </div>
+  </div>
 </footer>
 
 <div class="drawer-overlay" id="drawerOverlay"></div>
@@ -176,8 +478,22 @@ const visibleCount = document.getElementById('visibleCount');
 let allProducts = [];
 let firstLoad = true;
 let cart = {};
+let activeFilter = '';
 
 function fmt(n){ return new Intl.NumberFormat('en-US').format(n); }
+
+function matchesFilter(p, filterStr, searchStr){
+  const name = p.name.toLowerCase();
+  const filterOk = !filterStr || filterStr.split(' ').some(kw => name.includes(kw));
+  const searchOk = !searchStr || name.includes(searchStr);
+  return filterOk && searchOk;
+}
+
+function applyFilters(){
+  const searchStr = document.getElementById('searchInput').value.trim().toLowerCase();
+  const list = allProducts.filter(p => matchesFilter(p, activeFilter, searchStr));
+  render(list);
+}
 
 function render(list){
   grid.innerHTML = '';
@@ -187,17 +503,19 @@ function render(list){
 
   list.forEach(p => {
     const isOut = p.qty <= 0;
+    const isLow = !isOut && p.qty <= 5;
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
       <div class="card-img">
-        ${isOut ? '<span class="badge-sold">غير متوفر</span>' : ''}
+        ${isOut ? '<span class="badge-sold">غير متوفر</span>' : (isLow ? '<span class="badge-low">كمية محدودة</span>' : '')}
         <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">
       </div>
       <div class="card-body">
+        <span class="card-cat">ISLEY</span>
         <h3>${p.name}</h3>
         <div class="card-footer">
-          <div class="price">${fmt(p.price)}<small>جنيه</small></div>
+          <div class="price">${fmt(p.price)}<small>ج.س</small></div>
           <div class="${isOut ? 'stock-no' : 'stock-ok'}">${isOut ? 'نفذ' : p.qty + ' متاح'}</div>
         </div>
         <button class="add-btn" data-id="${p.id}" ${isOut ? 'disabled' : ''}>${isOut ? 'غير متوفر' : 'أضف للسلة'}</button>
@@ -229,19 +547,31 @@ async function fetchProducts(){
     if(json.status !== 'ok') throw new Error(json.message);
     allProducts = json.data;
     if(firstLoad){ loadingState.remove(); firstLoad = false; }
-    const q = document.getElementById('searchInput').value.trim().toLowerCase();
-    render(q ? allProducts.filter(p => p.name.toLowerCase().includes(q)) : allProducts);
+    applyFilters();
   } catch(err){
-    loadingState.textContent = 'حصل خطأ في الاتصال. تأكد من رابط APPS_SCRIPT_URL في config.js';
+    loadingState.textContent = 'حصل خطأ في الاتصال. ';
     console.error(err);
   }
 }
 
-document.getElementById('searchInput').addEventListener('input', (e) => {
-  const q = e.target.value.trim().toLowerCase();
-  render(allProducts.filter(p => p.name.toLowerCase().includes(q)));
-});
+document.getElementById('searchInput').addEventListener('input', applyFilters);
 document.getElementById('refreshBtn').addEventListener('click', fetchProducts);
+document.getElementById('searchToggleBtn').addEventListener('click', () => {
+  document.getElementById('searchWrap').classList.toggle('show');
+  document.getElementById('searchInput').focus();
+});
+
+document.querySelectorAll('[data-filter]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if(el.tagName === 'A') e.preventDefault();
+    activeFilter = el.dataset.filter || '';
+    document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+    const matchingChip = document.querySelector(`.cat-chip[data-filter="${CSS.escape(activeFilter)}"]`);
+    if(matchingChip) matchingChip.classList.add('active');
+    applyFilters();
+    document.getElementById('productsSection').scrollIntoView({behavior:'smooth'});
+  });
+});
 
 fetchProducts();
 setInterval(fetchProducts, 20000);
@@ -269,7 +599,7 @@ function renderCartView(){
   drawerTitle.textContent = 'سلة الطلبات';
   const entries = Object.entries(cart).filter(([id, qty]) => qty > 0);
   if(entries.length === 0){
-    drawerBody.innerHTML = '<div class="cart-empty">السلة فاضية دلوقتي 🛒<br>ارجع للموقع واختار منتجات</div>';
+    drawerBody.innerHTML = '<div class="cart-empty">السلة فاضيةالان 🛒<br>ارجع للموقع واختار منتجات</div>';
     drawerFooter.innerHTML = '';
     return;
   }
@@ -281,7 +611,7 @@ function renderCartView(){
         <img src="${p.img}" onerror="this.style.display='none'">
         <div class="cart-item-info">
           <h4>${p.name}</h4>
-          <div class="cart-price">${fmt(p.price)} جنيه</div>
+          <div class="cart-price">${fmt(p.price)} ج.س</div>
         </div>
         <div class="qty-control">
           <button class="qty-minus" data-id="${id}">−</button>
@@ -293,7 +623,7 @@ function renderCartView(){
   }).join('');
 
   drawerFooter.innerHTML = `
-    <div class="cart-total"><span>الإجمالي</span><span class="amt mono">${fmt(cartTotal())} جنيه</span></div>
+    <div class="cart-total"><span>الإجمالي</span><span class="amt num">${fmt(cartTotal())} ج.س</span></div>
     <button class="checkout-btn" id="goCheckoutBtn">إتمام الطلب</button>
   `;
 
@@ -323,16 +653,17 @@ function renderCheckoutForm(){
 
   drawerBody.innerHTML = `
     <button class="back-link" id="backToCartBtn">← رجوع للسلة</button>
-    <div class="order-summary">${summaryLines}<br><b>الإجمالي: ${fmt(cartTotal())} جنيه</b></div>
+    <div class="order-summary">${summaryLines}<br><b>الإجمالي: ${fmt(cartTotal())} ج.س</b></div>
     <form class="checkout-form" id="checkoutForm">
       <label>الاسم الكامل</label>
       <input type="text" id="custName" required>
       <label>رقم الهاتف</label>
       <input type="tel" id="custPhone" required>
-      <label>العنوان</label>
-      <input type="text" id="custAddress" required>
+      <label>العنوان بالتفصيل (الولاية - المنتطقه -اقرب معلم بارز )</label>
+      <input type="text" id="custAddress" required placeholder="مثال: الخرطوم - حي النزهة - بقرب من صيدليه النزهة ">
       <label>ملاحظات (اختياري)</label>
       <textarea id="custNotes"></textarea>
+      <div class="delivery-note-form">📦 التوصيل بس متاح حاليًا — تأكد إن العنوان واضح ودقيق عشان نقدر نوصلّك بسهولة.</div>
     </form>
   `;
   drawerFooter.innerHTML = `<button class="checkout-btn" id="submitOrderBtn">تأكيد الطلب</button>`;
