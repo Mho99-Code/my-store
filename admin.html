@@ -11,7 +11,7 @@
   :root{
     --bg:#FAFAF8; --surface:#FFFFFF; --ink:#191C22; --ink-soft:#6B7280;
     --line:#E7E5E0; --accent:#2F5D8A; --accent-dark:#1F4266;
-    --sold:#B4483B; --ok:#3E7A52;
+    --sold:#B4483B; --ok:#3E7A52; --warn:#C97A3D;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{ background:var(--bg); color:var(--ink); font-family:'Tajawal', sans-serif; line-height:1.5; min-height:100vh; }
@@ -33,7 +33,7 @@
   .dash{ display:none; }
   .dash.show{ display:block; }
   header{ background:var(--surface); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50; }
-  .header-inner{ max-width:1100px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .header-inner{ max-width:1150px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
   .brand{ display:flex; align-items:center; gap:12px; }
   .brand-mark{ width:38px; height:38px; border-radius:9px; background:var(--accent-dark); display:flex; align-items:center; justify-content:center; }
   .brand-mark svg{ width:20px; height:20px; }
@@ -47,8 +47,16 @@
   .btn svg{ width:15px; height:15px; }
   #excelInput{ display:none; }
 
-  main{ max-width:1100px; margin:0 auto; padding:24px; }
-  .toolbar{ margin-bottom:16px; }
+  main{ max-width:1150px; margin:0 auto; padding:24px; }
+
+  .tabs{ display:flex; gap:8px; margin-bottom:20px; border-bottom:1px solid var(--line); }
+  .tab-btn{ padding:10px 18px; background:none; border:none; font-family:'Tajawal',sans-serif; font-weight:700; font-size:14px; color:var(--ink-soft); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; }
+  .tab-btn.active{ color:var(--accent-dark); border-bottom-color:var(--accent); }
+  .tab-badge{ background:var(--accent); color:#fff; font-size:10px; padding:2px 7px; border-radius:10px; margin-right:6px; }
+  .tab-content{ display:none; }
+  .tab-content.active{ display:block; }
+
+  .toolbar{ display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px; }
   .toolbar p{ font-size:13px; color:var(--ink-soft); }
 
   table{ width:100%; border-collapse:collapse; background:var(--surface); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
@@ -57,16 +65,42 @@
   tbody tr:hover{ background:#FAFBFC; }
   .prod-cell{ display:flex; align-items:center; gap:10px; }
   .prod-cell img{ width:38px; height:38px; object-fit:contain; background:#F2F1EC; border-radius:6px; padding:4px; }
-  .price-input{ width:110px; padding:7px 10px; border:1px solid var(--line); border-radius:6px; font-family:'JetBrains Mono',monospace; font-size:13px; text-align:center; }
-  .price-input:focus{ outline:none; border-color:var(--accent); }
-  select.status-select{ padding:7px 10px; border:1px solid var(--line); border-radius:6px; font-family:'Tajawal',sans-serif; font-size:13px; background:#fff; }
+  .price-input, .qty-input{ width:90px; padding:7px 10px; border:1px solid var(--line); border-radius:6px; font-family:'JetBrains Mono',monospace; font-size:13px; text-align:center; }
+  .price-input:focus, .qty-input:focus{ outline:none; border-color:var(--accent); }
   .row-save{ padding:6px 12px; font-size:12px; border-radius:6px; border:none; background:var(--ok); color:#fff; cursor:pointer; font-family:'Tajawal',sans-serif; font-weight:700; }
   .row-save:hover{ opacity:0.9; }
   .row-save.saved{ background:var(--ink-soft); }
   .loading-row{ text-align:center; padding:30px; color:var(--ink-soft); }
+  .qty-badge{ font-size:11px; padding:2px 8px; border-radius:10px; font-weight:700; }
+  .qty-badge.ok{ background:#E5F3E9; color:var(--ok); }
+  .qty-badge.low{ background:#FDF1E3; color:var(--warn); }
+  .qty-badge.out{ background:#FBEAE8; color:var(--sold); }
+
+  .order-status-select{ padding:6px 10px; border:1px solid var(--line); border-radius:6px; font-family:'Tajawal',sans-serif; font-size:12px; background:#fff; font-weight:700; }
+  .order-status-select.new{ color:var(--accent-dark); }
+  .order-status-select.prep{ color:var(--warn); }
+  .order-status-select.done{ color:var(--ok); }
+  .order-status-select.cancel{ color:var(--sold); }
+  .order-items{ font-size:12px; color:var(--ink-soft); max-width:220px; }
+  .order-total{ font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--accent-dark); }
 
   .toast{ position:fixed; bottom:24px; right:50%; transform:translateX(50%); background:var(--ink); color:#fff; padding:12px 22px; border-radius:8px; font-size:14px; font-weight:500; opacity:0; pointer-events:none; transition:opacity .25s, bottom .25s; z-index:100; }
   .toast.show{ opacity:1; bottom:36px; }
+
+  .modal-overlay{ display:none; position:fixed; inset:0; background:rgba(25,28,34,0.5); z-index:200; align-items:center; justify-content:center; padding:20px; }
+  .modal-overlay.show{ display:flex; }
+  .modal-box{ background:var(--surface); border-radius:14px; padding:28px; width:100%; max-width:440px; max-height:90vh; overflow-y:auto; }
+  .modal-box h2{ font-size:18px; font-weight:800; margin-bottom:18px; }
+  .modal-box label{ display:block; font-size:13px; font-weight:700; margin-bottom:6px; margin-top:14px; }
+  .modal-box label:first-of-type{ margin-top:0; }
+  .modal-box input, .modal-box select{ width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:8px; font-family:'Tajawal',sans-serif; font-size:14px; outline:none; }
+  .modal-box input:focus, .modal-box select:focus{ border-color:var(--accent); }
+  .modal-box .img-preview{ width:100%; height:120px; margin-top:10px; border-radius:8px; background:#F2F1EC; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .modal-box .img-preview img{ max-width:100%; max-height:100%; object-fit:contain; }
+  .modal-box .img-preview span{ font-size:12px; color:var(--ink-soft); }
+  .modal-actions{ display:flex; gap:10px; margin-top:22px; }
+  .modal-actions .btn{ flex:1; justify-content:center; }
+  .upload-status{ font-size:12px; color:var(--ink-soft); margin-top:6px; }
 </style>
 </head>
 <body>
@@ -107,10 +141,8 @@
         </div>
       </div>
       <div class="header-actions">
-        <button class="btn" onclick="document.getElementById('excelInput').click()">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3V15M12 15L8 11M12 15L16 11M4 17V19C4 20.1 4.9 21 6 21H18C19.1 21 20 20.1 20 19V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          استيراد من Excel
-        </button>
+        <button class="btn btn-primary" onclick="openAddProductModal()">+ منتج جديد</button>
+        <button class="btn" onclick="document.getElementById('excelInput').click()">استيراد Excel</button>
         <input type="file" id="excelInput" accept=".xlsx,.xls">
         <a class="btn" href="index.html" target="_blank">عرض الموقع ↗</a>
         <button class="btn" onclick="doLogout()">خروج</button>
@@ -119,26 +151,67 @@
   </header>
 
   <main>
-    <div class="toolbar">
-      <p>عدّل السعر أو الحالة واضغط "حفظ" جنب كل صف. التعديل بيتسجل في شيت جوجل ويظهر للزوار خلال ثوانٍ.</p>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="products">المنتجات</button>
+      <button class="tab-btn" data-tab="orders">الطلبات <span class="tab-badge" id="ordersBadge">0</span></button>
     </div>
-    <table>
-      <thead>
-        <tr><th>المنتج</th><th>السعر (جنيه)</th><th>الحالة</th><th></th></tr>
-      </thead>
-      <tbody id="tableBody"><tr><td colspan="4" class="loading-row">جاري التحميل…</td></tr></tbody>
-    </table>
+
+    <div class="tab-content active" id="tab-products">
+      <div class="toolbar">
+        <p>عدّل السعر أو الكمية واضغط "حفظ". التعديل بيظهر للزوار خلال ثوانٍ.</p>
+      </div>
+      <table>
+        <thead>
+          <tr><th>المنتج</th><th>السعر (جنيه)</th><th>الكمية</th><th></th></tr>
+        </thead>
+        <tbody id="productsBody"><tr><td colspan="4" class="loading-row">جاري التحميل…</td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="tab-content" id="tab-orders">
+      <div class="toolbar">
+        <p>الطلبات اللي بتيجي من الموقع تظهر هنا أول بأول. غيّر الحالة من القائمة المنسدلة.</p>
+      </div>
+      <table>
+        <thead>
+          <tr><th>رقم الطلب</th><th>العميل</th><th>المنتجات</th><th>الإجمالي</th><th>الحالة</th></tr>
+        </thead>
+        <tbody id="ordersBody"><tr><td colspan="5" class="loading-row">جاري التحميل…</td></tr></tbody>
+      </table>
+    </div>
   </main>
+</div>
+
+<div class="modal-overlay" id="addProductModal">
+  <div class="modal-box">
+    <h2>إضافة منتج جديد</h2>
+    <label>اسم المنتج</label>
+    <input type="text" id="newProdName" placeholder="مثال: Arduino Uno R3">
+    <label>السعر (جنيه)</label>
+    <input type="number" id="newProdPrice" placeholder="0">
+    <label>الكمية المتوفرة</label>
+    <input type="number" id="newProdQty" placeholder="0">
+    <label>صورة المنتج</label>
+    <input type="file" id="newProdImageFile" accept="image/*">
+    <div class="img-preview" id="newProdImgPreview"><span>معاينة الصورة هتظهر هنا</span></div>
+    <div class="upload-status" id="uploadStatus"></div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeAddProductModal()">إلغاء</button>
+      <button class="btn btn-primary" id="saveNewProductBtn" onclick="saveNewProduct()">إضافة المنتج</button>
+    </div>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
 let adminToken = sessionStorage.getItem('isley_admin_token') || null;
+let uploadedImageUrl = '';
 const loginScreen = document.getElementById('loginScreen');
 const dash = document.getElementById('dash');
 const loginError = document.getElementById('loginError');
-const tableBody = document.getElementById('tableBody');
+const productsBody = document.getElementById('productsBody');
+const ordersBody = document.getElementById('ordersBody');
 const toast = document.getElementById('toast');
 
 function showToast(msg){
@@ -148,8 +221,6 @@ function showToast(msg){
 }
 function fmt(n){ return new Intl.NumberFormat('en-US').format(n); }
 
-// ملحوظة: fetch من غير تحديد Content-Type يبعت الطلب كـ text/plain
-// وده يتفادى مشكلة CORS preflight اللي بتحصل مع Google Apps Script
 async function callApi(payload){
   const res = await fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
   return res.json();
@@ -186,24 +257,41 @@ function showDash(){
   loginScreen.style.display = 'none';
   dash.classList.add('show');
   loadProducts();
+  loadOrders();
 }
 
+// ===== tabs =====
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ===== products =====
 async function loadProducts(){
   try{
     const res = await fetch(`${APPS_SCRIPT_URL}?action=products`);
     const json = await res.json();
     if(json.status !== 'ok') throw new Error(json.message);
-    renderTable(json.data);
+    renderProducts(json.data);
   } catch(err){
-    tableBody.innerHTML = `<tr><td colspan="4" class="loading-row">حصل خطأ في تحميل المنتجات</td></tr>`;
+    productsBody.innerHTML = `<tr><td colspan="4" class="loading-row">حصل خطأ في تحميل المنتجات</td></tr>`;
     console.error(err);
   }
 }
 
-function renderTable(products){
-  tableBody.innerHTML = '';
+function qtyBadgeClass(qty){
+  if(qty <= 0) return 'out';
+  if(qty <= 5) return 'low';
+  return 'ok';
+}
+
+function renderProducts(products){
+  productsBody.innerHTML = '';
   products.forEach(p => {
-    const isOut = p.status && p.status.includes('غير');
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>
@@ -214,42 +302,179 @@ function renderTable(products){
       </td>
       <td><input type="number" class="price-input" value="${p.price}" data-id="${p.id}"></td>
       <td>
-        <select class="status-select" data-id="${p.id}">
-          <option value="متوفر" ${!isOut ? 'selected' : ''}>متوفر</option>
-          <option value="غير متوفر" ${isOut ? 'selected' : ''}>غير متوفر</option>
-        </select>
+        <input type="number" class="qty-input" value="${p.qty}" data-id="${p.id}">
+        <span class="qty-badge ${qtyBadgeClass(p.qty)}">${p.qty <= 0 ? 'نفذ' : p.qty <= 5 ? 'قليل' : 'متوفر'}</span>
       </td>
       <td><button class="row-save" data-id="${p.id}">حفظ</button></td>
     `;
-    tableBody.appendChild(tr);
+    productsBody.appendChild(tr);
   });
 
-  tableBody.querySelectorAll('.row-save').forEach(btn => {
+  productsBody.querySelectorAll('.row-save').forEach(btn => {
     btn.addEventListener('click', async () => {
       const id = btn.dataset.id;
-      const priceInput = tableBody.querySelector(`.price-input[data-id="${id}"]`);
-      const statusSelect = tableBody.querySelector(`.status-select[data-id="${id}"]`);
-      btn.textContent = '...';
+      const priceInput = productsBody.querySelector(`.price-input[data-id="${id}"]`);
+      const qtyInput = productsBody.querySelector(`.qty-input[data-id="${id}"]`);
       try{
         const result = await callApi({
-          action: 'updateProduct',
-          token: adminToken,
-          id: id,
-          price: Number(priceInput.value),
-          status: statusSelect.value
+          action: 'updateProduct', token: adminToken, id: id,
+          price: Number(priceInput.value), qty: Number(qtyInput.value)
         });
         if(result.unauthorized){ showToast('الجلسة انتهت، سجل دخول تاني'); doLogout(); return; }
         if(result.status === 'ok'){
           btn.textContent = 'اتحفظ ✓';
           btn.classList.add('saved');
           setTimeout(() => { btn.textContent = 'حفظ'; btn.classList.remove('saved'); }, 1800);
-          showToast('اتحدّث السعر في الشيت والموقع');
+          showToast('اتحدّث على الموقع');
+          loadProducts();
         } else {
-          btn.textContent = 'حفظ';
           showToast(result.message || 'حصل خطأ');
         }
       } catch(err){
-        btn.textContent = 'حفظ';
+        showToast('حصل خطأ في الاتصال');
+        console.error(err);
+      }
+    });
+  });
+}
+
+// ===== add product modal =====
+window.openAddProductModal = function(){
+  document.getElementById('newProdName').value = '';
+  document.getElementById('newProdPrice').value = '';
+  document.getElementById('newProdQty').value = '';
+  document.getElementById('newProdImageFile').value = '';
+  document.getElementById('newProdImgPreview').innerHTML = '<span>معاينة الصورة هتظهر هنا</span>';
+  document.getElementById('uploadStatus').textContent = '';
+  uploadedImageUrl = '';
+  document.getElementById('addProductModal').classList.add('show');
+};
+window.closeAddProductModal = function(){
+  document.getElementById('addProductModal').classList.remove('show');
+};
+
+document.getElementById('newProdImageFile').addEventListener('change', async function(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const preview = document.getElementById('newProdImgPreview');
+  const statusEl = document.getElementById('uploadStatus');
+  const reader = new FileReader();
+  reader.onload = async function(evt){
+    preview.innerHTML = `<img src="${evt.target.result}">`;
+    statusEl.textContent = 'جاري رفع الصورة...';
+    try{
+      const result = await callApi({
+        action: 'uploadImage', token: adminToken,
+        imageBase64: evt.target.result, fileName: file.name.replace(/\.[^/.]+$/, '')
+      });
+      if(result.status === 'ok'){
+        uploadedImageUrl = result.url;
+        statusEl.textContent = 'تم رفع الصورة ✅';
+      } else {
+        statusEl.textContent = 'فشل رفع الصورة: ' + (result.message || '');
+      }
+    } catch(err){
+      statusEl.textContent = 'حصل خطأ في رفع الصورة';
+      console.error(err);
+    }
+  };
+  reader.readAsDataURL(file);
+});
+
+window.saveNewProduct = async function(){
+  const name = document.getElementById('newProdName').value.trim();
+  const price = Number(document.getElementById('newProdPrice').value);
+  const qty = Number(document.getElementById('newProdQty').value);
+
+  if(!name || !price){
+    showToast('من فضلك املأ اسم المنتج والسعر');
+    return;
+  }
+
+  const btn = document.getElementById('saveNewProductBtn');
+  btn.textContent = 'جاري الإضافة...';
+  btn.disabled = true;
+
+  try{
+    const result = await callApi({
+      action: 'addProduct', token: adminToken,
+      name: name, price: price, qty: qty || 0, img: uploadedImageUrl
+    });
+    if(result.status === 'ok'){
+      showToast('تمت إضافة المنتج بنجاح ✅');
+      closeAddProductModal();
+      loadProducts();
+    } else {
+      showToast(result.message || 'حصل خطأ');
+    }
+  } catch(err){
+    showToast('حصل خطأ في الاتصال');
+    console.error(err);
+  } finally{
+    btn.textContent = 'إضافة المنتج';
+    btn.disabled = false;
+  }
+};
+
+// ===== orders =====
+async function loadOrders(){
+  try{
+    const res = await fetch(`${APPS_SCRIPT_URL}?action=orders&token=${encodeURIComponent(adminToken)}`);
+    const json = await res.json();
+    if(json.unauthorized){ showToast('الجلسة انتهت، سجل دخول تاني'); doLogout(); return; }
+    if(json.status !== 'ok') throw new Error(json.message);
+    document.getElementById('ordersBadge').textContent = json.data.length;
+    renderOrders(json.data);
+  } catch(err){
+    ordersBody.innerHTML = `<tr><td colspan="5" class="loading-row">حصل خطأ في تحميل الطلبات</td></tr>`;
+    console.error(err);
+  }
+}
+
+const STATUS_OPTIONS = [
+  { value: 'جديد', cls: 'new' },
+  { value: 'جاري التجهيز', cls: 'prep' },
+  { value: 'تم التسليم', cls: 'done' },
+  { value: 'ملغي', cls: 'cancel' }
+];
+
+function renderOrders(orders){
+  ordersBody.innerHTML = '';
+  if(orders.length === 0){
+    ordersBody.innerHTML = `<tr><td colspan="5" class="loading-row">لسه مفيش طلبات</td></tr>`;
+    return;
+  }
+  orders.forEach(o => {
+    const currentOpt = STATUS_OPTIONS.find(s => s.value === o.status) || STATUS_OPTIONS[0];
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="mono">${o.orderNumber}</td>
+      <td>${o.customerName}<br><span style="color:var(--ink-soft);font-size:11px">${o.phone}</span></td>
+      <td class="order-items">${o.items}</td>
+      <td class="order-total">${fmt(o.total)} جنيه</td>
+      <td>
+        <select class="order-status-select ${currentOpt.cls}" data-row="${o.row}">
+          ${STATUS_OPTIONS.map(s => `<option value="${s.value}" ${s.value === o.status ? 'selected' : ''}>${s.value}</option>`).join('')}
+        </select>
+      </td>
+    `;
+    ordersBody.appendChild(tr);
+  });
+
+  ordersBody.querySelectorAll('.order-status-select').forEach(sel => {
+    sel.addEventListener('change', async () => {
+      const row = sel.dataset.row;
+      const newStatus = sel.value;
+      try{
+        const result = await callApi({ action: 'updateOrderStatus', token: adminToken, row: row, status: newStatus });
+        if(result.status === 'ok'){
+          const opt = STATUS_OPTIONS.find(s => s.value === newStatus);
+          sel.className = 'order-status-select ' + (opt ? opt.cls : '');
+          showToast('اتحدّثت حالة الطلب');
+        } else {
+          showToast(result.message || 'حصل خطأ');
+        }
+      } catch(err){
         showToast('حصل خطأ في الاتصال');
         console.error(err);
       }
@@ -303,7 +528,6 @@ document.getElementById('excelInput').addEventListener('change', function(e){
   reader.readAsArrayBuffer(file);
 });
 
-// ===== auto-login if session token still valid =====
 if(adminToken){ showDash(); }
 </script>
 
