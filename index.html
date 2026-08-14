@@ -207,6 +207,7 @@
     .footer-grid{ grid-template-columns:1fr 1fr; }
   }
 
+  /* سلة الطلبات (Drawer) */
   .drawer-overlay{ display:none; position:fixed; inset:0; background:rgba(11,18,32,0.55); z-index:200; }
   .drawer-overlay.show{ display:block; }
   .drawer{ position:fixed; top:0; left:0; height:100%; width:100%; max-width:400px; background:var(--white); z-index:201; transform:translateX(-100%); transition:transform .25s; display:flex; flex-direction:column; }
@@ -221,13 +222,13 @@
   .cart-item-info h4{ font-size:13px; font-weight:700; margin-bottom:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .cart-item-info .cart-price{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); }
   .qty-control{ display:flex; align-items:center; gap:6px; }
-  .qty-control button{ width:24px; height:24px; border-radius:6px; border:1px solid var(--line); background:#fff; cursor:pointer; font-size:14px; }
+  .qty-control button{ width:24px; height:24px; border-radius:6px; border:1px solid var(--line); background:#fff; cursor:pointer; font-size:14px; display:flex; align-items:center; justify-content:center; }
   .qty-control span{ font-family:'JetBrains Mono',monospace; font-size:13px; min-width:18px; text-align:center; }
   .cart-empty{ text-align:center; padding:40px 10px; color:var(--muted); font-size:14px; }
   .drawer-footer{ padding:18px 20px; border-top:1px solid var(--line); }
   .cart-total{ display:flex; justify-content:space-between; margin-bottom:14px; font-weight:700; }
   .cart-total .amt{ font-family:'JetBrains Mono',monospace; color:var(--navy); }
-  .checkout-btn{ width:100%; padding:13px; background:var(--blue); color:#fff; border:none; border-radius:10px; font-weight:700; font-size:14px; cursor:pointer; }
+  .checkout-btn{ width:100%; padding:13px; background:var(--blue); color:#fff; border:none; border-radius:10px; font-weight:700; font-size:14px; cursor:pointer; text-align:center; }
   .checkout-btn:hover{ background:#1D4ED8; }
 </style>
 </head>
@@ -350,7 +351,6 @@
     <button class="live-badge" id="refreshBtn"><span class="live-dot"></span> ضغط للتحديث الآن</button>
   </div>
   
-  <!-- ركز هنا: هذا هو الجزء المهم الذي يضمن ظهور المنتجات -->
   <main class="grid" id="grid">
     <div class="loading-state" id="loadingState">جاري تحميل المنتجات…</div>
   </main>
@@ -424,6 +424,7 @@
   </div>
 </footer>
 
+<!-- عناصر سلة الطلبات (Drawer Elements) -->
 <div class="drawer-overlay" id="drawerOverlay"></div>
 <div class="drawer" id="drawer">
   <div class="drawer-header">
@@ -564,8 +565,6 @@ async function fetchProducts(){
     const res = await fetch(`${APPS_SCRIPT_URL}?action=products`);
     const json = await res.json();
     
-    console.log("البيانات القادمة من Apps Script:", json);
-
     if(json.status !== 'ok') throw new Error(json.message || 'خطأ في جلب البيانات');
     
     allProducts = (json.data || []).map((item, index) => normalizeProduct(item, index));
@@ -582,7 +581,112 @@ async function fetchProducts(){
 }
 
 // ----------------------------------------------------------------
-// الأمان: التأكد من وجود العناصر قبل إضافة الأحداث (Events)
+// إدارة سلة الطلبات (Drawer & Cart System)
+// ----------------------------------------------------------------
+
+const drawer = document.getElementById('drawer');
+const drawerOverlay = document.getElementById('drawerOverlay');
+const openCartBtn = document.getElementById('openCartBtn');
+const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+
+function renderCartItems() {
+  const drawerBody = document.getElementById('drawerBody');
+  const drawerFooter = document.getElementById('drawerFooter');
+  
+  if (!drawerBody || !drawerFooter) return;
+
+  const cartKeys = Object.keys(cart);
+  
+  if (cartKeys.length === 0) {
+    drawerBody.innerHTML = `<div class="cart-empty">سلة الطلبات فارغة حالياً 🛒</div>`;
+    drawerFooter.innerHTML = '';
+    return;
+  }
+
+  let html = '';
+  let totalAmount = 0;
+
+  cartKeys.forEach(id => {
+    const qty = cart[id];
+    const product = allProducts.find(p => String(p.id) === String(id));
+    if (!product) return;
+
+    const subtotal = product.price * qty;
+    totalAmount += subtotal;
+    const imgSrc = product.img && product.img.trim() !== '' ? product.img : 'https://via.placeholder.com/100?text=ISLEY';
+
+    html += `
+      <div class="cart-item">
+        <img src="${imgSrc}" alt="${product.name}">
+        <div class="cart-item-info">
+          <h4>${product.name}</h4>
+          <div class="cart-price">${fmt(product.price)} ج.س × ${qty}</div>
+        </div>
+        <div class="qty-control">
+          <button onclick="changeQty('${id}', -1)">-</button>
+          <span>${qty}</span>
+          <button onclick="changeQty('${id}', 1)">+</button>
+        </div>
+      </div>
+    `;
+  });
+
+  drawerBody.innerHTML = html;
+
+  drawerFooter.innerHTML = `
+    <div class="cart-total">
+      <span>الإجمالي:</span>
+      <span class="amt">${fmt(totalAmount)} ج.س</span>
+    </div>
+    <button class="checkout-btn" onclick="checkoutWhatsApp(${totalAmount})">إتمام الطلب عبر واتساب 📱</button>
+  `;
+}
+
+window.changeQty = function(id, delta) {
+  if (!cart[id]) return;
+  cart[id] += delta;
+  if (cart[id] <= 0) {
+    delete cart[id];
+  }
+  updateCartCount();
+  renderCartItems();
+};
+
+window.checkoutWhatsApp = function(total) {
+  let message = "مرحباً ISLEY، أرغب في طلب المنتجات التالية:\n\n";
+  let count = 1;
+
+  for (let id in cart) {
+    const product = allProducts.find(p => String(p.id) === String(id));
+    if (product) {
+      message += `${count}. ${product.name} - الكمية: ${cart[id]} - السعر الإجمالي: ${fmt(product.price * cart[id])} ج.س\n`;
+      count++;
+    }
+  }
+
+  message += `\nالإجمالي الكلي: ${fmt(total)} ج.س\nيرجى تأكيد الطلب وتفاصيل التوصيل.`;
+  
+  const encoded = encodeURIComponent(message);
+  window.open(`https://wa.me/249111328634?text=${encoded}`, '_blank');
+};
+
+function openDrawer(){ 
+  if(drawer) drawer.classList.add('show'); 
+  if(drawerOverlay) drawerOverlay.classList.add('show');
+  renderCartItems();
+}
+
+function closeDrawer(){ 
+  if(drawer) drawer.classList.remove('show'); 
+  if(drawerOverlay) drawerOverlay.classList.remove('show'); 
+}
+
+if(openCartBtn) openCartBtn.addEventListener('click', openDrawer);
+if(drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeDrawer);
+if(drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+
+// ----------------------------------------------------------------
+// الأحداث العامة الأخرى (Events)
 // ----------------------------------------------------------------
 
 const searchInputEl = document.getElementById('searchInput');
@@ -613,26 +717,6 @@ document.querySelectorAll('[data-filter]').forEach(el => {
     if(prodSec) prodSec.scrollIntoView({behavior:'smooth'});
   });
 });
-
-const drawer = document.getElementById('drawer');
-const drawerOverlay = document.getElementById('drawerOverlay');
-
-function openDrawer(){ 
-  if(drawer) drawer.classList.add('show'); 
-  if(drawerOverlay) drawerOverlay.classList.add('show'); 
-}
-function closeDrawer(){ 
-  if(drawer) drawer.classList.remove('show'); 
-  if(drawerOverlay) drawerOverlay.classList.remove('show'); 
-}
-
-const openCartBtnEl = document.getElementById('openCartBtn');
-if(openCartBtnEl) openCartBtnEl.addEventListener('click', openDrawer);
-
-const drawerCloseBtnEl = document.getElementById('drawerCloseBtn');
-if(drawerCloseBtnEl) drawerCloseBtnEl.addEventListener('click', closeDrawer);
-
-if(drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
 
 fetchProducts();
 setInterval(fetchProducts, 20000);
