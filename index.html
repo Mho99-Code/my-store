@@ -24,7 +24,6 @@
     --line:#E2E8F0;
     --danger:#DC2626;
     --radius:14px;
-    --sp1:8px; --sp2:16px; --sp3:24px; --sp4:32px; --sp5:48px;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{
@@ -230,20 +229,6 @@
   .cart-total .amt{ font-family:'JetBrains Mono',monospace; color:var(--navy); }
   .checkout-btn{ width:100%; padding:13px; background:var(--blue); color:#fff; border:none; border-radius:10px; font-weight:700; font-size:14px; cursor:pointer; }
   .checkout-btn:hover{ background:#1D4ED8; }
-
-  .checkout-form label{ display:block; font-size:13px; font-weight:700; margin-bottom:6px; margin-top:14px; color:var(--navy); }
-  .checkout-form label:first-of-type{ margin-top:0; }
-  .checkout-form input, .checkout-form textarea{ width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:9px; font-family:inherit; font-size:14px; outline:none; }
-  .checkout-form textarea{ resize:vertical; min-height:60px; }
-  .checkout-form input:focus, .checkout-form textarea:focus{ border-color:var(--blue); }
-  .delivery-note-form{ background:#ECFEFF; border:1px solid #A5F3FC; border-radius:8px; padding:10px 12px; font-size:12px; color:#155E75; margin-top:14px; }
-  .order-summary{ background:var(--bg); border-radius:8px; padding:12px; margin-bottom:16px; font-size:13px; color:var(--muted); }
-  .back-link{ background:none; border:none; color:var(--blue); font-size:13px; font-weight:700; cursor:pointer; margin-bottom:14px; font-family:inherit; }
-  .success-box{ text-align:center; padding:30px 10px; }
-  .success-box .check{ width:56px; height:56px; border-radius:50%; background:#ECFDF5; color:#059669; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:28px; }
-  .success-box h3{ font-size:17px; font-weight:800; margin-bottom:8px; color:var(--navy); }
-  .success-box p{ color:var(--muted); font-size:14px; margin-bottom:6px; }
-  .success-box .order-num{ font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--blue); font-size:16px; }
 </style>
 </head>
 <body>
@@ -291,11 +276,11 @@
 <section class="hero">
   <svg class="hero-pattern" viewBox="0 0 800 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
         <path d="M40 0H0V40" fill="none" stroke="#1E293B" stroke-width="1"/>
       </pattern>
     </defs>
-    <rect width="800" height="400" fill="url(#grid)"/>
+    <rect width="800" height="400" fill="url(#gridPattern)"/>
     <path d="M60 80H220C240 80 250 90 250 110V180" stroke="#2563EB" stroke-width="2" fill="none" opacity="0.5"/>
     <circle cx="60" cy="80" r="4" fill="#06B6D4"/>
     <circle cx="250" cy="180" r="4" fill="#2563EB"/>
@@ -364,9 +349,12 @@
     </div>
     <button class="live-badge" id="refreshBtn"><span class="live-dot"></span> ضغط للتحديث الآن</button>
   </div>
+  
+  <!-- ركز هنا: هذا هو الجزء المهم الذي يضمن ظهور المنتجات -->
   <main class="grid" id="grid">
     <div class="loading-state" id="loadingState">جاري تحميل المنتجات…</div>
   </main>
+
   <div class="empty-state" id="emptyState">مافي منتجات مطابقة لبحثك 🔍</div>
 </section>
 
