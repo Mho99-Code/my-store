@@ -35,15 +35,13 @@
   button{ font-family:inherit; }
   img{ max-width:100%; display:block; }
 
-  /* ===== announcement bar ===== */
   .announce{
     background:var(--navy); color:#fedcdc;
-    text-align:center; font-size:25سpx; font-weight:600;
+    text-align:center; font-size:12.5px; font-weight:600;
     padding:9px 16px; letter-spacing:.2px;
   }
   .announce b{ color:var(--lime); }
 
-  /* ===== header ===== */
   header{
     background:rgba(255,255,255,0.92); backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50;
@@ -91,24 +89,12 @@
   .cart-btn svg{ width:17px; height:17px; }
   .cart-count{ background:var(--lime); color:var(--navy); font-size:11px; font-weight:800; width:19px; height:19px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
 
-  /* ===== hero ===== */
   .hero{
     position:relative; overflow:hidden; background:var(--navy);
     padding:72px 24px 64px; text-align:center;
   }
   .hero-pattern{ position:absolute; inset:0; opacity:0.5; }
   .hero-inner{ position:relative; max-width:760px; margin:0 auto; }
-  .sudan-badge{
-    display:inline-flex; align-items:center; gap:8px;
-    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14);
-    padding:6px 16px; border-radius:20px; font-size:12.5px; font-weight:600; color:#CBD5E1;
-    margin-bottom:22px;
-  }
-  .sudan-flag{ display:inline-flex; width:16px; height:11px; border-radius:2px; overflow:hidden; flex-shrink:0; }
-  .sudan-flag i{ flex:1; }
-  .sudan-flag i:nth-child(1){ background:#D21034; }
-  .sudan-flag i:nth-child(2){ background:#FFFFFF; }
-  .sudan-flag i:nth-child(3){ background:#000000; }
   .hero h1{
     font-family:'Inter',sans-serif; font-weight:800; letter-spacing:1px;
     font-size:15px; color:var(--cyan); margin-bottom:18px; text-transform:uppercase;
@@ -128,7 +114,6 @@
   .btn-ghost{ background:rgba(255,255,255,0.06); color:#fff; border:1px solid rgba(255,255,255,0.18); }
   .btn-ghost:hover{ background:rgba(255,255,255,0.12); }
 
-  /* ===== delivery notice ===== */
   .delivery-strip{
     max-width:1280px; margin:0 auto; padding:16px 24px;
   }
@@ -139,7 +124,6 @@
   .delivery-box svg{ width:20px; height:20px; flex-shrink:0; color:var(--cyan); }
   .delivery-box b{ color:var(--navy); }
 
-  /* ===== categories section ===== */
   .section{ max-width:1280px; margin:0 auto; padding:44px 24px; }
   .section-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:22px; flex-wrap:wrap; gap:8px; }
   .section-head h3{ font-size:20px; font-weight:800; color:var(--navy); }
@@ -158,7 +142,6 @@
   .cat-card .icon-wrap svg{ width:22px; height:22px; }
   .cat-card span{ font-size:12.5px; font-weight:700; color:var(--ink); }
 
-  /* ===== product grid ===== */
   .toolbar-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; flex-wrap:wrap; gap:10px; }
   .live-badge{ display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted); background:none; border:none; cursor:pointer; font-family:inherit; }
   .live-dot{ width:7px; height:7px; border-radius:50%; background:var(--lime); animation:pulse 1.8s infinite; }
@@ -191,7 +174,6 @@
   .empty-state, .loading-state{ text-align:center; padding:60px 20px; color:var(--muted); grid-column:1/-1; }
   .empty-state{ display:none; } .empty-state.show{ display:block; }
 
-  /* ===== trust section ===== */
   .trust-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:18px; }
   .trust-item{ display:flex; align-items:flex-start; gap:14px; padding:18px; background:var(--white); border:1px solid var(--line); border-radius:var(--radius); }
   .trust-item .icon-wrap{ width:42px; height:42px; border-radius:10px; background:#EFF6FF; color:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
@@ -199,13 +181,11 @@
   .trust-item h4{ font-size:14px; font-weight:700; margin-bottom:3px; }
   .trust-item p{ font-size:12.5px; color:var(--muted); }
 
-  /* ===== footer ===== */
   footer{ background:var(--navy); color:#94A3B8; position:relative; overflow:hidden; }
   .footer-inner{ position:relative; max-width:1280px; margin:0 auto; padding:52px 24px 24px; }
   .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px; margin-bottom:36px; }
   .footer-brand .logo-word{ color:#fff; }
   .footer-brand p{ font-size:13px; margin-top:14px; line-height:1.7; max-width:280px; }
-  .footer-sudan{ display:inline-flex; align-items:center; gap:8px; margin-top:16px; font-size:12px; color:#CBD5E1; }
   .footer-col h5{ color:#fff; font-size:13px; font-weight:700; margin-bottom:14px; }
   .footer-col a{ display:block; font-size:13px; color:#94A3B8; margin-bottom:10px; transition:color .15s; }
   .footer-col a:hover{ color:var(--cyan); }
@@ -226,7 +206,6 @@
     .footer-grid{ grid-template-columns:1fr 1fr; }
   }
 
-  /* ===== drawer ===== */
   .drawer-overlay{ display:none; position:fixed; inset:0; background:rgba(11,18,32,0.55); z-index:200; }
   .drawer-overlay.show{ display:block; }
   .drawer{ position:fixed; top:0; left:0; height:100%; width:100%; max-width:400px; background:var(--white); z-index:201; transform:translateX(-100%); transition:transform .25s; display:flex; flex-direction:column; }
@@ -267,8 +246,7 @@
 </head>
 <body>
 
-<div class="announce"><b>ISLEY</b> 
-</div>
+<div class="announce"><b>ISLEY</b></div>
 
 <header>
   <div class="header-inner">
@@ -295,7 +273,7 @@
     <div class="header-actions">
       <div class="search-inline" id="searchWrap">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <input type="text" id="searchInput" placeholder="فتش  على منتج…">
+        <input type="text" id="searchInput" placeholder="فتش على منتج…">
       </div>
       <button class="icon-btn" id="searchToggleBtn" title="بحث">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -324,12 +302,9 @@
     <circle cx="570" cy="240" r="4" fill="#06B6D4"/>
   </svg>
   <div class="hero-inner">
-    <div class="sudan-badge">
-      <span class=><i></i><i></i><i></i></span>
-ISLEY    </div>
-    <h1>ISLEY... ELECTRONICS &amp; ROBOTICS</h1>
-    <h2> للجوده عنوان ISLEY</em></h2>
-    <p>كل حاجة  محتاجه عشان تبدأ مشروعك الجاي في الإلكترونيات والأردوينو والروبوتات — بجودة موثوقة وتوصيل لباب بيتك.</p>
+    <h1>ISLEY // ELECTRONICS &amp; ROBOTICS</h1>
+    <h2>عنوان الجودة ISLEY</h2>
+    <p>كل حاجة محتاجها عشان تبدأ مشروعك الجاي في الإلكترونيات والأردوينو والروبوتات — بجودة موثوقة وتوصيل لباب بيتك.</p>
     <div class="hero-ctas">
       <button class="btn btn-primary" onclick="document.getElementById('productsSection').scrollIntoView({behavior:'smooth'})">
         تسوق الآن
@@ -390,7 +365,7 @@ ISLEY    </div>
   <main class="grid" id="grid">
     <div class="loading-state" id="loadingState">جاري تحميل المنتجات…</div>
   </main>
-  <div class="empty-state" id="emptyState">مافي  منتجات مطابقة لبحثك 🔍</div>
+  <div class="empty-state" id="emptyState">مافي منتجات مطابقة لبحثك 🔍</div>
 </section>
 
 <section class="section">
@@ -401,15 +376,15 @@ ISLEY    </div>
     </div>
     <div class="trust-item">
       <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="7" width="15" height="10" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M16 10H19.5L22 13.5V17H16V10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
-      <div><h4>توصيل  داخل ولاية الخرطوم فقط  وقريبا باقي الولايات </h4><p>بنوصل طلبك لعنوانك أينما كنت</p></div>
+      <div><h4>توصيل داخل ولاية الخرطوم فقط وقريبًا باقي الولايات</h4><p>بنوصل طلبك لعنوانك أينما كنت</p></div>
     </div>
     <div class="trust-item">
       <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12L9 18L21 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div><h4>الدفع عند الاستلام</h4><p>الدفع عند الاستلام فقط, يوجد معاينه قبل الاستلام </p></div>
+      <div><h4>الدفع عند الاستلام</h4><p>الدفع عند الاستلام فقط, يوجد معاينة قبل الاستلام</p></div>
     </div>
     <div class="trust-item">
       <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17 20.5 20 16 20 11V5L12 2L4 5V11C4 16 7 20.5 12 22Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div><h4>دعم فني</h4><p>هنساعدك تختار المكونات المناسبة لمشروعك </p></div>
+      <div><h4>دعم فني</h4><p>هنساعدك تختار المكونات المناسبة لمشروعك</p></div>
     </div>
   </div>
 </section>
@@ -428,8 +403,8 @@ ISLEY    </div>
           </svg>
           <span class="logo-word">ISLEY</span>
         </div>
-        <p>ISLEY  وجهتك للإلكترونيات والأردوينو والروبوتات ومكونات بوردات التطوير — بنساعد الطلاب والمهندسين يحولوا أفكارهم لمشاريع حقيقية.</p>
-        <div class="footer-sudan"><span class=><i></i><i></i><i></i></span>  اول متجر اكتروني سوداني لي بيع قطع الاكترونيات و الاردوينو والربوتات و مكونات البوردات </div>
+        <p>ISLEY وجهتك للإلكترونيات والأردوينو والروبوتات ومكونات بوردات التطوير — بنساعد الطلاب والمهندسين يحولوا أفكارهم لمشاريع حقيقية.</p>
+        <p style="margin-top:10px; font-size:12px; color:#94A3B8;">أول متجر إلكتروني سوداني لبيع قطع الإلكترونيات والأردوينو والروبوتات ومكونات البوردات</p>
       </div>
       <div class="footer-col">
         <h5>الفئات</h5>
@@ -446,11 +421,10 @@ ISLEY    </div>
       </div>
       <div class="footer-col">
         <h5>عن ISLEY</h5>
-        <a href="#">التقه </a>
-                <a href="#">الجوده</a>
-        <a href="#">خدمة ما بعد البيع </a>
-
-        <a href="+249111328634">تواصل معنا</a>
+        <a href="#">الثقة</a>
+        <a href="#">الجودة</a>
+        <a href="#">خدمة ما بعد البيع</a>
+        <a href="https://wa.me/249111328634" target="_blank" rel="noopener">تواصل معنا (واتساب)</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -549,7 +523,7 @@ async function fetchProducts(){
     if(firstLoad){ loadingState.remove(); firstLoad = false; }
     applyFilters();
   } catch(err){
-    loadingState.textContent = 'حصل خطأ في الاتصال. ';
+    loadingState.textContent = 'حصل خطأ في الاتصال. تأكد من رابط APPS_SCRIPT_URL في config.js';
     console.error(err);
   }
 }
@@ -599,7 +573,7 @@ function renderCartView(){
   drawerTitle.textContent = 'سلة الطلبات';
   const entries = Object.entries(cart).filter(([id, qty]) => qty > 0);
   if(entries.length === 0){
-    drawerBody.innerHTML = '<div class="cart-empty">السلة فاضيةالان 🛒<br>ارجع للموقع واختار منتجات</div>';
+    drawerBody.innerHTML = '<div class="cart-empty">السلة فاضية الآن 🛒<br>ارجع للموقع واختار منتجات</div>';
     drawerFooter.innerHTML = '';
     return;
   }
@@ -659,8 +633,8 @@ function renderCheckoutForm(){
       <input type="text" id="custName" required>
       <label>رقم الهاتف</label>
       <input type="tel" id="custPhone" required>
-      <label>العنوان بالتفصيل (الولاية - المنتطقه -اقرب معلم بارز )</label>
-      <input type="text" id="custAddress" required placeholder="مثال: الخرطوم - حي النزهة - بقرب من صيدليه النزهة ">
+      <label>العنوان بالتفصيل (الولاية - المنطقة - أقرب معلم بارز)</label>
+      <input type="text" id="custAddress" required placeholder="مثال: الخرطوم - حي النزهة - بقرب من صيدلية النزهة">
       <label>ملاحظات (اختياري)</label>
       <textarea id="custNotes"></textarea>
       <div class="delivery-note-form">📦 التوصيل بس متاح حاليًا — تأكد إن العنوان واضح ودقيق عشان نقدر نوصلّك بسهولة.</div>
