@@ -3,77 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ISLEY | متجر الإلكترونيات والأردوينو والروبوتات</title>
+<title>ISLEY | Build. Create. Innovate.</title>
 <meta name="description" content="ISLEY — متجر سوداني للإلكترونيات، الأردوينو، الحساسات، ومكونات الروبوتات وبوردات التطوير لصنّاع المشاريع والطلاب والمهندسين.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%230B1220'/%3E%3Ccircle cx='12' cy='12' r='2.2' fill='%2306B6D4'/%3E%3Ccircle cx='28' cy='28' r='2.2' fill='%23A3E635'/%3E%3Cpath d='M14 12H23C25.7614 12 28 14.2386 28 17V26' stroke='%232563EB' stroke-width='2.2' stroke-linecap='round'/%3E%3Ccircle cx='28' cy='12' r='1.6' fill='%232563EB'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%230B0F14'/%3E%3Ccircle cx='12' cy='12' r='2.2' fill='%2306B6D4'/%3E%3Ccircle cx='28' cy='28' r='2.2' fill='%23A3E635'/%3E%3Cpath d='M14 12H23C25.7614 12 28 14.2386 28 17V26' stroke='%232F6BFF' stroke-width='2.2' stroke-linecap='round'/%3E%3Ccircle cx='28' cy='12' r='1.6' fill='%232F6BFF'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <script src="config.js"></script>
 <style>
   :root{
-    --navy:#0B1220; --blue:#2563EB; --cyan:#06B6D4; --lime:#2563EB;
-    --bg:#F8FAFC; --white:#FFFFFF; --ink:#111827; --muted:#64748B;
-    --line:#E2E8F0; --danger:#DC2626; --radius:14px;
+    --bg:#0B0F14; --surface:#12161D; --surface-2:#171C25; --surface-hover:#1D2330;
+    --line:#232A38; --line-strong:#2E3648;
+    --blue:#2F6BFF; --blue-bright:#4C82FF; --blue-dim:rgba(47,107,255,0.12);
+    --cyan:#06B6D4; --lime:#A3E635;
+    --ink:#F3F5F9; --muted:#8B95A8; --faint:#5B6478;
+    --danger:#F0554A; --ok:#34D399; --warn:#F0B429;
+    --radius:14px;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  body{ background:var(--bg); color:var(--ink); font-family:'IBM Plex Sans Arabic','Inter',sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; }
-  .num{ font-family:'JetBrains Mono','Inter',monospace; }
+  body{ background:var(--bg); color:var(--ink); font-family:'IBM Plex Sans Arabic','Inter',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .num, .mono{ font-family:'JetBrains Mono','Inter',monospace; }
+  .en{ font-family:'Inter',sans-serif; }
   a{ color:inherit; text-decoration:none; }
   button{ font-family:inherit; }
   img{ max-width:100%; display:block; }
 
-  .announce{ background:var(--navy); color:#fedcdc; text-align:center; font-size:12.5px; font-weight:600; padding:9px 16px; letter-spacing:.2px; }
-  .announce b{ color:var(--lime); }
-
-  header{ background:rgba(255,255,255,0.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50; }
-  .header-inner{ max-width:1280px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; gap:28px; }
+  /* ===== header ===== */
+  header{ background:rgba(11,15,20,0.85); backdrop-filter:blur(14px); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50; }
+  .header-inner{ max-width:1280px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; gap:28px; }
   .logo{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
-  .logo svg{ width:38px; height:38px; }
-  .logo-word{ font-family:'Inter',sans-serif; font-weight:800; font-size:21px; letter-spacing:0.5px; color:var(--navy); }
+  .logo svg{ width:36px; height:36px; }
+  .logo-word{ font-family:'Inter',sans-serif; font-weight:900; font-size:20px; letter-spacing:1px; color:var(--ink); }
   nav.cats{ display:flex; gap:4px; flex:1; justify-content:center; flex-wrap:wrap; }
-  .cat-chip{ padding:8px 14px; border-radius:20px; font-size:13px; font-weight:600; color:var(--muted); background:transparent; border:1px solid transparent; cursor:pointer; transition:all .15s; white-space:nowrap; }
-  .cat-chip:hover{ color:var(--navy); background:var(--bg); }
-  .cat-chip.active{ color:var(--blue); background:#EFF6FF; border-color:#DBEAFE; }
+  .cat-chip{ padding:9px 15px; border-radius:20px; font-size:13px; font-weight:600; color:var(--muted); background:transparent; border:1px solid transparent; cursor:pointer; transition:all .15s; white-space:nowrap; }
+  .cat-chip:hover{ color:var(--ink); background:var(--surface); }
+  .cat-chip.active{ color:var(--blue-bright); background:var(--blue-dim); border-color:rgba(47,107,255,0.3); }
   .header-actions{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
-  .icon-btn{ width:40px; height:40px; border-radius:10px; border:1px solid var(--line); background:var(--white); display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--navy); transition:all .15s; }
-  .icon-btn:hover{ border-color:var(--blue); color:var(--blue); }
+  .icon-btn{ width:40px; height:40px; border-radius:10px; border:1px solid var(--line); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--ink); transition:all .15s; }
+  .icon-btn:hover{ border-color:var(--blue); color:var(--blue-bright); }
   .icon-btn svg{ width:19px; height:19px; }
   .search-inline{ position:relative; display:none; }
   .search-inline.show{ display:block; }
-  .search-inline input{ width:220px; padding:9px 14px 9px 36px; border:1px solid var(--line); border-radius:10px; font-family:inherit; font-size:13.5px; background:var(--bg); outline:none; transition:border-color .15s; }
+  .search-inline input{ width:220px; padding:9px 14px 9px 36px; border:1px solid var(--line); border-radius:10px; font-family:inherit; font-size:13.5px; background:var(--surface); color:var(--ink); outline:none; transition:border-color .15s; }
   .search-inline input:focus{ border-color:var(--blue); }
-  .search-inline svg{ position:absolute; left:11px; top:50%; transform:translateY(-50%); width:15px; height:15px; color:var(--muted); }
+  .search-inline input::placeholder{ color:var(--faint); }
+  .search-inline svg{ position:absolute; left:11px; top:50%; transform:translateY(-50%); width:15px; height:15px; color:var(--faint); }
   .cart-btn{ position:relative; display:flex; align-items:center; gap:8px; background:var(--blue); color:#fff; border:none; padding:10px 18px; border-radius:10px; font-weight:700; font-size:13.5px; cursor:pointer; transition:background .15s; }
-  .cart-btn:hover{ background:#1D4ED8; }
+  .cart-btn:hover{ background:var(--blue-bright); }
   .cart-btn svg{ width:17px; height:17px; }
-  .cart-count{ background:var(--lime); color:var(--navy); font-size:11px; font-weight:800; width:19px; height:19px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+  .cart-count{ background:var(--lime); color:#0B0F14; font-size:11px; font-weight:800; width:19px; height:19px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
 
-  .hero{ position:relative; overflow:hidden; background:var(--navy); padding:72px 24px 64px; text-align:center; }
-  .hero-pattern{ position:absolute; inset:0; opacity:0.5; }
+  /* ===== hero ===== */
+  .hero{ position:relative; overflow:hidden; padding:100px 24px 80px; text-align:center; border-bottom:1px solid var(--line); }
+  .hero-grid-bg{ position:absolute; inset:0; opacity:0.55;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:46px 46px;
+    mask-image: radial-gradient(ellipse 65% 60% at 50% 25%, black 10%, transparent 75%);
+  }
+  .hero-glow{ position:absolute; top:-180px; left:50%; transform:translateX(-50%); width:640px; height:640px; border-radius:50%;
+    background: radial-gradient(circle, rgba(47,107,255,0.22), transparent 65%); pointer-events:none; }
   .hero-inner{ position:relative; max-width:760px; margin:0 auto; }
-  .hero h1{ font-family:'Inter',sans-serif; font-weight:800; letter-spacing:1px; font-size:15px; color:var(--cyan); margin-bottom:18px; text-transform:uppercase; }
-  .hero h2{ font-size:38px; font-weight:800; color:#fff; line-height:1.4; margin-bottom:16px; }
-  .hero p{ color:#94A3B8; font-size:15.5px; max-width:520px; margin:0 auto 30px; }
+  .hero-eyebrow{ font-family:'Inter',sans-serif; font-weight:800; letter-spacing:3px; font-size:13px; color:var(--cyan); margin-bottom:22px; text-transform:uppercase; }
+  .hero h1{ font-family:'Inter',sans-serif; font-weight:900; font-size:clamp(36px,6vw,58px); line-height:1.12; color:#fff; margin-bottom:20px; letter-spacing:-0.5px; }
+  .hero h1 .accent{ color:var(--blue-bright); }
+  .hero p{ color:var(--muted); font-size:16px; max-width:480px; margin:0 auto 34px; }
   .hero-ctas{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-  .btn{ padding:13px 26px; border-radius:10px; font-weight:700; font-size:14px; cursor:pointer; border:none; transition:all .15s; display:inline-flex; align-items:center; gap:8px; }
-  .btn-primary{ background:var(--blue); color:#fff; }
-  .btn-primary:hover{ background:#1D4ED8; transform:translateY(-1px); }
-  .btn-ghost{ background:rgba(255,255,255,0.06); color:#fff; border:1px solid rgba(255,255,255,0.18); }
-  .btn-ghost:hover{ background:rgba(255,255,255,0.12); }
+  .btn{ padding:14px 28px; border-radius:10px; font-weight:700; font-size:14px; cursor:pointer; border:none; transition:all .15s; display:inline-flex; align-items:center; gap:8px; font-family:'Inter',sans-serif; letter-spacing:0.3px; }
+  .btn-primary{ background:var(--blue); color:#fff; box-shadow:0 0 0 1px rgba(47,107,255,0.4), 0 8px 24px -8px rgba(47,107,255,0.6); }
+  .btn-primary:hover{ background:var(--blue-bright); transform:translateY(-2px); }
+  .btn-ghost{ background:var(--surface); color:#fff; border:1px solid var(--line-strong); }
+  .btn-ghost:hover{ background:var(--surface-hover); border-color:var(--blue); transform:translateY(-2px); }
 
-  .delivery-strip{ max-width:1280px; margin:0 auto; padding:16px 24px; }
-  .delivery-box{ background:#ECFEFF; border:1px solid #A5F3FC; border-radius:12px; padding:14px 18px; display:flex; align-items:center; gap:12px; font-size:13.5px; color:#155E75; }
-  .delivery-box svg{ width:20px; height:20px; flex-shrink:0; color:var(--cyan); }
-  .delivery-box b{ color:var(--navy); }
+  .hero-feats{ position:relative; max-width:900px; margin:52px auto 0; display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .hfeat{ display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 10px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); }
+  .hfeat svg{ width:22px; height:22px; color:var(--blue-bright); }
+  .hfeat span{ font-size:12px; font-weight:600; color:var(--muted); text-align:center; }
 
-  .section{ max-width:1280px; margin:0 auto; padding:44px 24px; }
-  .section-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:22px; flex-wrap:wrap; gap:8px; }
-  .section-head h3{ font-size:20px; font-weight:800; color:var(--navy); }
+  /* ===== sections ===== */
+  .section{ max-width:1280px; margin:0 auto; padding:56px 24px; }
+  .section-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:24px; flex-wrap:wrap; gap:8px; }
+  .section-head h3{ font-size:21px; font-weight:800; color:#fff; }
   .section-head span{ font-size:13px; color:var(--muted); }
+
   .cat-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:14px; }
-  .cat-card{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:20px 14px; text-align:center; cursor:pointer; transition:all .15s; }
-  .cat-card:hover{ border-color:var(--blue); transform:translateY(-2px); box-shadow:0 8px 20px rgba(37,99,235,0.08); }
-  .cat-card .icon-wrap{ width:46px; height:46px; border-radius:12px; background:#EFF6FF; color:var(--blue); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
+  .cat-card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:22px 14px; text-align:center; cursor:pointer; transition:all .18s; }
+  .cat-card:hover{ border-color:var(--blue); transform:translateY(-3px); box-shadow:0 10px 24px -12px rgba(47,107,255,0.4); }
+  .cat-card .icon-wrap{ width:46px; height:46px; border-radius:12px; background:var(--blue-dim); color:var(--blue-bright); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
   .cat-card .icon-wrap svg{ width:22px; height:22px; }
   .cat-card span{ font-size:12.5px; font-weight:700; color:var(--ink); }
 
@@ -83,99 +97,140 @@
   @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
   .grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:18px; }
-  .card{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; transition:all .18s; }
-  .card:hover{ transform:translateY(-4px); box-shadow:0 14px 30px rgba(15,23,42,0.09); border-color:#CBD5E1; }
-  .card-img{ aspect-ratio:1/1; background:#F1F5F9; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+  .card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; transition:all .18s; }
+  .card:hover{ transform:translateY(-4px); box-shadow:0 16px 32px -14px rgba(0,0,0,0.5); border-color:var(--line-strong); }
+  .card-img{ aspect-ratio:1/1; background:#0E1219; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
   .card-img img{ width:100%; height:100%; object-fit:contain; padding:16px; }
   .badge-sold{ position:absolute; top:10px; right:10px; background:var(--danger); color:#fff; font-size:10.5px; font-weight:700; padding:4px 10px; border-radius:20px; }
-  .badge-low{ position:absolute; top:10px; right:10px; background:var(--lime); color:var(--navy); font-size:10.5px; font-weight:800; padding:4px 10px; border-radius:20px; }
+  .badge-low{ position:absolute; top:10px; right:10px; background:var(--lime); color:#0B0F14; font-size:10.5px; font-weight:800; padding:4px 10px; border-radius:20px; }
   .card-body{ padding:14px 16px 16px; display:flex; flex-direction:column; gap:8px; flex:1; }
-  .card-cat{ font-size:10.5px; font-weight:700; color:var(--blue); text-transform:uppercase; letter-spacing:.4px; }
+  .card-cat{ font-size:10.5px; font-weight:700; color:var(--blue-bright); text-transform:uppercase; letter-spacing:.4px; }
   .card-body h3{ font-size:14px; font-weight:700; line-height:1.4; min-height:38px; color:var(--ink); }
   .card-footer{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; padding-top:8px; border-top:1px dashed var(--line); }
-  .price{ font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15.5px; color:var(--navy); }
+  .price{ font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15.5px; color:#fff; }
   .price small{ font-size:10.5px; color:var(--muted); font-weight:500; margin-right:3px;}
-  .stock-ok{ font-size:11px; color:#059669; font-weight:700; } .stock-no{ font-size:11px; color:var(--danger); font-weight:700; }
-  .add-btn{ margin-top:8px; width:100%; padding:10px; border:none; background:var(--navy); color:#fff; border-radius:9px; font-weight:700; font-size:13px; cursor:pointer; transition:all .15s; }
-  .add-btn:hover{ background:var(--blue); }
-  .add-btn:disabled{ background:#E2E8F0; color:var(--muted); cursor:not-allowed; }
+  .stock-ok{ font-size:11px; color:var(--ok); font-weight:700; } .stock-no{ font-size:11px; color:var(--danger); font-weight:700; }
+  .add-btn{ margin-top:8px; width:100%; padding:10px; border:1px solid var(--line-strong); background:transparent; color:var(--ink); border-radius:9px; font-weight:700; font-size:13px; cursor:pointer; transition:all .15s; }
+  .add-btn:hover{ background:var(--blue); border-color:var(--blue); color:#fff; }
+  .add-btn:disabled{ background:transparent; color:var(--faint); border-color:var(--line); cursor:not-allowed; }
   .empty-state, .loading-state{ text-align:center; padding:60px 20px; color:var(--muted); grid-column:1/-1; }
   .empty-state{ display:none; } .empty-state.show{ display:block; }
 
+  .delivery-strip{ max-width:1280px; margin:0 auto; padding:20px 24px 0; }
+  .delivery-box{ background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:14px 18px; display:flex; align-items:center; gap:12px; font-size:13.5px; color:var(--muted); }
+  .delivery-box svg{ width:20px; height:20px; flex-shrink:0; color:var(--cyan); }
+  .delivery-box b{ color:#fff; }
+
   .trust-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:18px; }
-  .trust-item{ display:flex; align-items:flex-start; gap:14px; padding:18px; background:var(--white); border:1px solid var(--line); border-radius:var(--radius); }
-  .trust-item .icon-wrap{ width:42px; height:42px; border-radius:10px; background:#EFF6FF; color:var(--blue); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .trust-item{ display:flex; align-items:flex-start; gap:14px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); }
+  .trust-item .icon-wrap{ width:42px; height:42px; border-radius:10px; background:var(--blue-dim); color:var(--blue-bright); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
   .trust-item .icon-wrap svg{ width:20px; height:20px; }
-  .trust-item h4{ font-size:14px; font-weight:700; margin-bottom:3px; }
+  .trust-item h4{ font-size:14px; font-weight:700; margin-bottom:3px; color:#fff; }
   .trust-item p{ font-size:12.5px; color:var(--muted); }
 
-  footer{ background:var(--navy); color:#94A3B8; position:relative; overflow:hidden; }
-  .footer-inner{ position:relative; max-width:1280px; margin:0 auto; padding:52px 24px 24px; }
+  /* ===== build recommender ===== */
+  .build-section{ background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .build-head{ text-align:center; max-width:560px; margin:0 auto 36px; }
+  .build-head .en-tag{ font-family:'Inter',sans-serif; font-weight:800; letter-spacing:2px; font-size:12px; color:var(--cyan); text-transform:uppercase; margin-bottom:10px; }
+  .build-head h3{ font-size:26px; font-weight:800; color:#fff; margin-bottom:10px; }
+  .build-head p{ font-size:14.5px; color:var(--muted); }
+  .build-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px; margin-bottom:28px; }
+  .build-card{ background:var(--bg); border:1px solid var(--line); border-radius:var(--radius); padding:22px 16px; text-align:center; cursor:pointer; transition:all .18s; }
+  .build-card:hover{ border-color:var(--line-strong); transform:translateY(-2px); }
+  .build-card.active{ border-color:var(--blue); background:var(--blue-dim); }
+  .build-card .icon-wrap{ width:48px; height:48px; border-radius:12px; background:var(--blue-dim); color:var(--blue-bright); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
+  .build-card.active .icon-wrap{ background:var(--blue); color:#fff; }
+  .build-card .icon-wrap svg{ width:24px; height:24px; }
+  .build-card h4{ font-size:13.5px; font-weight:700; color:#fff; margin-bottom:3px; }
+  .build-card span{ font-size:11px; color:var(--muted); }
+
+  .build-result{ display:none; background:var(--bg); border:1px solid var(--line); border-radius:var(--radius); padding:28px; }
+  .build-result.show{ display:block; }
+  .build-result-head{ display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+  .build-result-head .icon-wrap{ width:44px; height:44px; border-radius:11px; background:var(--blue); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .build-result-head .icon-wrap svg{ width:22px; height:22px; }
+  .build-result-head h4{ font-size:17px; font-weight:800; color:#fff; }
+  .build-result-head p{ font-size:13px; color:var(--muted); }
+  .build-cols{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  @media (max-width:760px){ .build-cols{ grid-template-columns:1fr; } }
+  .build-col-title{ font-size:12px; font-weight:800; color:var(--cyan); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
+  .comp-chips{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+  .comp-chip{ font-size:12.5px; font-weight:600; padding:8px 14px; border-radius:20px; background:var(--surface-2); border:1px solid var(--line-strong); color:var(--ink); cursor:pointer; transition:all .15s; }
+  .comp-chip:hover{ border-color:var(--blue); color:var(--blue-bright); }
+  .code-block{ background:#0A0D12; border:1px solid var(--line); border-radius:10px; padding:16px; overflow-x:auto; }
+  .code-block pre{ font-family:'JetBrains Mono',monospace; font-size:12px; color:#9FE1CB; line-height:1.7; white-space:pre; }
+  .code-block .cmt{ color:var(--faint); }
+  .build-shop-btn{ margin-top:18px; width:100%; padding:12px; background:var(--blue); color:#fff; border:none; border-radius:10px; font-weight:700; font-size:13.5px; cursor:pointer; }
+  .build-shop-btn:hover{ background:var(--blue-bright); }
+
+  /* ===== footer ===== */
+  footer{ background:#080B0F; color:var(--muted); }
+  .footer-inner{ max-width:1280px; margin:0 auto; padding:52px 24px 24px; }
   .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px; margin-bottom:36px; }
   .footer-brand .logo-word{ color:#fff; }
   .footer-brand p{ font-size:13px; margin-top:14px; line-height:1.7; max-width:280px; }
   .footer-col h5{ color:#fff; font-size:13px; font-weight:700; margin-bottom:14px; }
-  .footer-col a{ display:block; font-size:13px; color:#94A3B8; margin-bottom:10px; transition:color .15s; }
+  .footer-col a{ display:block; font-size:13px; color:var(--muted); margin-bottom:10px; transition:color .15s; }
   .footer-col a:hover{ color:var(--cyan); }
-  .footer-bottom{ border-top:1px solid rgba(255,255,255,0.08); padding-top:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:12px; }
+  .footer-bottom{ border-top:1px solid var(--line); padding-top:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:12px; }
 
-  @media (max-width:900px){ nav.cats{ display:none; } .footer-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:900px){ nav.cats{ display:none; } .footer-grid{ grid-template-columns:1fr 1fr; } .hero-feats{ grid-template-columns:repeat(2,1fr); } }
   @media (max-width:560px){
     .header-inner{ padding:12px 16px; gap:12px; } .logo-word{ font-size:17px; } .search-inline{ display:none !important; }
-    .hero{ padding:52px 16px 44px; } .hero h2{ font-size:26px; } .grid{ grid-template-columns:repeat(2, 1fr); gap:10px; }
+    .hero{ padding:64px 16px 48px; } .grid{ grid-template-columns:repeat(2, 1fr); gap:10px; }
     .cat-grid{ grid-template-columns:repeat(3, 1fr); } .footer-grid{ grid-template-columns:1fr 1fr; }
+    .build-grid{ grid-template-columns:repeat(2,1fr); }
   }
 
-  .drawer-overlay{ display:none; position:fixed; inset:0; background:rgba(11,18,32,0.55); z-index:200; }
+  /* ===== drawer ===== */
+  .drawer-overlay{ display:none; position:fixed; inset:0; background:rgba(4,6,9,0.7); z-index:200; }
   .drawer-overlay.show{ display:block; }
-  .drawer{ position:fixed; top:0; left:0; height:100%; width:100%; max-width:400px; background:var(--white); z-index:201; transform:translateX(-100%); transition:transform .25s; display:flex; flex-direction:column; }
+  .drawer{ position:fixed; top:0; left:0; height:100%; width:100%; max-width:400px; background:var(--surface); border-left:1px solid var(--line); z-index:201; transform:translateX(-100%); transition:transform .25s; display:flex; flex-direction:column; }
   .drawer.show{ transform:translateX(0); }
   .drawer-header{ padding:20px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; }
-  .drawer-header h2{ font-size:17px; font-weight:800; color:var(--navy); }
+  .drawer-header h2{ font-size:17px; font-weight:800; color:#fff; }
   .drawer-close{ background:none; border:none; cursor:pointer; font-size:20px; color:var(--muted); }
   .drawer-body{ flex:1; overflow-y:auto; padding:16px 20px; }
   .cart-item{ display:flex; gap:10px; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); }
-  .cart-item img{ width:48px; height:48px; object-fit:contain; background:#F1F5F9; border-radius:6px; padding:4px; }
+  .cart-item img{ width:48px; height:48px; object-fit:contain; background:#0E1219; border-radius:6px; padding:4px; }
   .cart-item-info{ flex:1; min-width:0; }
-  .cart-item-info h4{ font-size:13px; font-weight:700; margin-bottom:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .cart-item-info h4{ font-size:13px; font-weight:700; margin-bottom:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--ink); }
   .cart-item-info .cart-price{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); }
   .qty-control{ display:flex; align-items:center; gap:6px; }
-  .qty-control button{ width:24px; height:24px; border-radius:6px; border:1px solid var(--line); background:#fff; cursor:pointer; font-size:14px; display:flex; align-items:center; justify-content:center; }
+  .qty-control button{ width:24px; height:24px; border-radius:6px; border:1px solid var(--line-strong); background:var(--surface-2); color:var(--ink); cursor:pointer; font-size:14px; display:flex; align-items:center; justify-content:center; }
   .qty-control span{ font-family:'JetBrains Mono',monospace; font-size:13px; min-width:18px; text-align:center; }
   .cart-empty{ text-align:center; padding:40px 10px; color:var(--muted); font-size:14px; }
   .drawer-footer{ padding:18px 20px; border-top:1px solid var(--line); }
-  .cart-total{ display:flex; justify-content:space-between; margin-bottom:14px; font-weight:700; }
-  .cart-total .amt{ font-family:'JetBrains Mono',monospace; color:var(--navy); }
+  .cart-total{ display:flex; justify-content:space-between; margin-bottom:14px; font-weight:700; color:var(--ink); }
+  .cart-total .amt{ font-family:'JetBrains Mono',monospace; color:#fff; }
   .checkout-btn{ width:100%; padding:13px; background:var(--blue); color:#fff; border:none; border-radius:10px; font-weight:700; font-size:14px; cursor:pointer; text-align:center; }
-  .checkout-btn:hover{ background:#1D4ED8; }
-  .checkout-btn:disabled{ background:#94A3B8; cursor:not-allowed; }
-  .checkout-form label{ display:block; font-size:13px; font-weight:700; margin-bottom:6px; margin-top:14px; color:var(--navy); }
+  .checkout-btn:hover{ background:var(--blue-bright); }
+  .checkout-btn:disabled{ background:var(--faint); cursor:not-allowed; }
+  .checkout-form label{ display:block; font-size:13px; font-weight:700; margin-bottom:6px; margin-top:14px; color:var(--ink); }
   .checkout-form label:first-of-type{ margin-top:0; }
-  .checkout-form input, .checkout-form textarea{ width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:9px; font-family:inherit; font-size:14px; outline:none; }
+  .checkout-form input, .checkout-form textarea{ width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:9px; font-family:inherit; font-size:14px; outline:none; background:var(--surface-2); color:var(--ink); }
   .checkout-form textarea{ resize:vertical; min-height:60px; }
   .checkout-form input:focus, .checkout-form textarea:focus{ border-color:var(--blue); }
-  .back-link{ background:none; border:none; color:var(--blue); font-size:13px; font-weight:700; cursor:pointer; margin-bottom:14px; font-family:inherit; }
-  .order-summary{ background:var(--bg); border-radius:8px; padding:12px; margin-bottom:16px; font-size:13px; color:var(--muted); }
+  .back-link{ background:none; border:none; color:var(--blue-bright); font-size:13px; font-weight:700; cursor:pointer; margin-bottom:14px; font-family:inherit; }
+  .order-summary{ background:var(--surface-2); border-radius:8px; padding:12px; margin-bottom:16px; font-size:13px; color:var(--muted); }
   .success-box{ text-align:center; padding:30px 10px; }
-  .success-box .check{ width:56px; height:56px; border-radius:50%; background:#ECFDF5; color:#059669; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:28px; }
-  .success-box h3{ font-size:17px; font-weight:800; margin-bottom:8px; color:var(--navy); }
+  .success-box .check{ width:56px; height:56px; border-radius:50%; background:rgba(52,211,153,0.12); color:var(--ok); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:28px; }
+  .success-box h3{ font-size:17px; font-weight:800; margin-bottom:8px; color:#fff; }
   .success-box p{ color:var(--muted); font-size:14px; margin-bottom:6px; }
-  .success-box .order-num{ font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--blue); font-size:16px; }
+  .success-box .order-num{ font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--blue-bright); font-size:16px; }
 </style>
 </head>
 <body>
-
-<div class="announce"><b>ISLEY</b></div>
 
 <header>
   <div class="header-inner">
     <div class="logo">
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="40" height="40" rx="9" fill="#0B1220"/>
+        <rect width="40" height="40" rx="9" fill="#0B0F14"/>
         <circle cx="12" cy="12" r="2.2" fill="#06B6D4"/>
         <circle cx="28" cy="28" r="2.2" fill="#A3E635"/>
-        <path d="M14 12H23C25.7614 12 28 14.2386 28 17V26" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round"/>
-        <circle cx="28" cy="12" r="1.6" fill="#2563EB"/>
+        <path d="M14 12H23C25.7614 12 28 14.2386 28 17V26" stroke="#2F6BFF" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="28" cy="12" r="1.6" fill="#2F6BFF"/>
       </svg>
       <span class="logo-word">ISLEY</span>
     </div>
@@ -204,24 +259,25 @@
 </header>
 
 <section class="hero">
-  <svg class="hero-pattern" viewBox="0 0 800 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <defs><pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#1E293B" stroke-width="1"/></pattern></defs>
-    <rect width="800" height="400" fill="url(#gridPattern)"/>
-    <path d="M60 80H220C240 80 250 90 250 110V180" stroke="#2563EB" stroke-width="2" fill="none" opacity="0.5"/>
-    <circle cx="60" cy="80" r="4" fill="#06B6D4"/><circle cx="250" cy="180" r="4" fill="#2563EB"/>
-    <path d="M740 320H600C580 320 570 310 570 290V240" stroke="#06B6D4" stroke-width="2" fill="none" opacity="0.5"/>
-    <circle cx="740" cy="320" r="4" fill="#A3E635"/><circle cx="570" cy="240" r="4" fill="#06B6D4"/>
-  </svg>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
   <div class="hero-inner">
-    <h1>ISLEY // ELECTRONICS &amp; ROBOTICS</h1>
-    <h2>عنوان الجودة ISLEY</h2>
+    <div class="hero-eyebrow en">ISLEY // ELECTRONICS &amp; ROBOTICS</div>
+    <h1 class="en">BUILD. <span class="accent">CREATE.</span> INNOVATE.</h1>
     <p>كل حاجة محتاجها عشان تبدأ مشروعك الجاي في الإلكترونيات والأردوينو والروبوتات — بجودة موثوقة وتوصيل لباب بيتك.</p>
     <div class="hero-ctas">
-      <button class="btn btn-primary" onclick="document.getElementById('productsSection').scrollIntoView({behavior:'smooth'})">
-        تسوق الآن
+      <button class="btn btn-primary en" onclick="document.getElementById('productsSection').scrollIntoView({behavior:'smooth'})">
+        EXPLORE PRODUCTS
         <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <button class="btn btn-ghost" onclick="document.getElementById('catSection').scrollIntoView({behavior:'smooth'})">استكشف الفئات</button>
+      <button class="btn btn-ghost en" onclick="document.getElementById('buildSection').scrollIntoView({behavior:'smooth'})">START A PROJECT</button>
+    </div>
+
+    <div class="hero-feats">
+      <div class="hfeat"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5V11C4 16 7.5 20.5 12 22C16.5 20.5 20 16 20 11V5L12 2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span>مكونات أصلية</span></div>
+      <div class="hfeat"><svg viewBox="0 0 24 24" fill="none"><rect x="1" y="7" width="15" height="10" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M16 10H19.5L22 13.5V17H16V10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span>توصيل سريع</span></div>
+      <div class="hfeat"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22C17 20.5 20 16 20 11V5L12 2L4 5V11C4 16 7 20.5 12 22Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>دعم فني</span></div>
+      <div class="hfeat"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12L9 18L21 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>دفع عند الاستلام</span></div>
     </div>
   </div>
 </section>
@@ -254,6 +310,19 @@
   <div class="empty-state" id="emptyState">مافي منتجات مطابقة لبحثك 🔍</div>
 </section>
 
+<section class="section build-section" id="buildSection">
+  <div class="section" style="padding:56px 0;">
+    <div class="build-head">
+      <div class="en-tag">START A PROJECT</div>
+      <h3>إيه اللي داير تبنيه؟</h3>
+      <p>اختار نوع المشروع، وهنقترح عليك المكونات المناسبة وأمثلة مشاريع وكود بداية جاهز.</p>
+    </div>
+
+    <div class="build-grid" id="buildGrid"></div>
+    <div class="build-result" id="buildResult"></div>
+  </div>
+</section>
+
 <section class="section">
   <div class="trust-grid">
     <div class="trust-item"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L4 5V11C4 16 7.5 20.5 12 22C16.5 20.5 20 16 20 11V5L12 2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div><div><h4>مكونات أصلية</h4><p>قطع مضمونة الجودة ومختبرة قبل الشحن</p></div></div>
@@ -269,13 +338,13 @@
       <div class="footer-brand">
         <div class="logo">
           <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="40" height="40" rx="9" fill="#152238"/><circle cx="12" cy="12" r="2.2" fill="#06B6D4"/><circle cx="28" cy="28" r="2.2" fill="#A3E635"/>
-            <path d="M14 12H23C25.7614 12 28 14.2386 28 17V26" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round"/><circle cx="28" cy="12" r="1.6" fill="#2563EB"/>
+            <rect width="40" height="40" rx="9" fill="#171C25"/><circle cx="12" cy="12" r="2.2" fill="#06B6D4"/><circle cx="28" cy="28" r="2.2" fill="#A3E635"/>
+            <path d="M14 12H23C25.7614 12 28 14.2386 28 17V26" stroke="#2F6BFF" stroke-width="2.2" stroke-linecap="round"/><circle cx="28" cy="12" r="1.6" fill="#2F6BFF"/>
           </svg>
           <span class="logo-word">ISLEY</span>
         </div>
         <p>ISLEY وجهتك للإلكترونيات والأردوينو والروبوتات ومكونات بوردات التطوير — بنساعد الطلاب والمهندسين يحولوا أفكارهم لمشاريع حقيقية.</p>
-        <p style="margin-top:10px; font-size:12px; color:#94A3B8;">أول متجر إلكتروني سوداني لبيع قطع الإلكترونيات والأردوينو والروبوتات ومكونات البوردات</p>
+        <p style="margin-top:10px; font-size:12px; color:var(--faint);">أول متجر إلكتروني سوداني لبيع قطع الإلكترونيات والأردوينو والروبوتات ومكونات البوردات</p>
       </div>
       <div class="footer-col"><h5>الفئات</h5>
         <a href="#" data-filter="arduino أردوينو">أردوينو</a><a href="#" data-filter="sensor حساس">حساسات</a>
@@ -313,14 +382,13 @@ let firstLoad = true;
 let cart = {};
 let activeFilter = '';
 
-// صورة بديلة كـ SVG داخلي — مش محتاجة إنترنت ومستحيل تفشل
 const FALLBACK_IMG = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
   '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">' +
-  '<rect width="200" height="200" fill="#F1F5F9"/>' +
+  '<rect width="200" height="200" fill="#12161D"/>' +
   '<circle cx="70" cy="70" r="10" fill="#06B6D4"/>' +
   '<circle cx="140" cy="140" r="10" fill="#A3E635"/>' +
-  '<path d="M85 70H115C128 70 138 80 138 93V130" stroke="#2563EB" stroke-width="6" stroke-linecap="round" fill="none"/>' +
-  '<text x="100" y="175" font-family="Arial" font-size="14" font-weight="700" fill="#64748B" text-anchor="middle">ISLEY</text>' +
+  '<path d="M85 70H115C128 70 138 80 138 93V130" stroke="#2F6BFF" stroke-width="6" stroke-linecap="round" fill="none"/>' +
+  '<text x="100" y="175" font-family="Arial" font-size="14" font-weight="700" fill="#8B95A8" text-anchor="middle">ISLEY</text>' +
   '</svg>'
 );
 
@@ -403,7 +471,7 @@ function render(list){
     btn.addEventListener('click', () => {
       const id = btn.dataset.id;
       const product = allProducts.find(p => String(p.id) === String(id));
-      if(product && cart[id] >= product.qty){ return; } // منعًا لطلب أكتر من المتاح
+      if(product && cart[id] >= product.qty){ return; }
       cart[id] = (cart[id] || 0) + 1;
       updateCartCount();
       btn.textContent = 'اتضاف ✓';
@@ -432,9 +500,6 @@ async function fetchProducts(){
   }
 }
 
-// ----------------------------------------------------------------
-// سلة الطلبات + إتمام الطلب (بيسجّل في النظام أولاً، بعدين واتساب)
-// ----------------------------------------------------------------
 const drawer = document.getElementById('drawer');
 const drawerOverlay = document.getElementById('drawerOverlay');
 const drawerBody = document.getElementById('drawerBody');
@@ -561,7 +626,6 @@ async function submitOrder(){
   btn.disabled = true;
 
   try{
-    // الخطوة 1: تسجيل الطلب في النظام (خصم المخزون + رقم طلب رسمي)
     const res = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       body: JSON.stringify({ action: 'placeOrder', customerName: name, phone: phone, address: address, notes: notes, items: items })
@@ -571,7 +635,6 @@ async function submitOrder(){
     if(result.status === 'ok'){
       const orderNumber = result.orderNumber;
 
-      // الخطوة 2: تجهيز رسالة واتساب فيها رقم الطلب الرسمي
       let waMessage = `مرحباً ISLEY، طلبي رقم ${orderNumber}\n\n`;
       items.forEach((it, i) => {
         waMessage += `${i+1}. ${it.name} - الكمية: ${it.qty} - ${fmt(it.price * it.qty)} ج.س\n`;
@@ -593,7 +656,7 @@ async function submitOrder(){
       `;
       drawerFooter.innerHTML = `
         <button class="checkout-btn" onclick="window.open('https://wa.me/249111328634?text=${encodeURIComponent(waMessage)}', '_blank')">تأكيد عبر واتساب 📱</button>
-        <button class="checkout-btn" style="background:#94A3B8; margin-top:8px;" onclick="closeDrawer(); fetchProducts();">تمام، خلاص</button>
+        <button class="checkout-btn" style="background:var(--faint); margin-top:8px;" onclick="closeDrawer(); fetchProducts();">تمام، خلاص</button>
       `;
     } else {
       alert(result.message || 'حصل خطأ، حاول تاني');
@@ -608,9 +671,6 @@ async function submitOrder(){
   }
 }
 
-// ----------------------------------------------------------------
-// الأحداث العامة
-// ----------------------------------------------------------------
 const searchInputEl = document.getElementById('searchInput');
 if(searchInputEl) searchInputEl.addEventListener('input', applyFilters);
 const refreshBtnEl = document.getElementById('refreshBtn');
@@ -638,6 +698,116 @@ document.querySelectorAll('[data-filter]').forEach(el => {
 
 fetchProducts();
 setInterval(fetchProducts, 20000);
+
+/* ============================================================
+   "إيه اللي داير تبنيه؟" — مقترح المكونات والمشاريع
+   ============================================================ */
+const BUILD_TYPES = [
+  {
+    key: 'arduino',
+    title: 'مشروع أردوينو',
+    sub: 'Arduino Project',
+    icon: '<svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="9" y="9" width="6" height="6" stroke="currentColor" stroke-width="1.7"/></svg>',
+    components: ['Arduino Uno R3', 'بريدبورد', 'أسلاك توصيل (Jumper Wires)', 'مقاومات', 'LED'],
+    filter: 'arduino أردوينو',
+    projects: ['وميض LED متحكم فيه بزرار', 'قياس مسافة بحساس Ultrasonic', 'إنذار حريق بحساس Flame'],
+    code: `<span class="cmt">// مثال بسيط: وميض LED</span>\nvoid setup() {\n  pinMode(13, OUTPUT);\n}\nvoid loop() {\n  digitalWrite(13, HIGH);\n  delay(500);\n  digitalWrite(13, LOW);\n  delay(500);\n}`
+  },
+  {
+    key: 'robot',
+    title: 'روبوت',
+    sub: 'Robot',
+    icon: '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M12 2V4M12 20V22M22 12H20M4 12H2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
+    components: ['محرك ديسي / سيرفو', 'درايفر محرك (Motor Driver)', 'حساس Ultrasonic', 'Arduino / ESP32', 'عجلات وشاسيه'],
+    filter: 'motor servo محرك محركات',
+    projects: ['روبوت يتفادى العوائق', 'روبوت متتبع خط (Line Follower)', 'ذراع روبوتية بسيطة'],
+    code: `<span class="cmt">// تحريك محرك عبر L298N</span>\nvoid setup() {\n  pinMode(8, OUTPUT);\n  pinMode(9, OUTPUT);\n}\nvoid loop() {\n  digitalWrite(8, HIGH);\n  digitalWrite(9, LOW); <span class="cmt">// للأمام</span>\n}`
+  },
+  {
+    key: 'smarthome',
+    title: 'منزل ذكي',
+    sub: 'Smart Home',
+    icon: '<svg viewBox="0 0 24 24" fill="none"><path d="M3 11L12 4L21 11V20H14V14H10V20H3V11Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>',
+    components: ['ESP32 / ESP8266 (WiFi)', 'ريلاي (Relay Module)', 'حساس حرارة ورطوبة DHT11/DHT22', 'حساس حركة PIR'],
+    filter: 'esp32 sensor module حساس',
+    projects: ['تحكم في إضاءة الغرفة عن بعد', 'مراقبة درجة حرارة البيت', 'إنذار حركة بمصباح تلقائي'],
+    code: `<span class="cmt">// تشغيل ريلاي عبر ESP32</span>\nconst int relayPin = 5;\nvoid setup() {\n  pinMode(relayPin, OUTPUT);\n}\nvoid loop() {\n  digitalWrite(relayPin, HIGH);\n  delay(3000);\n  digitalWrite(relayPin, LOW);\n  delay(3000);\n}`
+  },
+  {
+    key: 'iot',
+    title: 'إنترنت الأشياء',
+    sub: 'IoT',
+    icon: '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M8 12C8 9.79 9.79 8 12 8M16 12C16 14.21 14.21 16 12 16M5 12C5 8.13 8.13 5 12 5M19 12C19 15.87 15.87 19 12 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
+    components: ['ESP32 (WiFi + Bluetooth)', 'حساس DHT11', 'حساس TDS (جودة المياه)', 'وحدة Bluetooth'],
+    filter: 'esp32 sensor حساس',
+    projects: ['إرسال قراءات حساس للسحابة', 'لوحة تحكم عن بعد عبر الموبايل', 'نظام ري ذكي للنباتات'],
+    code: `<span class="cmt">// قراءة حساس وإرسالها عبر WiFi</span>\n#include <WiFi.h>\nvoid setup() {\n  Serial.begin(115200);\n  WiFi.begin("SSID", "PASSWORD");\n}\nvoid loop() {\n  int val = analogRead(A0);\n  Serial.println(val);\n  delay(1000);\n}`
+  },
+  {
+    key: 'beginner',
+    title: 'مشروع للمبتدئين',
+    sub: 'Beginner Project',
+    icon: '<svg viewBox="0 0 24 24" fill="none"><path d="M12 22C17 20.5 20 16 20 11V5L12 2L4 5V11C4 16 7 20.5 12 22Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>',
+    components: ['Arduino Starter Kit', 'بريدبورد', 'LED ومقاومات', 'أسلاك توصيل'],
+    filter: 'arduino kit أردوينو',
+    projects: ['أول دائرة LED', 'زرار يشغل ويطفي لمبة', 'إشارة مرور بسيطة بـ3 لمبات'],
+    code: `<span class="cmt">// أول برنامج: طباعة رسالة</span>\nvoid setup() {\n  Serial.begin(9600);\n  Serial.println("مرحباً من ISLEY!");\n}\nvoid loop() {}`
+  }
+];
+
+const buildGrid = document.getElementById('buildGrid');
+const buildResult = document.getElementById('buildResult');
+let activeBuildKey = null;
+
+BUILD_TYPES.forEach(bt => {
+  const card = document.createElement('div');
+  card.className = 'build-card';
+  card.dataset.key = bt.key;
+  card.innerHTML = `
+    <div class="icon-wrap">${bt.icon}</div>
+    <h4>${bt.title}</h4>
+    <span class="en">${bt.sub}</span>
+  `;
+  card.addEventListener('click', () => selectBuildType(bt.key));
+  buildGrid.appendChild(card);
+});
+
+function selectBuildType(key){
+  activeBuildKey = key;
+  document.querySelectorAll('.build-card').forEach(c => c.classList.toggle('active', c.dataset.key === key));
+  const bt = BUILD_TYPES.find(b => b.key === key);
+  if(!bt) return;
+
+  buildResult.innerHTML = `
+    <div class="build-result-head">
+      <div class="icon-wrap">${bt.icon}</div>
+      <div><h4>${bt.title} <span class="en" style="color:var(--muted); font-weight:600; font-size:13px;">/ ${bt.sub}</span></h4><p>مقترحات مكونات وأمثلة مشاريع لتبدأ بيها</p></div>
+    </div>
+    <div class="build-cols">
+      <div>
+        <div class="build-col-title">المكونات المقترحة</div>
+        <div class="comp-chips">${bt.components.map(c => `<span class="comp-chip">${c}</span>`).join('')}</div>
+        <div class="build-col-title">أفكار مشاريع</div>
+        <ul style="padding-right:18px; font-size:13.5px; color:var(--ink); line-height:2;">
+          ${bt.projects.map(p => `<li>${p}</li>`).join('')}
+        </ul>
+      </div>
+      <div>
+        <div class="build-col-title">كود بداية جاهز</div>
+        <div class="code-block"><pre>${bt.code}</pre></div>
+      </div>
+    </div>
+    <button class="build-shop-btn" id="buildShopBtn">تسوق مكونات ${bt.title} →</button>
+  `;
+  buildResult.classList.add('show');
+
+  document.getElementById('buildShopBtn').addEventListener('click', () => {
+    activeFilter = bt.filter;
+    document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+    applyFilters();
+    document.getElementById('productsSection').scrollIntoView({behavior:'smooth'});
+  });
+}
 </script>
 
 </body>
