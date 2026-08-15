@@ -8,120 +8,61 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%230B1220'/%3E%3Ccircle cx='12' cy='12' r='2.2' fill='%2306B6D4'/%3E%3Ccircle cx='28' cy='28' r='2.2' fill='%23A3E635'/%3E%3Cpath d='M14 12H23C25.7614 12 28 14.2386 28 17V26' stroke='%232563EB' stroke-width='2.2' stroke-linecap='round'/%3E%3Ccircle cx='28' cy='12' r='1.6' fill='%232563EB'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<!-- ملف الإعدادات الخاص بالرابط -->
 <script src="config.js"></script>
-
 <style>
   :root{
-    --navy:#0B1220;
-    --blue:#2563EB;
-    --cyan:#06B6D4;
-    --lime:#2563EB;
-    --bg:#F8FAFC;
-    --white:#FFFFFF;
-    --ink:#111827;
-    --muted:#64748B;
-    --line:#E2E8F0;
-    --danger:#DC2626;
-    --radius:14px;
+    --navy:#0B1220; --blue:#2563EB; --cyan:#06B6D4; --lime:#2563EB;
+    --bg:#F8FAFC; --white:#FFFFFF; --ink:#111827; --muted:#64748B;
+    --line:#E2E8F0; --danger:#DC2626; --radius:14px;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  body{
-    background:var(--bg); color:var(--ink);
-    font-family:'IBM Plex Sans Arabic','Inter',sans-serif;
-    line-height:1.55; -webkit-font-smoothing:antialiased;
-  }
+  body{ background:var(--bg); color:var(--ink); font-family:'IBM Plex Sans Arabic','Inter',sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; }
   .num{ font-family:'JetBrains Mono','Inter',monospace; }
   a{ color:inherit; text-decoration:none; }
   button{ font-family:inherit; }
   img{ max-width:100%; display:block; }
 
-  .announce{
-    background:var(--navy); color:#fedcdc;
-    text-align:center; font-size:12.5px; font-weight:600;
-    padding:9px 16px; letter-spacing:.2px;
-  }
+  .announce{ background:var(--navy); color:#fedcdc; text-align:center; font-size:12.5px; font-weight:600; padding:9px 16px; letter-spacing:.2px; }
   .announce b{ color:var(--lime); }
 
-  header{
-    background:rgba(255,255,255,0.92); backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50;
-  }
-  .header-inner{
-    max-width:1280px; margin:0 auto; padding:14px 24px;
-    display:flex; align-items:center; gap:28px;
-  }
+  header{ background:rgba(255,255,255,0.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50; }
+  .header-inner{ max-width:1280px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; gap:28px; }
   .logo{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
   .logo svg{ width:38px; height:38px; }
   .logo-word{ font-family:'Inter',sans-serif; font-weight:800; font-size:21px; letter-spacing:0.5px; color:var(--navy); }
-  .logo-word span{ color:var(--blue); }
-
   nav.cats{ display:flex; gap:4px; flex:1; justify-content:center; flex-wrap:wrap; }
-  .cat-chip{
-    padding:8px 14px; border-radius:20px; font-size:13px; font-weight:600;
-    color:var(--muted); background:transparent; border:1px solid transparent;
-    cursor:pointer; transition:all .15s; white-space:nowrap;
-  }
+  .cat-chip{ padding:8px 14px; border-radius:20px; font-size:13px; font-weight:600; color:var(--muted); background:transparent; border:1px solid transparent; cursor:pointer; transition:all .15s; white-space:nowrap; }
   .cat-chip:hover{ color:var(--navy); background:var(--bg); }
   .cat-chip.active{ color:var(--blue); background:#EFF6FF; border-color:#DBEAFE; }
-
   .header-actions{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
-  .icon-btn{
-    width:40px; height:40px; border-radius:10px; border:1px solid var(--line); background:var(--white);
-    display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--navy); transition:all .15s;
-  }
+  .icon-btn{ width:40px; height:40px; border-radius:10px; border:1px solid var(--line); background:var(--white); display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--navy); transition:all .15s; }
   .icon-btn:hover{ border-color:var(--blue); color:var(--blue); }
   .icon-btn svg{ width:19px; height:19px; }
   .search-inline{ position:relative; display:none; }
   .search-inline.show{ display:block; }
-  .search-inline input{
-    width:220px; padding:9px 14px 9px 36px; border:1px solid var(--line); border-radius:10px;
-    font-family:inherit; font-size:13.5px; background:var(--bg); outline:none; transition:border-color .15s;
-  }
+  .search-inline input{ width:220px; padding:9px 14px 9px 36px; border:1px solid var(--line); border-radius:10px; font-family:inherit; font-size:13.5px; background:var(--bg); outline:none; transition:border-color .15s; }
   .search-inline input:focus{ border-color:var(--blue); }
   .search-inline svg{ position:absolute; left:11px; top:50%; transform:translateY(-50%); width:15px; height:15px; color:var(--muted); }
-
-  .cart-btn{
-    position:relative; display:flex; align-items:center; gap:8px;
-    background:var(--blue); color:#fff; border:none; padding:10px 18px; border-radius:10px;
-    font-weight:700; font-size:13.5px; cursor:pointer; transition:background .15s;
-  }
+  .cart-btn{ position:relative; display:flex; align-items:center; gap:8px; background:var(--blue); color:#fff; border:none; padding:10px 18px; border-radius:10px; font-weight:700; font-size:13.5px; cursor:pointer; transition:background .15s; }
   .cart-btn:hover{ background:#1D4ED8; }
   .cart-btn svg{ width:17px; height:17px; }
   .cart-count{ background:var(--lime); color:var(--navy); font-size:11px; font-weight:800; width:19px; height:19px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
 
-  .hero{
-    position:relative; overflow:hidden; background:var(--navy);
-    padding:72px 24px 64px; text-align:center;
-  }
+  .hero{ position:relative; overflow:hidden; background:var(--navy); padding:72px 24px 64px; text-align:center; }
   .hero-pattern{ position:absolute; inset:0; opacity:0.5; }
   .hero-inner{ position:relative; max-width:760px; margin:0 auto; }
-  .hero h1{
-    font-family:'Inter',sans-serif; font-weight:800; letter-spacing:1px;
-    font-size:15px; color:var(--cyan); margin-bottom:18px; text-transform:uppercase;
-  }
-  .hero h2{
-    font-size:38px; font-weight:800; color:#fff; line-height:1.4; margin-bottom:16px;
-  }
-  .hero h2 em{ font-style:normal; color:var(--cyan); }
+  .hero h1{ font-family:'Inter',sans-serif; font-weight:800; letter-spacing:1px; font-size:15px; color:var(--cyan); margin-bottom:18px; text-transform:uppercase; }
+  .hero h2{ font-size:38px; font-weight:800; color:#fff; line-height:1.4; margin-bottom:16px; }
   .hero p{ color:#94A3B8; font-size:15.5px; max-width:520px; margin:0 auto 30px; }
   .hero-ctas{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-  .btn{
-    padding:13px 26px; border-radius:10px; font-weight:700; font-size:14px;
-    cursor:pointer; border:none; transition:all .15s; display:inline-flex; align-items:center; gap:8px;
-  }
+  .btn{ padding:13px 26px; border-radius:10px; font-weight:700; font-size:14px; cursor:pointer; border:none; transition:all .15s; display:inline-flex; align-items:center; gap:8px; }
   .btn-primary{ background:var(--blue); color:#fff; }
   .btn-primary:hover{ background:#1D4ED8; transform:translateY(-1px); }
   .btn-ghost{ background:rgba(255,255,255,0.06); color:#fff; border:1px solid rgba(255,255,255,0.18); }
   .btn-ghost:hover{ background:rgba(255,255,255,0.12); }
 
-  .delivery-strip{
-    max-width:1280px; margin:0 auto; padding:16px 24px;
-  }
-  .delivery-box{
-    background:#ECFEFF; border:1px solid #A5F3FC; border-radius:12px;
-    padding:14px 18px; display:flex; align-items:center; gap:12px; font-size:13.5px; color:#155E75;
-  }
+  .delivery-strip{ max-width:1280px; margin:0 auto; padding:16px 24px; }
+  .delivery-box{ background:#ECFEFF; border:1px solid #A5F3FC; border-radius:12px; padding:14px 18px; display:flex; align-items:center; gap:12px; font-size:13.5px; color:#155E75; }
   .delivery-box svg{ width:20px; height:20px; flex-shrink:0; color:var(--cyan); }
   .delivery-box b{ color:var(--navy); }
 
@@ -129,17 +70,10 @@
   .section-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:22px; flex-wrap:wrap; gap:8px; }
   .section-head h3{ font-size:20px; font-weight:800; color:var(--navy); }
   .section-head span{ font-size:13px; color:var(--muted); }
-
   .cat-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:14px; }
-  .cat-card{
-    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
-    padding:20px 14px; text-align:center; cursor:pointer; transition:all .15s;
-  }
+  .cat-card{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:20px 14px; text-align:center; cursor:pointer; transition:all .15s; }
   .cat-card:hover{ border-color:var(--blue); transform:translateY(-2px); box-shadow:0 8px 20px rgba(37,99,235,0.08); }
-  .cat-card .icon-wrap{
-    width:46px; height:46px; border-radius:12px; background:#EFF6FF; color:var(--blue);
-    display:flex; align-items:center; justify-content:center; margin:0 auto 12px;
-  }
+  .cat-card .icon-wrap{ width:46px; height:46px; border-radius:12px; background:#EFF6FF; color:var(--blue); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
   .cat-card .icon-wrap svg{ width:22px; height:22px; }
   .cat-card span{ font-size:12.5px; font-weight:700; color:var(--ink); }
 
@@ -149,10 +83,7 @@
   @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
   .grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:18px; }
-  .card{
-    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
-    overflow:hidden; display:flex; flex-direction:column; transition:all .18s;
-  }
+  .card{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; transition:all .18s; }
   .card:hover{ transform:translateY(-4px); box-shadow:0 14px 30px rgba(15,23,42,0.09); border-color:#CBD5E1; }
   .card-img{ aspect-ratio:1/1; background:#F1F5F9; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
   .card-img img{ width:100%; height:100%; object-fit:contain; padding:16px; }
@@ -165,13 +96,9 @@
   .price{ font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15.5px; color:var(--navy); }
   .price small{ font-size:10.5px; color:var(--muted); font-weight:500; margin-right:3px;}
   .stock-ok{ font-size:11px; color:#059669; font-weight:700; } .stock-no{ font-size:11px; color:var(--danger); font-weight:700; }
-  .add-btn{
-    margin-top:8px; width:100%; padding:10px; border:none; background:var(--navy); color:#fff;
-    border-radius:9px; font-weight:700; font-size:13px; cursor:pointer; transition:all .15s;
-  }
+  .add-btn{ margin-top:8px; width:100%; padding:10px; border:none; background:var(--navy); color:#fff; border-radius:9px; font-weight:700; font-size:13px; cursor:pointer; transition:all .15s; }
   .add-btn:hover{ background:var(--blue); }
   .add-btn:disabled{ background:#E2E8F0; color:var(--muted); cursor:not-allowed; }
-
   .empty-state, .loading-state{ text-align:center; padding:60px 20px; color:var(--muted); grid-column:1/-1; }
   .empty-state{ display:none; } .empty-state.show{ display:block; }
 
@@ -192,22 +119,13 @@
   .footer-col a:hover{ color:var(--cyan); }
   .footer-bottom{ border-top:1px solid rgba(255,255,255,0.08); padding-top:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:12px; }
 
-  @media (max-width:900px){
-    nav.cats{ display:none; }
-    .footer-grid{ grid-template-columns:1fr 1fr; }
-  }
+  @media (max-width:900px){ nav.cats{ display:none; } .footer-grid{ grid-template-columns:1fr 1fr; } }
   @media (max-width:560px){
-    .header-inner{ padding:12px 16px; gap:12px; }
-    .logo-word{ font-size:17px; }
-    .search-inline{ display:none !important; }
-    .hero{ padding:52px 16px 44px; }
-    .hero h2{ font-size:26px; }
-    .grid{ grid-template-columns:repeat(2, 1fr); gap:10px; }
-    .cat-grid{ grid-template-columns:repeat(3, 1fr); }
-    .footer-grid{ grid-template-columns:1fr 1fr; }
+    .header-inner{ padding:12px 16px; gap:12px; } .logo-word{ font-size:17px; } .search-inline{ display:none !important; }
+    .hero{ padding:52px 16px 44px; } .hero h2{ font-size:26px; } .grid{ grid-template-columns:repeat(2, 1fr); gap:10px; }
+    .cat-grid{ grid-template-columns:repeat(3, 1fr); } .footer-grid{ grid-template-columns:1fr 1fr; }
   }
 
-  /* سلة الطلبات (Drawer) */
   .drawer-overlay{ display:none; position:fixed; inset:0; background:rgba(11,18,32,0.55); z-index:200; }
   .drawer-overlay.show{ display:block; }
   .drawer{ position:fixed; top:0; left:0; height:100%; width:100%; max-width:400px; background:var(--white); z-index:201; transform:translateX(-100%); transition:transform .25s; display:flex; flex-direction:column; }
@@ -230,6 +148,19 @@
   .cart-total .amt{ font-family:'JetBrains Mono',monospace; color:var(--navy); }
   .checkout-btn{ width:100%; padding:13px; background:var(--blue); color:#fff; border:none; border-radius:10px; font-weight:700; font-size:14px; cursor:pointer; text-align:center; }
   .checkout-btn:hover{ background:#1D4ED8; }
+  .checkout-btn:disabled{ background:#94A3B8; cursor:not-allowed; }
+  .checkout-form label{ display:block; font-size:13px; font-weight:700; margin-bottom:6px; margin-top:14px; color:var(--navy); }
+  .checkout-form label:first-of-type{ margin-top:0; }
+  .checkout-form input, .checkout-form textarea{ width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:9px; font-family:inherit; font-size:14px; outline:none; }
+  .checkout-form textarea{ resize:vertical; min-height:60px; }
+  .checkout-form input:focus, .checkout-form textarea:focus{ border-color:var(--blue); }
+  .back-link{ background:none; border:none; color:var(--blue); font-size:13px; font-weight:700; cursor:pointer; margin-bottom:14px; font-family:inherit; }
+  .order-summary{ background:var(--bg); border-radius:8px; padding:12px; margin-bottom:16px; font-size:13px; color:var(--muted); }
+  .success-box{ text-align:center; padding:30px 10px; }
+  .success-box .check{ width:56px; height:56px; border-radius:50%; background:#ECFDF5; color:#059669; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:28px; }
+  .success-box h3{ font-size:17px; font-weight:800; margin-bottom:8px; color:var(--navy); }
+  .success-box p{ color:var(--muted); font-size:14px; margin-bottom:6px; }
+  .success-box .order-num{ font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--blue); font-size:16px; }
 </style>
 </head>
 <body>
@@ -248,7 +179,6 @@
       </svg>
       <span class="logo-word">ISLEY</span>
     </div>
-
     <nav class="cats" id="catNav">
       <button class="cat-chip active" data-filter="">الكل</button>
       <button class="cat-chip" data-filter="arduino أردوينو">أردوينو</button>
@@ -257,7 +187,6 @@
       <button class="cat-chip" data-filter="servo motor محرك محركات">محركات</button>
       <button class="cat-chip" data-filter="esp32 board بوردة تطوير">بوردات تطوير</button>
     </nav>
-
     <div class="header-actions">
       <div class="search-inline" id="searchWrap">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -276,18 +205,12 @@
 
 <section class="hero">
   <svg class="hero-pattern" viewBox="0 0 800 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
-        <path d="M40 0H0V40" fill="none" stroke="#1E293B" stroke-width="1"/>
-      </pattern>
-    </defs>
+    <defs><pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#1E293B" stroke-width="1"/></pattern></defs>
     <rect width="800" height="400" fill="url(#gridPattern)"/>
     <path d="M60 80H220C240 80 250 90 250 110V180" stroke="#2563EB" stroke-width="2" fill="none" opacity="0.5"/>
-    <circle cx="60" cy="80" r="4" fill="#06B6D4"/>
-    <circle cx="250" cy="180" r="4" fill="#2563EB"/>
+    <circle cx="60" cy="80" r="4" fill="#06B6D4"/><circle cx="250" cy="180" r="4" fill="#2563EB"/>
     <path d="M740 320H600C580 320 570 310 570 290V240" stroke="#06B6D4" stroke-width="2" fill="none" opacity="0.5"/>
-    <circle cx="740" cy="320" r="4" fill="#A3E635"/>
-    <circle cx="570" cy="240" r="4" fill="#06B6D4"/>
+    <circle cx="740" cy="320" r="4" fill="#A3E635"/><circle cx="570" cy="240" r="4" fill="#06B6D4"/>
   </svg>
   <div class="hero-inner">
     <h1>ISLEY // ELECTRONICS &amp; ROBOTICS</h1>
@@ -311,71 +234,32 @@
 </div>
 
 <section class="section" id="catSection">
-  <div class="section-head">
-    <h3>تسوق حسب الفئة</h3>
-    <span>اختار الفئة وشوف المنتجات المتاحة</span>
-  </div>
+  <div class="section-head"><h3>تسوق حسب الفئة</h3><span>اختار الفئة وشوف المنتجات المتاحة</span></div>
   <div class="cat-grid">
-    <div class="cat-card" data-filter="arduino أردوينو">
-      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="9" y="9" width="6" height="6" stroke="currentColor" stroke-width="1.7"/><path d="M9 2V4M15 2V4M9 20V22M15 20V22M2 9H4M2 15H4M20 9H22M20 15H22" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
-      <span>بوردات أردوينو</span>
-    </div>
-    <div class="cat-card" data-filter="sensor حساس">
-      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M8 12C8 9.79 9.79 8 12 8M16 12C16 14.21 14.21 16 12 16M5 12C5 8.13 8.13 5 12 5M19 12C19 15.87 15.87 19 12 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
-      <span>حساسات</span>
-    </div>
-    <div class="cat-card" data-filter="module وحدة وحدات">
-      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M7 6V4M12 6V4M17 6V4M7 20V18M12 20V18M17 20V18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
-      <span>وحدات إلكترونية</span>
-    </div>
-    <div class="cat-card" data-filter="motor servo محرك محركات">
-      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M12 2V4M12 20V22M22 12H20M4 12H2M19.07 4.93L17.66 6.34M6.34 17.66L4.93 19.07M19.07 19.07L17.66 17.66M6.34 6.34L4.93 4.93" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
-      <span>محركات</span>
-    </div>
-    <div class="cat-card" data-filter="esp32 تطوير">
-      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="3" width="14" height="18" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M9 8H15M9 12H15M9 16H12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
-      <span>بوردات تطوير</span>
-    </div>
-    <div class="cat-card" data-filter="display oled tft شاشة شاشات">
-      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M8 21H16M12 17V21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
-      <span>شاشات</span>
-    </div>
+    <div class="cat-card" data-filter="arduino أردوينو"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="9" y="9" width="6" height="6" stroke="currentColor" stroke-width="1.7"/><path d="M9 2V4M15 2V4M9 20V22M15 20V22M2 9H4M2 15H4M20 9H22M20 15H22" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><span>بوردات أردوينو</span></div>
+    <div class="cat-card" data-filter="sensor حساس"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M8 12C8 9.79 9.79 8 12 8M16 12C16 14.21 14.21 16 12 16M5 12C5 8.13 8.13 5 12 5M19 12C19 15.87 15.87 19 12 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><span>حساسات</span></div>
+    <div class="cat-card" data-filter="module وحدة وحدات"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M7 6V4M12 6V4M17 6V4M7 20V18M12 20V18M17 20V18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><span>وحدات إلكترونية</span></div>
+    <div class="cat-card" data-filter="motor servo محرك محركات"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M12 2V4M12 20V22M22 12H20M4 12H2M19.07 4.93L17.66 6.34M6.34 17.66L4.93 19.07M19.07 19.07L17.66 17.66M6.34 6.34L4.93 4.93" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><span>محركات</span></div>
+    <div class="cat-card" data-filter="esp32 تطوير"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="3" width="14" height="18" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M9 8H15M9 12H15M9 16H12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><span>بوردات تطوير</span></div>
+    <div class="cat-card" data-filter="display oled tft شاشة شاشات"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M8 21H16M12 17V21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><span>شاشات</span></div>
   </div>
 </section>
 
 <section class="section" id="productsSection">
   <div class="toolbar-row">
-    <div class="section-head" style="margin:0;">
-      <h3><span class="num" id="visibleCount">0</span> منتج</h3>
-    </div>
+    <div class="section-head" style="margin:0;"><h3><span class="num" id="visibleCount">0</span> منتج</h3></div>
     <button class="live-badge" id="refreshBtn"><span class="live-dot"></span> ضغط للتحديث الآن</button>
   </div>
-  
-  <main class="grid" id="grid">
-    <div class="loading-state" id="loadingState">جاري تحميل المنتجات…</div>
-  </main>
-
+  <main class="grid" id="grid"><div class="loading-state" id="loadingState">جاري تحميل المنتجات…</div></main>
   <div class="empty-state" id="emptyState">مافي منتجات مطابقة لبحثك 🔍</div>
 </section>
 
 <section class="section">
   <div class="trust-grid">
-    <div class="trust-item">
-      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L4 5V11C4 16 7.5 20.5 12 22C16.5 20.5 20 16 20 11V5L12 2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
-      <div><h4>مكونات أصلية</h4><p>قطع مضمونة الجودة ومختبرة قبل الشحن</p></div>
-    </div>
-    <div class="trust-item">
-      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="7" width="15" height="10" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M16 10H19.5L22 13.5V17H16V10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
-      <div><h4>توصيل داخل ولاية الخرطوم فقط وقريبًا باقي الولايات</h4><p>بنوصل طلبك لعنوانك أينما كنت</p></div>
-    </div>
-    <div class="trust-item">
-      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12L9 18L21 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div><h4>الدفع عند الاستلام</h4><p>الدفع عند الاستلام فقط, يوجد معاينة قبل الاستلام</p></div>
-    </div>
-    <div class="trust-item">
-      <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17 20.5 20 16 20 11V5L12 2L4 5V11C4 16 7 20.5 12 22Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div><h4>دعم فني</h4><p>هنساعدك تختار المكونات المناسبة لمشروعك</p></div>
-    </div>
+    <div class="trust-item"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L4 5V11C4 16 7.5 20.5 12 22C16.5 20.5 20 16 20 11V5L12 2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div><div><h4>مكونات أصلية</h4><p>قطع مضمونة الجودة ومختبرة قبل الشحن</p></div></div>
+    <div class="trust-item"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="7" width="15" height="10" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M16 10H19.5L22 13.5V17H16V10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div><div><h4>توصيل داخل ولاية الخرطوم فقط وقريبًا باقي الولايات</h4><p>بنوصل طلبك لعنوانك أينما كنت</p></div></div>
+    <div class="trust-item"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12L9 18L21 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>الدفع عند الاستلام</h4><p>الدفع عند الاستلام فقط, يوجد معاينة قبل الاستلام</p></div></div>
+    <div class="trust-item"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17 20.5 20 16 20 11V5L12 2L4 5V11C4 16 7 20.5 12 22Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>دعم فني</h4><p>هنساعدك تختار المكونات المناسبة لمشروعك</p></div></div>
   </div>
 </section>
 
@@ -385,35 +269,23 @@
       <div class="footer-brand">
         <div class="logo">
           <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="40" height="40" rx="9" fill="#152238"/>
-            <circle cx="12" cy="12" r="2.2" fill="#06B6D4"/>
-            <circle cx="28" cy="28" r="2.2" fill="#A3E635"/>
-            <path d="M14 12H23C25.7614 12 28 14.2386 28 17V26" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round"/>
-            <circle cx="28" cy="12" r="1.6" fill="#2563EB"/>
+            <rect width="40" height="40" rx="9" fill="#152238"/><circle cx="12" cy="12" r="2.2" fill="#06B6D4"/><circle cx="28" cy="28" r="2.2" fill="#A3E635"/>
+            <path d="M14 12H23C25.7614 12 28 14.2386 28 17V26" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round"/><circle cx="28" cy="12" r="1.6" fill="#2563EB"/>
           </svg>
           <span class="logo-word">ISLEY</span>
         </div>
         <p>ISLEY وجهتك للإلكترونيات والأردوينو والروبوتات ومكونات بوردات التطوير — بنساعد الطلاب والمهندسين يحولوا أفكارهم لمشاريع حقيقية.</p>
         <p style="margin-top:10px; font-size:12px; color:#94A3B8;">أول متجر إلكتروني سوداني لبيع قطع الإلكترونيات والأردوينو والروبوتات ومكونات البوردات</p>
       </div>
-      <div class="footer-col">
-        <h5>الفئات</h5>
-        <a href="#" data-filter="arduino أردوينو">أردوينو</a>
-        <a href="#" data-filter="sensor حساس">حساسات</a>
-        <a href="#" data-filter="motor servo محرك">محركات</a>
-        <a href="#" data-filter="esp32 تطوير">بوردات تطوير</a>
+      <div class="footer-col"><h5>الفئات</h5>
+        <a href="#" data-filter="arduino أردوينو">أردوينو</a><a href="#" data-filter="sensor حساس">حساسات</a>
+        <a href="#" data-filter="motor servo محرك">محركات</a><a href="#" data-filter="esp32 تطوير">بوردات تطوير</a>
       </div>
-      <div class="footer-col">
-        <h5>خدمة العملاء</h5>
-        <a href="#">التوصيل والدفع</a>
-        <a href="#">الأسئلة الشائعة</a>
-        <a href="#">تتبع طلبك</a>
+      <div class="footer-col"><h5>خدمة العملاء</h5>
+        <a href="#">التوصيل والدفع</a><a href="#">الأسئلة الشائعة</a><a href="#">تتبع طلبك</a>
       </div>
-      <div class="footer-col">
-        <h5>عن ISLEY</h5>
-        <a href="#">الثقة</a>
-        <a href="#">الجودة</a>
-        <a href="#">خدمة ما بعد البيع</a>
+      <div class="footer-col"><h5>عن ISLEY</h5>
+        <a href="#">الثقة</a><a href="#">الجودة</a><a href="#">خدمة ما بعد البيع</a>
         <a href="https://wa.me/249111328634" target="_blank" rel="noopener">تواصل معنا (واتساب)</a>
       </div>
     </div>
@@ -424,13 +296,9 @@
   </div>
 </footer>
 
-<!-- عناصر سلة الطلبات (Drawer Elements) -->
 <div class="drawer-overlay" id="drawerOverlay"></div>
 <div class="drawer" id="drawer">
-  <div class="drawer-header">
-    <h2 id="drawerTitle">سلة الطلبات</h2>
-    <button class="drawer-close" id="drawerCloseBtn">✕</button>
-  </div>
+  <div class="drawer-header"><h2 id="drawerTitle">سلة الطلبات</h2><button class="drawer-close" id="drawerCloseBtn">✕</button></div>
   <div class="drawer-body" id="drawerBody"></div>
   <div class="drawer-footer" id="drawerFooter"></div>
 </div>
@@ -445,22 +313,23 @@ let firstLoad = true;
 let cart = {};
 let activeFilter = '';
 
-function fmt(n){ 
+// صورة بديلة كـ SVG داخلي — مش محتاجة إنترنت ومستحيل تفشل
+const FALLBACK_IMG = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">' +
+  '<rect width="200" height="200" fill="#F1F5F9"/>' +
+  '<circle cx="70" cy="70" r="10" fill="#06B6D4"/>' +
+  '<circle cx="140" cy="140" r="10" fill="#A3E635"/>' +
+  '<path d="M85 70H115C128 70 138 80 138 93V130" stroke="#2563EB" stroke-width="6" stroke-linecap="round" fill="none"/>' +
+  '<text x="100" y="175" font-family="Arial" font-size="14" font-weight="700" fill="#64748B" text-anchor="middle">ISLEY</text>' +
+  '</svg>'
+);
+
+function fmt(n){
   const num = Number(n);
-  return isNaN(num) ? '0' : new Intl.NumberFormat('en-US').format(num); 
+  return isNaN(num) ? '0' : new Intl.NumberFormat('en-US').format(num);
 }
 
 function normalizeProduct(item, index) {
-  if (Array.isArray(item)) {
-    return {
-      id: item[0] || index,
-      name: String(item[1] || 'منتج بدون اسم'),
-      price: Number(item[2]) || 0,
-      qty: Number(item[3]) || 0,
-      img: item[4] || '',
-      category: item[5] || ''
-    };
-  }
   const getProp = (...keys) => {
     for (let k of keys) {
       for (let p in item) {
@@ -474,26 +343,20 @@ function normalizeProduct(item, index) {
     name: String(getProp('name', 'Name', 'title', 'الاسم', 'اسم المنتج', 'منتج') || 'منتج بدون اسم'),
     price: Number(getProp('price', 'Price', 'السعر', 'سعر') || 0),
     qty: Number(getProp('qty', 'quantity', 'stock', 'الكمية', 'المخزون', 'المتاح') || 0),
-    img: getProp('img', 'image', 'photo', 'url', 'الصورة', 'رابط الصورة') || '',
+    img: String(getProp('img', 'image', 'photo', 'url', 'الصورة', 'رابط الصورة') || '').trim(),
     category: String(getProp('category', 'cat', 'type', 'الفئة', 'القسم') || '')
   };
 }
 
 function matchesFilter(p, filterStr, searchStr){
   const name = p.name.toLowerCase();
-  const cat = p.category.toLowerCase();
+  const cat = (p.category || '').toLowerCase();
   const targetText = name + ' ' + cat;
-  
   const search = (searchStr || '').toLowerCase();
   const searchOk = !search || targetText.includes(search);
-
-  if (!filterStr || filterStr.trim() === '') {
-    return searchOk;
-  }
-
+  if (!filterStr || filterStr.trim() === '') return searchOk;
   const filterKeywords = filterStr.toLowerCase().split(' ');
   const filterOk = filterKeywords.some(kw => targetText.includes(kw));
-
   return filterOk && searchOk;
 }
 
@@ -506,29 +369,22 @@ function applyFilters(){
 
 function render(list){
   if(grid) grid.innerHTML = '';
-  
-  if(!list || list.length === 0){ 
-    if(emptyState) emptyState.classList.add('show'); 
-  } else { 
-    if(emptyState) emptyState.classList.remove('show'); 
-  }
-  
+  if(!list || list.length === 0){ if(emptyState) emptyState.classList.add('show'); }
+  else{ if(emptyState) emptyState.classList.remove('show'); }
   if(visibleCount) visibleCount.textContent = list ? list.length : 0;
-
-  if(!grid) return; 
+  if(!grid) return;
 
   list.forEach(p => {
     const isOut = p.qty <= 0;
     const isLow = !isOut && p.qty <= 5;
     const card = document.createElement('div');
     card.className = 'card';
-    
-    const imgSrc = p.img && p.img.trim() !== '' ? p.img : 'https://via.placeholder.com/200?text=ISLEY';
+    const imgSrc = p.img && p.img !== '' ? p.img : FALLBACK_IMG;
 
     card.innerHTML = `
       <div class="card-img">
         ${isOut ? '<span class="badge-sold">غير متوفر</span>' : (isLow ? '<span class="badge-low">كمية محدودة</span>' : '')}
-        <img src="${imgSrc}" alt="${p.name}" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/200?text=ISLEY';">
+        <img src="${imgSrc}" alt="${p.name}" loading="lazy" onerror="this.onerror=null; this.src='${FALLBACK_IMG}';">
       </div>
       <div class="card-body">
         <span class="card-cat">${p.category || 'ISLEY'}</span>
@@ -546,6 +402,8 @@ function render(list){
   grid.querySelectorAll('.add-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = btn.dataset.id;
+      const product = allProducts.find(p => String(p.id) === String(id));
+      if(product && cart[id] >= product.qty){ return; } // منعًا لطلب أكتر من المتاح
       cart[id] = (cart[id] || 0) + 1;
       updateCartCount();
       btn.textContent = 'اتضاف ✓';
@@ -564,15 +422,9 @@ async function fetchProducts(){
   try{
     const res = await fetch(`${APPS_SCRIPT_URL}?action=products`);
     const json = await res.json();
-    
     if(json.status !== 'ok') throw new Error(json.message || 'خطأ في جلب البيانات');
-    
     allProducts = (json.data || []).map((item, index) => normalizeProduct(item, index));
-    
-    if(firstLoad){ 
-      if(loadingState) loadingState.remove(); 
-      firstLoad = false; 
-    }
+    if(firstLoad){ if(loadingState) loadingState.remove(); firstLoad = false; }
     applyFilters();
   } catch(err){
     if(loadingState) loadingState.textContent = 'حصل خطأ في جلب البيانات. افحص الكونسول (Console).';
@@ -581,129 +433,196 @@ async function fetchProducts(){
 }
 
 // ----------------------------------------------------------------
-// إدارة سلة الطلبات (Drawer & Cart System)
+// سلة الطلبات + إتمام الطلب (بيسجّل في النظام أولاً، بعدين واتساب)
 // ----------------------------------------------------------------
-
 const drawer = document.getElementById('drawer');
 const drawerOverlay = document.getElementById('drawerOverlay');
+const drawerBody = document.getElementById('drawerBody');
+const drawerFooter = document.getElementById('drawerFooter');
+const drawerTitle = document.getElementById('drawerTitle');
 const openCartBtn = document.getElementById('openCartBtn');
 const drawerCloseBtn = document.getElementById('drawerCloseBtn');
 
-function renderCartItems() {
-  const drawerBody = document.getElementById('drawerBody');
-  const drawerFooter = document.getElementById('drawerFooter');
-  
-  if (!drawerBody || !drawerFooter) return;
-
-  const cartKeys = Object.keys(cart);
-  
-  if (cartKeys.length === 0) {
-    drawerBody.innerHTML = `<div class="cart-empty">سلة الطلبات فارغة حالياً 🛒</div>`;
-    drawerFooter.innerHTML = '';
-    return;
-  }
-
-  let html = '';
-  let totalAmount = 0;
-
-  cartKeys.forEach(id => {
-    const qty = cart[id];
-    const product = allProducts.find(p => String(p.id) === String(id));
-    if (!product) return;
-
-    const subtotal = product.price * qty;
-    totalAmount += subtotal;
-    const imgSrc = product.img && product.img.trim() !== '' ? product.img : 'https://via.placeholder.com/100?text=ISLEY';
-
-    html += `
-      <div class="cart-item">
-        <img src="${imgSrc}" alt="${product.name}">
-        <div class="cart-item-info">
-          <h4>${product.name}</h4>
-          <div class="cart-price">${fmt(product.price)} ج.س × ${qty}</div>
-        </div>
-        <div class="qty-control">
-          <button onclick="changeQty('${id}', -1)">-</button>
-          <span>${qty}</span>
-          <button onclick="changeQty('${id}', 1)">+</button>
-        </div>
-      </div>
-    `;
-  });
-
-  drawerBody.innerHTML = html;
-
-  drawerFooter.innerHTML = `
-    <div class="cart-total">
-      <span>الإجمالي:</span>
-      <span class="amt">${fmt(totalAmount)} ج.س</span>
-    </div>
-    <button class="checkout-btn" onclick="checkoutWhatsApp(${totalAmount})">إتمام الطلب عبر واتساب 📱</button>
-  `;
+function cartTotal(){
+  return Object.entries(cart).reduce((sum, [id, qty]) => {
+    const p = allProducts.find(x => String(x.id) === String(id));
+    return sum + (p ? p.price * qty : 0);
+  }, 0);
 }
 
-window.changeQty = function(id, delta) {
-  if (!cart[id]) return;
-  cart[id] += delta;
-  if (cart[id] <= 0) {
-    delete cart[id];
-  }
-  updateCartCount();
-  renderCartItems();
-};
-
-window.checkoutWhatsApp = function(total) {
-  let message = "مرحباً ISLEY، أرغب في طلب المنتجات التالية:\n\n";
-  let count = 1;
-
-  for (let id in cart) {
-    const product = allProducts.find(p => String(p.id) === String(id));
-    if (product) {
-      message += `${count}. ${product.name} - الكمية: ${cart[id]} - السعر الإجمالي: ${fmt(product.price * cart[id])} ج.س\n`;
-      count++;
-    }
-  }
-
-  message += `\nالإجمالي الكلي: ${fmt(total)} ج.س\nيرجى تأكيد الطلب وتفاصيل التوصيل.`;
-  
-  const encoded = encodeURIComponent(message);
-  window.open(`https://wa.me/249111328634?text=${encoded}`, '_blank');
-};
-
-function openDrawer(){ 
-  if(drawer) drawer.classList.add('show'); 
+function openDrawer(){
+  if(drawer) drawer.classList.add('show');
   if(drawerOverlay) drawerOverlay.classList.add('show');
-  renderCartItems();
+  renderCartView();
 }
-
-function closeDrawer(){ 
-  if(drawer) drawer.classList.remove('show'); 
-  if(drawerOverlay) drawerOverlay.classList.remove('show'); 
+function closeDrawer(){
+  if(drawer) drawer.classList.remove('show');
+  if(drawerOverlay) drawerOverlay.classList.remove('show');
 }
-
 if(openCartBtn) openCartBtn.addEventListener('click', openDrawer);
 if(drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeDrawer);
 if(drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
 
-// ----------------------------------------------------------------
-// الأحداث العامة الأخرى (Events)
-// ----------------------------------------------------------------
+function renderCartView(){
+  drawerTitle.textContent = 'سلة الطلبات';
+  const entries = Object.entries(cart).filter(([id, qty]) => qty > 0);
+  if(entries.length === 0){
+    drawerBody.innerHTML = '<div class="cart-empty">السلة فاضية الآن 🛒<br>ارجع للموقع واختار منتجات</div>';
+    drawerFooter.innerHTML = '';
+    return;
+  }
+  drawerBody.innerHTML = entries.map(([id, qty]) => {
+    const p = allProducts.find(x => String(x.id) === String(id));
+    if(!p) return '';
+    const imgSrc = p.img && p.img !== '' ? p.img : FALLBACK_IMG;
+    return `
+      <div class="cart-item">
+        <img src="${imgSrc}" onerror="this.onerror=null; this.src='${FALLBACK_IMG}';">
+        <div class="cart-item-info">
+          <h4>${p.name}</h4>
+          <div class="cart-price">${fmt(p.price)} ج.س</div>
+        </div>
+        <div class="qty-control">
+          <button class="qty-minus" data-id="${id}">−</button>
+          <span>${qty}</span>
+          <button class="qty-plus" data-id="${id}">+</button>
+        </div>
+      </div>
+    `;
+  }).join('');
 
+  drawerFooter.innerHTML = `
+    <div class="cart-total"><span>الإجمالي</span><span class="amt num">${fmt(cartTotal())} ج.س</span></div>
+    <button class="checkout-btn" id="goCheckoutBtn">إتمام الطلب</button>
+  `;
+
+  drawerBody.querySelectorAll('.qty-minus').forEach(b => b.addEventListener('click', () => {
+    const id = b.dataset.id;
+    cart[id] = Math.max(0, (cart[id]||0) - 1);
+    if(cart[id] === 0) delete cart[id];
+    updateCartCount(); renderCartView();
+  }));
+  drawerBody.querySelectorAll('.qty-plus').forEach(b => b.addEventListener('click', () => {
+    const id = b.dataset.id;
+    const p = allProducts.find(x => String(x.id) === String(id));
+    if(p && cart[id] >= p.qty) return;
+    cart[id] = (cart[id]||0) + 1;
+    updateCartCount(); renderCartView();
+  }));
+  document.getElementById('goCheckoutBtn').addEventListener('click', renderCheckoutForm);
+}
+
+function renderCheckoutForm(){
+  drawerTitle.textContent = 'بيانات الطلب';
+  const entries = Object.entries(cart).filter(([id, qty]) => qty > 0);
+  const summaryLines = entries.map(([id, qty]) => {
+    const p = allProducts.find(x => String(x.id) === String(id));
+    return p ? `${p.name} × ${qty}` : '';
+  }).join('<br>');
+
+  drawerBody.innerHTML = `
+    <button class="back-link" id="backToCartBtn">← رجوع للسلة</button>
+    <div class="order-summary">${summaryLines}<br><b>الإجمالي: ${fmt(cartTotal())} ج.س</b></div>
+    <form class="checkout-form" id="checkoutForm">
+      <label>الاسم الكامل</label>
+      <input type="text" id="custName" required>
+      <label>رقم الهاتف</label>
+      <input type="tel" id="custPhone" required>
+      <label>العنوان بالتفصيل (الولاية - المنطقة - أقرب معلم بارز)</label>
+      <input type="text" id="custAddress" required placeholder="مثال: الخرطوم - حي النزهة - بقرب من صيدلية النزهة">
+      <label>ملاحظات (اختياري)</label>
+      <textarea id="custNotes"></textarea>
+    </form>
+  `;
+  drawerFooter.innerHTML = `<button class="checkout-btn" id="submitOrderBtn">تأكيد الطلب</button>`;
+
+  document.getElementById('backToCartBtn').addEventListener('click', renderCartView);
+  document.getElementById('submitOrderBtn').addEventListener('click', submitOrder);
+}
+
+async function submitOrder(){
+  const name = document.getElementById('custName').value.trim();
+  const phone = document.getElementById('custPhone').value.trim();
+  const address = document.getElementById('custAddress').value.trim();
+  const notes = document.getElementById('custNotes').value.trim();
+
+  if(!name || !phone || !address){
+    alert('من فضلك املأ الاسم والهاتف والعنوان');
+    return;
+  }
+
+  const items = Object.entries(cart).filter(([id, qty]) => qty > 0).map(([id, qty]) => {
+    const p = allProducts.find(x => String(x.id) === String(id));
+    return { id: id, name: p ? p.name : id, price: p ? p.price : 0, qty: qty };
+  });
+
+  const btn = document.getElementById('submitOrderBtn');
+  btn.textContent = 'جاري الإرسال...';
+  btn.disabled = true;
+
+  try{
+    // الخطوة 1: تسجيل الطلب في النظام (خصم المخزون + رقم طلب رسمي)
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'placeOrder', customerName: name, phone: phone, address: address, notes: notes, items: items })
+    });
+    const result = await res.json();
+
+    if(result.status === 'ok'){
+      const orderNumber = result.orderNumber;
+
+      // الخطوة 2: تجهيز رسالة واتساب فيها رقم الطلب الرسمي
+      let waMessage = `مرحباً ISLEY، طلبي رقم ${orderNumber}\n\n`;
+      items.forEach((it, i) => {
+        waMessage += `${i+1}. ${it.name} - الكمية: ${it.qty} - ${fmt(it.price * it.qty)} ج.س\n`;
+      });
+      waMessage += `\nالإجمالي: ${fmt(cartTotal())} ج.س\nالاسم: ${name}\nالهاتف: ${phone}\nالعنوان: ${address}`;
+      if(notes) waMessage += `\nملاحظات: ${notes}`;
+
+      cart = {};
+      updateCartCount();
+      drawerTitle.textContent = 'تم الطلب';
+      drawerBody.innerHTML = `
+        <div class="success-box">
+          <div class="check">✓</div>
+          <h3>تم تسجيل طلبك بنجاح</h3>
+          <p>رقم الطلب</p>
+          <div class="order-num">${orderNumber}</div>
+          <p style="margin-top:14px;">اضغطي تأكيد عبر واتساب عشان نراجع طلبك سريعًا</p>
+        </div>
+      `;
+      drawerFooter.innerHTML = `
+        <button class="checkout-btn" onclick="window.open('https://wa.me/249111328634?text=${encodeURIComponent(waMessage)}', '_blank')">تأكيد عبر واتساب 📱</button>
+        <button class="checkout-btn" style="background:#94A3B8; margin-top:8px;" onclick="closeDrawer(); fetchProducts();">تمام، خلاص</button>
+      `;
+    } else {
+      alert(result.message || 'حصل خطأ، حاول تاني');
+      btn.textContent = 'تأكيد الطلب';
+      btn.disabled = false;
+    }
+  } catch(err){
+    alert('حصل خطأ في الاتصال بالنظام. حاولي تاني.');
+    btn.textContent = 'تأكيد الطلب';
+    btn.disabled = false;
+    console.error(err);
+  }
+}
+
+// ----------------------------------------------------------------
+// الأحداث العامة
+// ----------------------------------------------------------------
 const searchInputEl = document.getElementById('searchInput');
 if(searchInputEl) searchInputEl.addEventListener('input', applyFilters);
-
 const refreshBtnEl = document.getElementById('refreshBtn');
 if(refreshBtnEl) refreshBtnEl.addEventListener('click', fetchProducts);
-
 const searchToggleBtnEl = document.getElementById('searchToggleBtn');
-if(searchToggleBtnEl) {
+if(searchToggleBtnEl){
   searchToggleBtnEl.addEventListener('click', () => {
     const wrap = document.getElementById('searchWrap');
     if(wrap) wrap.classList.toggle('show');
     if(searchInputEl) searchInputEl.focus();
   });
 }
-
 document.querySelectorAll('[data-filter]').forEach(el => {
   el.addEventListener('click', (e) => {
     if(el.tagName === 'A') e.preventDefault();
@@ -712,7 +631,6 @@ document.querySelectorAll('[data-filter]').forEach(el => {
     const matchingChip = document.querySelector(`.cat-chip[data-filter="${CSS.escape(activeFilter)}"]`);
     if(matchingChip) matchingChip.classList.add('active');
     applyFilters();
-    
     const prodSec = document.getElementById('productsSection');
     if(prodSec) prodSec.scrollIntoView({behavior:'smooth'});
   });
