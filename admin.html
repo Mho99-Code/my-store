@@ -443,17 +443,23 @@ window.saveNewProduct = async function(){
 async function loadOrders(){
   try{
     const res = await fetch(`${APPS_SCRIPT_URL}?action=orders&token=${encodeURIComponent(adminToken)}&_t=${Date.now()}`);
+    
+    // التحقق أولاً هل الاستجابة ناجحة من السيرفر
+    if (!res.ok) {
+      throw new Error(`خطأ في السيرفر HTTP: ${res.status}`);
+    }
+
     const json = await res.json();
     if(json.unauthorized){ showToast('الجلسة انتهت، سجل دخول تاني'); doLogout(); return; }
-    if(json.status !== 'ok') throw new Error(json.message);
-    document.getElementById('ordersBadge').textContent = json.data.length;
-    renderOrders(json.data);
+    if(json.status !== 'ok') throw new Error(json.message || 'خطأ غير معروف');
+    
+    document.getElementById('ordersBadge').textContent = json.data ? json.data.length : 0;
+    renderOrders(json.data || []);
   } catch(err){
-    ordersBody.innerHTML = `<tr><td colspan="5" class="loading-row">حصل خطأ في تحميل الطلبات</td></tr>`;
-    console.error(err);
+    ordersBody.innerHTML = `<tr><td colspan="5" class="loading-row">حصل خطأ في تحميل الطلبات: ${err.message}</td></tr>`;
+    console.error("تفاصيل خطأ الطلبات:", err);
   }
 }
-
 const STATUS_OPTIONS = [
   { value: 'جديد', cls: 'new' },
   { value: 'جاري التجهيز', cls: 'prep' },
