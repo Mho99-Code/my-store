@@ -2,251 +2,280 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ISLEY | Build. Create. Innovate.</title>
-<meta name="description" content="ISLEY — متجر سوداني للإلكترونيات، الأردوينو، الحساسات، ومكونات الروبوتات وبوردات التطوير لصنّاع المشاريع والطلاب والمهندسين.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%230B0F14'/%3E%3Ccircle cx='12' cy='12' r='2.2' fill='%2306B6D4'/%3E%3Ccircle cx='28' cy='28' r='2.2' fill='%23A3E635'/%3E%3Cpath d='M14 12H23C25.7614 12 28 14.2386 28 17V26' stroke='%232F6BFF' stroke-width='2.2' stroke-linecap='round'/%3E%3Ccircle cx='28' cy='12' r='1.6' fill='%232F6BFF'/%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>ISLEY | متجر الإلكترونيات والأردوينو والروبوتات</title>
+<meta name="description" content="ISLEY — متجر سوداني للإلكترونيات، الأردوينو، الحساسات، ومكونات الروبوتات وبوردات التطوير.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%232563EB'/%3E%3Ccircle cx='12' cy='12' r='2.2' fill='%23fff'/%3E%3Ccircle cx='28' cy='28' r='2.2' fill='%23fff'/%3E%3Cpath d='M14 12H23C25.7614 12 28 14.2386 28 17V26' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Inter:wght@500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <script src="config.js"></script>
 <style>
   :root{
-    --bg:#0B0F14; --surface:#12161D; --surface-2:#171C25; --surface-hover:#1D2330;
-    --line:#232A38; --line-strong:#2E3648;
-    --blue:#2F6BFF; --blue-bright:#4C82FF; --blue-dim:rgba(47,107,255,0.12);
-    --cyan:#06B6D4; --lime:#A3E635;
-    --ink:#F3F5F9; --muted:#8B95A8; --faint:#5B6478;
-    --danger:#F0554A; --ok:#34D399; --warn:#F0B429;
+    --bg:#FFFFFF; --surface:#F8FAFC; --surface2:#F1F5F9; --line:#E2E8F0;
+    --blue:#2563EB; --blue-dark:#1D4ED8; --cyan:#0891B2;
+    --ink:#0F172A; --muted:#64748B; --danger:#DC2626; --ok:#16A34A; --warn:#D97706;
     --radius:14px;
   }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  body{ background:var(--bg); color:var(--ink); font-family:'IBM Plex Sans Arabic','Inter',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
-  .num, .mono{ font-family:'JetBrains Mono','Inter',monospace; }
-  .en{ font-family:'Inter',sans-serif; }
+  *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
+  html{ scroll-behavior:smooth; }
+  body{ background:var(--bg); color:var(--ink); font-family:'IBM Plex Sans Arabic','Inter',sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  .num{ font-family:'JetBrains Mono','Inter',monospace; }
   a{ color:inherit; text-decoration:none; }
   button{ font-family:inherit; }
   img{ max-width:100%; display:block; }
+  input, select, textarea{ font-family:inherit; }
+
+  .announce{ background:var(--ink); color:#DCEAFE; text-align:center; font-size:12px; font-weight:600; padding:9px 14px; }
+  .announce b{ color:#7DD3FC; }
 
   /* ===== header ===== */
-  header{ background:rgba(11,15,20,0.85); backdrop-filter:blur(14px); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50; }
-  .header-inner{ max-width:1280px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; gap:28px; }
-  .logo{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
-  .logo svg{ width:36px; height:36px; }
-  .logo-word{ font-family:'Inter',sans-serif; font-weight:900; font-size:20px; letter-spacing:1px; color:var(--ink); }
-  nav.cats{ display:flex; gap:4px; flex:1; justify-content:center; flex-wrap:wrap; }
-  .cat-chip{ padding:9px 15px; border-radius:20px; font-size:13px; font-weight:600; color:var(--muted); background:transparent; border:1px solid transparent; cursor:pointer; transition:all .15s; white-space:nowrap; }
-  .cat-chip:hover{ color:var(--ink); background:var(--surface); }
-  .cat-chip.active{ color:var(--blue-bright); background:var(--blue-dim); border-color:rgba(47,107,255,0.3); }
-  .header-actions{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
-  .icon-btn{ width:40px; height:40px; border-radius:10px; border:1px solid var(--line); background:var(--surface); display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--ink); transition:all .15s; }
-  .icon-btn:hover{ border-color:var(--blue); color:var(--blue-bright); }
+  header{ background:rgba(255,255,255,0.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:60; }
+  .header-inner{ max-width:1280px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; gap:12px; }
+  .logo{ display:flex; align-items:center; gap:8px; flex-shrink:0; }
+  .logo svg{ width:34px; height:34px; }
+  .logo-word{ font-family:'Inter',sans-serif; font-weight:800; font-size:19px; letter-spacing:0.3px; color:var(--ink); }
+  .logo-word .accent{ color:var(--blue); }
+  nav.cats{ display:none; }
+  .header-spacer{ flex:1; }
+  .header-actions{ display:flex; align-items:center; gap:8px; flex-shrink:0; }
+  .icon-btn{ width:42px; height:42px; border-radius:10px; border:1px solid var(--line); background:var(--bg); display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--ink); transition:all .15s; }
+  .icon-btn:active{ transform:scale(0.94); }
   .icon-btn svg{ width:19px; height:19px; }
-  .search-inline{ position:relative; display:none; }
-  .search-inline.show{ display:block; }
-  .search-inline input{ width:220px; padding:9px 14px 9px 36px; border:1px solid var(--line); border-radius:10px; font-family:inherit; font-size:13.5px; background:var(--surface); color:var(--ink); outline:none; transition:border-color .15s; }
-  .search-inline input:focus{ border-color:var(--blue); }
-  .search-inline input::placeholder{ color:var(--faint); }
-  .search-inline svg{ position:absolute; left:11px; top:50%; transform:translateY(-50%); width:15px; height:15px; color:var(--faint); }
-  .cart-btn{ position:relative; display:flex; align-items:center; gap:8px; background:var(--blue); color:#fff; border:none; padding:10px 18px; border-radius:10px; font-weight:700; font-size:13.5px; cursor:pointer; transition:background .15s; }
-  .cart-btn:hover{ background:var(--blue-bright); }
+  .cart-btn{ position:relative; display:flex; align-items:center; gap:6px; background:var(--blue); color:#fff; border:none; padding:10px 14px; border-radius:10px; font-weight:700; font-size:13px; cursor:pointer; }
   .cart-btn svg{ width:17px; height:17px; }
-  .cart-count{ background:var(--lime); color:#0B0F14; font-size:11px; font-weight:800; width:19px; height:19px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+  .cart-count{ background:#fff; color:var(--blue); font-size:11px; font-weight:800; width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+  .search-panel{ display:none; border-top:1px solid var(--line); padding:10px 16px; }
+  .search-panel.show{ display:block; }
+  .search-panel input{ width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:10px; font-size:15px; background:var(--surface); outline:none; }
+  .search-panel input:focus{ border-color:var(--blue); }
+
+  /* ===== bottom mobile nav ===== */
+  .mobile-nav{ display:flex; position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:1px solid var(--line); z-index:60; padding:6px 4px calc(6px + env(safe-area-inset-bottom)); }
+  .mobile-nav button{ flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; background:none; border:none; color:var(--muted); font-size:10.5px; font-weight:600; padding:6px 2px; cursor:pointer; }
+  .mobile-nav button.active{ color:var(--blue); }
+  .mobile-nav svg{ width:21px; height:21px; }
 
   /* ===== hero ===== */
-  .hero{ position:relative; overflow:hidden; padding:100px 24px 80px; text-align:center; border-bottom:1px solid var(--line); }
-  .hero-grid-bg{ position:absolute; inset:0; opacity:0.55;
-    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size:46px 46px;
-    mask-image: radial-gradient(ellipse 65% 60% at 50% 25%, black 10%, transparent 75%);
-  }
-  .hero-glow{ position:absolute; top:-180px; left:50%; transform:translateX(-50%); width:640px; height:640px; border-radius:50%;
-    background: radial-gradient(circle, rgba(47,107,255,0.22), transparent 65%); pointer-events:none; }
-  .hero-inner{ position:relative; max-width:760px; margin:0 auto; }
-  .hero-eyebrow{ font-family:'Inter',sans-serif; font-weight:800; letter-spacing:3px; font-size:13px; color:var(--cyan); margin-bottom:22px; text-transform:uppercase; }
-  .hero h1{ font-family:'Inter',sans-serif; font-weight:900; font-size:clamp(36px,6vw,58px); line-height:1.12; color:#fff; margin-bottom:20px; letter-spacing:-0.5px; }
-  .hero h1 .accent{ color:var(--blue-bright); }
-  .hero p{ color:var(--muted); font-size:16px; max-width:480px; margin:0 auto 34px; }
-  .hero-ctas{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-  .btn{ padding:14px 28px; border-radius:10px; font-weight:700; font-size:14px; cursor:pointer; border:none; transition:all .15s; display:inline-flex; align-items:center; gap:8px; font-family:'Inter',sans-serif; letter-spacing:0.3px; }
-  .btn-primary{ background:var(--blue); color:#fff; box-shadow:0 0 0 1px rgba(47,107,255,0.4), 0 8px 24px -8px rgba(47,107,255,0.6); }
-  .btn-primary:hover{ background:var(--blue-bright); transform:translateY(-2px); }
-  .btn-ghost{ background:var(--surface); color:#fff; border:1px solid var(--line-strong); }
-  .btn-ghost:hover{ background:var(--surface-hover); border-color:var(--blue); transform:translateY(-2px); }
+  .hero{ padding:28px 16px 30px; background:linear-gradient(180deg, #EFF6FF 0%, #fff 100%); }
+  .hero-inner{ max-width:1280px; margin:0 auto; text-align:center; }
+  .sudan-badge{ display:inline-flex; align-items:center; gap:6px; background:#fff; border:1px solid var(--line); padding:5px 13px; border-radius:20px; font-size:11.5px; font-weight:700; color:var(--muted); margin-bottom:16px; }
+  .hero h1{ font-size:26px; font-weight:800; line-height:1.35; margin-bottom:10px; }
+  .hero h1 .accent{ color:var(--blue); }
+  .hero p{ color:var(--muted); font-size:14px; max-width:400px; margin:0 auto 20px; }
+  .hero-ctas{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+  .btn{ padding:14px 22px; border-radius:11px; font-weight:700; font-size:14px; cursor:pointer; border:none; transition:all .15s; display:inline-flex; align-items:center; gap:6px; min-height:48px; }
+  .btn:active{ transform:scale(0.97); }
+  .btn-primary{ background:var(--blue); color:#fff; }
+  .btn-primary:hover{ background:var(--blue-dark); }
+  .btn-ghost{ background:#fff; color:var(--ink); border:1px solid var(--line); }
+  .btn-ghost:hover{ border-color:var(--blue); color:var(--blue); }
 
-  .hero-feats{ position:relative; max-width:900px; margin:52px auto 0; display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-  .hfeat{ display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 10px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); }
-  .hfeat svg{ width:22px; height:22px; color:var(--blue-bright); }
-  .hfeat span{ font-size:12px; font-weight:600; color:var(--muted); text-align:center; }
+  .delivery-strip{ max-width:1280px; margin:0 auto; padding:12px 16px 0; }
+  .delivery-box{ background:#F0F9FF; border:1px solid #BAE6FD; border-radius:12px; padding:12px 14px; display:flex; align-items:center; gap:10px; font-size:12.5px; color:#0C4A6E; }
+  .delivery-box svg{ width:18px; height:18px; flex-shrink:0; color:var(--cyan); }
+  .delivery-box b{ color:var(--ink); }
 
   /* ===== sections ===== */
-  .section{ max-width:1280px; margin:0 auto; padding:56px 24px; }
-  .section-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:24px; flex-wrap:wrap; gap:8px; }
-  .section-head h3{ font-size:21px; font-weight:800; color:#fff; }
-  .section-head span{ font-size:13px; color:var(--muted); }
+  .section{ max-width:1280px; margin:0 auto; padding:30px 16px; }
+  .section-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:16px; flex-wrap:wrap; gap:6px; }
+  .section-head h2{ font-size:17px; font-weight:800; }
+  .section-head span{ font-size:12px; color:var(--muted); }
+  .see-all{ font-size:12.5px; font-weight:700; color:var(--blue); }
 
-  .cat-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:14px; }
-  .cat-card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:22px 14px; text-align:center; cursor:pointer; transition:all .18s; }
-  .cat-card:hover{ border-color:var(--blue); transform:translateY(-3px); box-shadow:0 10px 24px -12px rgba(47,107,255,0.4); }
-  .cat-card .icon-wrap{ width:46px; height:46px; border-radius:12px; background:var(--blue-dim); color:var(--blue-bright); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
-  .cat-card .icon-wrap svg{ width:22px; height:22px; }
-  .cat-card span{ font-size:12.5px; font-weight:700; color:var(--ink); }
+  .cat-scroll{ display:flex; gap:10px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; }
+  .cat-scroll::-webkit-scrollbar{ display:none; }
+  .cat-card{ flex:0 0 auto; width:88px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:14px 8px; text-align:center; cursor:pointer; }
+  .cat-card:active{ transform:scale(0.96); }
+  .cat-card .icon-wrap{ width:38px; height:38px; border-radius:10px; background:#fff; border:1px solid var(--line); color:var(--blue); display:flex; align-items:center; justify-content:center; margin:0 auto 8px; }
+  .cat-card .icon-wrap svg{ width:19px; height:19px; }
+  .cat-card span{ font-size:11px; font-weight:700; }
 
-  .toolbar-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; flex-wrap:wrap; gap:10px; }
-  .live-badge{ display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted); background:none; border:none; cursor:pointer; font-family:inherit; }
-  .live-dot{ width:7px; height:7px; border-radius:50%; background:var(--lime); animation:pulse 1.8s infinite; }
+  .toolbar-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+  .live-badge{ display:flex; align-items:center; gap:5px; font-size:11.5px; color:var(--muted); background:none; border:none; }
+  .live-dot{ width:6px; height:6px; border-radius:50%; background:var(--ok); animation:pulse 1.8s infinite; }
   @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
-  .grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:18px; }
-  .card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; transition:all .18s; }
-  .card:hover{ transform:translateY(-4px); box-shadow:0 16px 32px -14px rgba(0,0,0,0.5); border-color:var(--line-strong); }
-  .card-img{ aspect-ratio:1/1; background:#0E1219; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
-  .card-img img{ width:100%; height:100%; object-fit:contain; padding:16px; }
-  .badge-sold{ position:absolute; top:10px; right:10px; background:var(--danger); color:#fff; font-size:10.5px; font-weight:700; padding:4px 10px; border-radius:20px; }
-  .badge-low{ position:absolute; top:10px; right:10px; background:var(--lime); color:#0B0F14; font-size:10.5px; font-weight:800; padding:4px 10px; border-radius:20px; }
-  .card-body{ padding:14px 16px 16px; display:flex; flex-direction:column; gap:8px; flex:1; }
-  .card-cat{ font-size:10.5px; font-weight:700; color:var(--blue-bright); text-transform:uppercase; letter-spacing:.4px; }
-  .card-body h3{ font-size:14px; font-weight:700; line-height:1.4; min-height:38px; color:var(--ink); }
-  .card-footer{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; padding-top:8px; border-top:1px dashed var(--line); }
-  .price{ font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15.5px; color:#fff; }
-  .price small{ font-size:10.5px; color:var(--muted); font-weight:500; margin-right:3px;}
-  .stock-ok{ font-size:11px; color:var(--ok); font-weight:700; } .stock-no{ font-size:11px; color:var(--danger); font-weight:700; }
-  .add-btn{ margin-top:8px; width:100%; padding:10px; border:1px solid var(--line-strong); background:transparent; color:var(--ink); border-radius:9px; font-weight:700; font-size:13px; cursor:pointer; transition:all .15s; }
-  .add-btn:hover{ background:var(--blue); border-color:var(--blue); color:#fff; }
-  .add-btn:disabled{ background:transparent; color:var(--faint); border-color:var(--line); cursor:not-allowed; }
-  .empty-state, .loading-state{ text-align:center; padding:60px 20px; color:var(--muted); grid-column:1/-1; }
+  .grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; }
+  .card{ background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; transition:all .15s; }
+  .card:active{ transform:scale(0.98); }
+  .card-img{ aspect-ratio:1/1; background:var(--surface); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+  .card-img img{ width:100%; height:100%; object-fit:contain; padding:12px; }
+  .badge-sold{ position:absolute; top:8px; right:8px; background:var(--danger); color:#fff; font-size:10px; font-weight:800; padding:3px 9px; border-radius:20px; }
+  .badge-kit{ position:absolute; top:8px; right:8px; background:var(--warn); color:#fff; font-size:10px; font-weight:800; padding:3px 9px; border-radius:20px; }
+  .card-body{ padding:10px 11px 11px; display:flex; flex-direction:column; gap:6px; flex:1; }
+  .card-body h3{ font-size:12.5px; font-weight:700; line-height:1.4; min-height:34px; }
+  .card-footer{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; padding-top:6px; }
+  .price{ font-family:'JetBrains Mono',monospace; font-weight:700; font-size:14px; }
+  .price small{ font-size:10px; color:var(--muted); font-weight:500; }
+  .price-old{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); text-decoration:line-through; }
+  .stock-ok{ font-size:10.5px; color:var(--ok); font-weight:700; } .stock-no{ font-size:10.5px; color:var(--danger); font-weight:700; }
+  .add-btn{ margin-top:6px; width:100%; padding:11px; border:1px solid var(--blue); background:#fff; color:var(--blue); border-radius:9px; font-weight:700; font-size:12.5px; cursor:pointer; min-height:42px; }
+  .add-btn:active{ background:var(--blue); color:#fff; }
+  .add-btn:disabled{ border-color:var(--line); color:var(--muted); }
+  .empty-state, .loading-state{ text-align:center; padding:50px 16px; color:var(--muted); grid-column:1/-1; font-size:13px; }
   .empty-state{ display:none; } .empty-state.show{ display:block; }
 
-  .delivery-strip{ max-width:1280px; margin:0 auto; padding:20px 24px 0; }
-  .delivery-box{ background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:14px 18px; display:flex; align-items:center; gap:12px; font-size:13.5px; color:var(--muted); }
-  .delivery-box svg{ width:20px; height:20px; flex-shrink:0; color:var(--cyan); }
-  .delivery-box b{ color:#fff; }
+  /* ===== projects/kits cards (wide) ===== */
+  .wide-scroll{ display:flex; gap:12px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; }
+  .wide-scroll::-webkit-scrollbar{ display:none; }
+  .wide-card{ flex:0 0 260px; background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; cursor:pointer; }
+  .wide-card .w-img{ aspect-ratio:16/10; background:var(--surface); display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative; }
+  .wide-card .w-img img{ width:100%; height:100%; object-fit:cover; }
+  .wide-card .w-body{ padding:12px 14px 14px; }
+  .wide-card h3{ font-size:14px; font-weight:800; margin-bottom:4px; }
+  .wide-card p{ font-size:11.5px; color:var(--muted); margin-bottom:10px; min-height:32px; }
+  .wide-card .w-footer{ display:flex; align-items:center; justify-content:space-between; }
+  .kit-discount{ background:#FEF3C7; color:#92400E; font-size:10px; font-weight:800; padding:3px 8px; border-radius:20px; }
 
-  .trust-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:18px; }
-  .trust-item{ display:flex; align-items:flex-start; gap:14px; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); }
-  .trust-item .icon-wrap{ width:42px; height:42px; border-radius:10px; background:var(--blue-dim); color:var(--blue-bright); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .trust-item .icon-wrap svg{ width:20px; height:20px; }
-  .trust-item h4{ font-size:14px; font-weight:700; margin-bottom:3px; color:#fff; }
-  .trust-item p{ font-size:12.5px; color:var(--muted); }
+  /* ===== assistant ===== */
+  .assistant{ background:var(--surface); border-radius:16px; margin:0 16px; padding:26px 18px; text-align:center; }
+  .assistant h2{ font-size:16px; font-weight:800; margin-bottom:6px; }
+  .assistant p{ color:var(--muted); font-size:12.5px; margin-bottom:16px; }
+  .assistant-options{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-bottom:16px; }
+  .assist-btn{ background:#fff; border:1px solid var(--line); color:var(--ink); padding:10px 14px; border-radius:11px; font-weight:700; font-size:12px; cursor:pointer; min-height:42px; }
+  .assist-btn.active{ background:var(--blue); border-color:var(--blue); color:#fff; }
+  .assist-result{ display:none; background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px; text-align:right; font-size:12.5px; color:var(--muted); }
+  .assist-result.show{ display:block; }
+  .assist-result b{ color:var(--ink); }
 
-  /* ===== build recommender ===== */
-  .build-section{ background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-  .build-head{ text-align:center; max-width:560px; margin:0 auto 36px; }
-  .build-head .en-tag{ font-family:'Inter',sans-serif; font-weight:800; letter-spacing:2px; font-size:12px; color:var(--cyan); text-transform:uppercase; margin-bottom:10px; }
-  .build-head h3{ font-size:26px; font-weight:800; color:#fff; margin-bottom:10px; }
-  .build-head p{ font-size:14.5px; color:var(--muted); }
-  .build-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px; margin-bottom:28px; }
-  .build-card{ background:var(--bg); border:1px solid var(--line); border-radius:var(--radius); padding:22px 16px; text-align:center; cursor:pointer; transition:all .18s; }
-  .build-card:hover{ border-color:var(--line-strong); transform:translateY(-2px); }
-  .build-card.active{ border-color:var(--blue); background:var(--blue-dim); }
-  .build-card .icon-wrap{ width:48px; height:48px; border-radius:12px; background:var(--blue-dim); color:var(--blue-bright); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
-  .build-card.active .icon-wrap{ background:var(--blue); color:#fff; }
-  .build-card .icon-wrap svg{ width:24px; height:24px; }
-  .build-card h4{ font-size:13.5px; font-weight:700; color:#fff; margin-bottom:3px; }
-  .build-card span{ font-size:11px; color:var(--muted); }
-
-  .build-result{ display:none; background:var(--bg); border:1px solid var(--line); border-radius:var(--radius); padding:28px; }
-  .build-result.show{ display:block; }
-  .build-result-head{ display:flex; align-items:center; gap:12px; margin-bottom:18px; }
-  .build-result-head .icon-wrap{ width:44px; height:44px; border-radius:11px; background:var(--blue); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .build-result-head .icon-wrap svg{ width:22px; height:22px; }
-  .build-result-head h4{ font-size:17px; font-weight:800; color:#fff; }
-  .build-result-head p{ font-size:13px; color:var(--muted); }
-  .build-cols{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
-  @media (max-width:760px){ .build-cols{ grid-template-columns:1fr; } }
-  .build-col-title{ font-size:12px; font-weight:800; color:var(--cyan); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
-  .comp-chips{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
-  .comp-chip{ font-size:12.5px; font-weight:600; padding:8px 14px; border-radius:20px; background:var(--surface-2); border:1px solid var(--line-strong); color:var(--ink); cursor:pointer; transition:all .15s; }
-  .comp-chip:hover{ border-color:var(--blue); color:var(--blue-bright); }
-  .code-block{ background:#0A0D12; border:1px solid var(--line); border-radius:10px; padding:16px; overflow-x:auto; }
-  .code-block pre{ font-family:'JetBrains Mono',monospace; font-size:12px; color:#9FE1CB; line-height:1.7; white-space:pre; }
-  .code-block .cmt{ color:var(--faint); }
-  .build-shop-btn{ margin-top:18px; width:100%; padding:12px; background:var(--blue); color:#fff; border:none; border-radius:10px; font-weight:700; font-size:13.5px; cursor:pointer; }
-  .build-shop-btn:hover{ background:var(--blue-bright); }
+  /* ===== trust ===== */
+  .trust-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .trust-item{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px; padding:16px 10px; background:var(--surface); border-radius:var(--radius); }
+  .trust-item .icon-wrap{ width:36px; height:36px; border-radius:10px; background:#fff; color:var(--blue); display:flex; align-items:center; justify-content:center; }
+  .trust-item .icon-wrap svg{ width:18px; height:18px; }
+  .trust-item h4{ font-size:12.5px; font-weight:700; }
+  .trust-item p{ font-size:10.5px; color:var(--muted); }
 
   /* ===== footer ===== */
-  footer{ background:#080B0F; color:var(--muted); }
-  .footer-inner{ max-width:1280px; margin:0 auto; padding:52px 24px 24px; }
-  .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px; margin-bottom:36px; }
+  footer{ background:var(--ink); color:#94A3B8; padding-bottom:70px; }
+  .footer-inner{ max-width:1280px; margin:0 auto; padding:36px 16px 20px; }
   .footer-brand .logo-word{ color:#fff; }
-  .footer-brand p{ font-size:13px; margin-top:14px; line-height:1.7; max-width:280px; }
-  .footer-col h5{ color:#fff; font-size:13px; font-weight:700; margin-bottom:14px; }
-  .footer-col a{ display:block; font-size:13px; color:var(--muted); margin-bottom:10px; transition:color .15s; }
-  .footer-col a:hover{ color:var(--cyan); }
-  .footer-bottom{ border-top:1px solid var(--line); padding-top:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:12px; }
+  .footer-brand p{ font-size:12.5px; margin-top:12px; line-height:1.7; }
+  .footer-links{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:22px 0; }
+  .footer-col h5{ color:#fff; font-size:12.5px; font-weight:700; margin-bottom:10px; }
+  .footer-col a{ display:block; font-size:12.5px; color:#94A3B8; margin-bottom:9px; }
+  .footer-bottom{ border-top:1px solid #1E293B; padding-top:16px; font-size:11px; }
 
-  @media (max-width:900px){ nav.cats{ display:none; } .footer-grid{ grid-template-columns:1fr 1fr; } .hero-feats{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:560px){
-    .header-inner{ padding:12px 16px; gap:12px; } .logo-word{ font-size:17px; } .search-inline{ display:none !important; }
-    .hero{ padding:64px 16px 48px; } .grid{ grid-template-columns:repeat(2, 1fr); gap:10px; }
-    .cat-grid{ grid-template-columns:repeat(3, 1fr); } .footer-grid{ grid-template-columns:1fr 1fr; }
-    .build-grid{ grid-template-columns:repeat(2,1fr); }
-  }
+  /* ===== project/kit detail view ===== */
+  #detailView{ display:none; }
+  .detail-header{ display:flex; align-items:center; gap:10px; padding:12px 16px; border-bottom:1px solid var(--line); position:sticky; top:0; background:#fff; z-index:30; }
+  .detail-back{ width:38px; height:38px; border-radius:10px; border:1px solid var(--line); background:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+  .detail-header h2{ font-size:15px; font-weight:800; }
+  .detail-hero-img{ width:100%; aspect-ratio:16/9; background:var(--surface); overflow:hidden; }
+  .detail-hero-img img{ width:100%; height:100%; object-fit:cover; }
+  .detail-body{ max-width:800px; margin:0 auto; padding:20px 16px 100px; }
+  .detail-body h1{ font-size:20px; font-weight:800; margin-bottom:8px; }
+  .detail-body .desc{ color:var(--muted); font-size:13.5px; margin-bottom:22px; line-height:1.7; }
+  .comp-list{ display:flex; flex-direction:column; gap:10px; margin-bottom:22px; }
+  .comp-item{ display:flex; align-items:center; gap:12px; padding:10px; background:var(--surface); border-radius:12px; }
+  .comp-item img{ width:52px; height:52px; object-fit:contain; background:#fff; border-radius:8px; padding:5px; flex-shrink:0; }
+  .comp-item .c-info{ flex:1; min-width:0; }
+  .comp-item .c-info h4{ font-size:12.5px; font-weight:700; margin-bottom:2px; }
+  .comp-item .c-info span{ font-size:11px; color:var(--muted); }
+  .comp-item .c-price{ font-family:'JetBrains Mono',monospace; font-size:12.5px; font-weight:700; white-space:nowrap; }
+  .detail-total-box{ background:var(--surface); border-radius:14px; padding:16px; margin-bottom:16px; }
+  .dt-row{ display:flex; justify-content:space-between; font-size:13px; margin-bottom:8px; }
+  .dt-row.final{ font-weight:800; font-size:16px; padding-top:8px; border-top:1px dashed var(--line); margin-bottom:0; }
+  .dt-row .val{ font-family:'JetBrains Mono',monospace; }
+  .dt-old{ text-decoration:line-through; color:var(--muted); }
+  .discount-pill{ background:#FEF3C7; color:#92400E; font-weight:800; }
+  .detail-add-btn{ position:sticky; bottom:76px; width:100%; padding:15px; background:var(--blue); color:#fff; border:none; border-radius:12px; font-weight:800; font-size:14.5px; cursor:pointer; }
 
   /* ===== drawer ===== */
-  .drawer-overlay{ display:none; position:fixed; inset:0; background:rgba(4,6,9,0.7); z-index:200; }
+  .drawer-overlay{ display:none; position:fixed; inset:0; background:rgba(15,23,42,0.5); z-index:200; }
   .drawer-overlay.show{ display:block; }
-  .drawer{ position:fixed; top:0; left:0; height:100%; width:100%; max-width:400px; background:var(--surface); border-left:1px solid var(--line); z-index:201; transform:translateX(-100%); transition:transform .25s; display:flex; flex-direction:column; }
+  .drawer{ position:fixed; top:0; left:0; height:100%; width:100%; max-width:420px; background:#fff; z-index:201; transform:translateX(-100%); transition:transform .25s; display:flex; flex-direction:column; }
   .drawer.show{ transform:translateX(0); }
-  .drawer-header{ padding:20px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; }
-  .drawer-header h2{ font-size:17px; font-weight:800; color:#fff; }
-  .drawer-close{ background:none; border:none; cursor:pointer; font-size:20px; color:var(--muted); }
-  .drawer-body{ flex:1; overflow-y:auto; padding:16px 20px; }
+  .drawer-header{ padding:16px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; }
+  .drawer-header h2{ font-size:16px; font-weight:800; }
+  .drawer-close{ width:36px; height:36px; border-radius:10px; background:var(--surface); border:none; cursor:pointer; font-size:16px; }
+  .drawer-body{ flex:1; overflow-y:auto; padding:14px 16px; -webkit-overflow-scrolling:touch; }
   .cart-item{ display:flex; gap:10px; align-items:center; padding:12px 0; border-bottom:1px solid var(--line); }
-  .cart-item img{ width:48px; height:48px; object-fit:contain; background:#0E1219; border-radius:6px; padding:4px; }
+  .cart-item img{ width:56px; height:56px; object-fit:contain; background:var(--surface); border-radius:8px; padding:5px; flex-shrink:0; }
   .cart-item-info{ flex:1; min-width:0; }
-  .cart-item-info h4{ font-size:13px; font-weight:700; margin-bottom:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--ink); }
-  .cart-item-info .cart-price{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); }
+  .cart-item-info h4{ font-size:12.5px; font-weight:700; margin-bottom:3px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .cart-item-info .cart-price{ font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--muted); }
+  .cart-item-info .cart-subtotal{ font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; margin-top:2px; }
+  .cart-item-actions{ display:flex; flex-direction:column; align-items:flex-end; gap:6px; }
   .qty-control{ display:flex; align-items:center; gap:6px; }
-  .qty-control button{ width:24px; height:24px; border-radius:6px; border:1px solid var(--line-strong); background:var(--surface-2); color:var(--ink); cursor:pointer; font-size:14px; display:flex; align-items:center; justify-content:center; }
-  .qty-control span{ font-family:'JetBrains Mono',monospace; font-size:13px; min-width:18px; text-align:center; }
-  .cart-empty{ text-align:center; padding:40px 10px; color:var(--muted); font-size:14px; }
-  .drawer-footer{ padding:18px 20px; border-top:1px solid var(--line); }
-  .cart-total{ display:flex; justify-content:space-between; margin-bottom:14px; font-weight:700; color:var(--ink); }
-  .cart-total .amt{ font-family:'JetBrains Mono',monospace; color:#fff; }
-  .checkout-btn{ width:100%; padding:13px; background:var(--blue); color:#fff; border:none; border-radius:10px; font-weight:700; font-size:14px; cursor:pointer; text-align:center; }
-  .checkout-btn:hover{ background:var(--blue-bright); }
-  .checkout-btn:disabled{ background:var(--faint); cursor:not-allowed; }
-  .checkout-form label{ display:block; font-size:13px; font-weight:700; margin-bottom:6px; margin-top:14px; color:var(--ink); }
+  .qty-control button{ width:26px; height:26px; border-radius:7px; border:1px solid var(--line); background:#fff; cursor:pointer; font-size:14px; display:flex; align-items:center; justify-content:center; }
+  .qty-control span{ font-family:'JetBrains Mono',monospace; font-size:12.5px; min-width:16px; text-align:center; }
+  .remove-btn{ background:none; border:none; color:var(--danger); font-size:11px; font-weight:700; cursor:pointer; }
+  .cart-empty{ text-align:center; padding:50px 10px; color:var(--muted); font-size:13.5px; }
+  .drawer-footer{ padding:16px; border-top:1px solid var(--line); }
+  .summary-row{ display:flex; justify-content:space-between; font-size:13px; margin-bottom:8px; color:var(--muted); }
+  .summary-row.final{ font-weight:800; font-size:16px; color:var(--ink); padding-top:8px; border-top:1px dashed var(--line); }
+  .summary-row .val{ font-family:'JetBrains Mono',monospace; }
+  .checkout-btn{ width:100%; padding:15px; background:var(--blue); color:#fff; border:none; border-radius:12px; font-weight:800; font-size:14.5px; cursor:pointer; margin-top:6px; min-height:50px; }
+  .checkout-btn.secondary{ background:var(--surface2); color:var(--ink); }
+  .checkout-btn:disabled{ background:#CBD5E1; cursor:not-allowed; }
+
+  .checkout-form label{ display:block; font-size:12.5px; font-weight:700; margin-bottom:6px; margin-top:14px; }
   .checkout-form label:first-of-type{ margin-top:0; }
-  .checkout-form input, .checkout-form textarea{ width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:9px; font-family:inherit; font-size:14px; outline:none; background:var(--surface-2); color:var(--ink); }
-  .checkout-form textarea{ resize:vertical; min-height:60px; }
-  .checkout-form input:focus, .checkout-form textarea:focus{ border-color:var(--blue); }
-  .back-link{ background:none; border:none; color:var(--blue-bright); font-size:13px; font-weight:700; cursor:pointer; margin-bottom:14px; font-family:inherit; }
-  .order-summary{ background:var(--surface-2); border-radius:8px; padding:12px; margin-bottom:16px; font-size:13px; color:var(--muted); }
+  .checkout-form input, .checkout-form select, .checkout-form textarea{ width:100%; padding:12px 13px; border:1px solid var(--line); border-radius:10px; font-size:14px; outline:none; background:#fff; }
+  .checkout-form textarea{ resize:vertical; min-height:56px; }
+  .checkout-form input:focus, .checkout-form select:focus, .checkout-form textarea:focus{ border-color:var(--blue); }
+  .form-row2{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .form-row2 label{ margin-top:14px; }
+  .pay-options{ display:flex; flex-direction:column; gap:8px; margin-top:6px; }
+  .pay-option{ display:flex; align-items:center; gap:10px; border:1px solid var(--line); border-radius:10px; padding:11px 13px; cursor:pointer; font-size:13px; font-weight:600; }
+  .pay-option input{ width:auto; }
+  .pay-option.selected{ border-color:var(--blue); background:#EFF6FF; }
+  .back-link{ background:none; border:none; color:var(--blue); font-size:13px; font-weight:700; cursor:pointer; margin-bottom:14px; }
+  .review-block{ background:var(--surface); border-radius:12px; padding:12px 14px; margin-bottom:14px; }
+  .review-block h5{ font-size:11.5px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:.4px; margin-bottom:8px; }
+  .review-line{ font-size:13px; margin-bottom:4px; }
   .success-box{ text-align:center; padding:30px 10px; }
-  .success-box .check{ width:56px; height:56px; border-radius:50%; background:rgba(52,211,153,0.12); color:var(--ok); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:28px; }
-  .success-box h3{ font-size:17px; font-weight:800; margin-bottom:8px; color:#fff; }
-  .success-box p{ color:var(--muted); font-size:14px; margin-bottom:6px; }
-  .success-box .order-num{ font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--blue-bright); font-size:16px; }
+  .success-box .check{ width:60px; height:60px; border-radius:50%; background:#F0FDF4; color:var(--ok); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:30px; }
+  .success-box h3{ font-size:17px; font-weight:800; margin-bottom:8px; }
+  .success-box p{ color:var(--muted); font-size:13.5px; margin-bottom:6px; }
+  .success-box .order-num{ font-family:'JetBrains Mono',monospace; font-weight:800; color:var(--blue); font-size:17px; }
+
+  /* ===== desktop enhancements ===== */
+  @media (min-width:820px){
+    .mobile-nav{ display:none; }
+    footer{ padding-bottom:0; }
+    nav.cats{ display:flex; gap:2px; }
+    .cat-chip{ padding:9px 14px; border-radius:20px; font-size:13px; font-weight:600; color:var(--muted); background:transparent; border:1px solid transparent; cursor:pointer; white-space:nowrap; }
+    .cat-chip:hover{ color:var(--ink); background:var(--surface); }
+    .cat-chip.active{ color:var(--blue); background:#EFF6FF; border-color:#DBEAFE; }
+    .hero{ padding:56px 24px 48px; }
+    .hero h1{ font-size:36px; }
+    .hero p{ font-size:15.5px; max-width:520px; }
+    .grid{ grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:16px; }
+    .cat-scroll{ display:grid; grid-template-columns:repeat(6,1fr); overflow:visible; }
+    .cat-card{ width:auto; }
+    .wide-card{ flex:0 0 300px; }
+    .assistant{ margin:0 auto; max-width:900px; padding:40px 30px; }
+    .footer-links{ grid-template-columns:1fr 1fr 1fr; }
+    .footer-inner{ display:grid; grid-template-columns:1.3fr 2fr; gap:40px; padding:52px 24px 24px; }
+    .footer-links{ margin:0; }
+  }
 </style>
 </head>
 <body>
+
+<div class="announce">🇸🇩 <b>ISLEY</b> — أول متجر إلكتروني سوداني للإلكترونيات والروبوتات · التوصيل داخل الخرطوم</div>
 
 <header>
   <div class="header-inner">
     <div class="logo">
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="40" height="40" rx="9" fill="#0B0F14"/>
-        <circle cx="12" cy="12" r="2.2" fill="#06B6D4"/>
-        <circle cx="28" cy="28" r="2.2" fill="#A3E635"/>
-        <path d="M14 12H23C25.7614 12 28 14.2386 28 17V26" stroke="#2F6BFF" stroke-width="2.2" stroke-linecap="round"/>
-        <circle cx="28" cy="12" r="1.6" fill="#2F6BFF"/>
+        <rect width="40" height="40" rx="9" fill="#2563EB"/><circle cx="12" cy="12" r="2.2" fill="#fff"/><circle cx="28" cy="28" r="2.2" fill="#fff"/>
+        <path d="M14 12H23C25.7614 12 28 14.2386 28 17V26" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
       </svg>
-      <span class="logo-word">ISLEY</span>
+      <span class="logo-word">I<span class="accent">SLEY</span></span>
     </div>
     <nav class="cats" id="catNav">
       <button class="cat-chip active" data-filter="">الكل</button>
       <button class="cat-chip" data-filter="arduino أردوينو">أردوينو</button>
       <button class="cat-chip" data-filter="sensor حساس">حساسات</button>
-      <button class="cat-chip" data-filter="module display وحدة شاشة شاشات">وحدات وشاشات</button>
-      <button class="cat-chip" data-filter="servo motor محرك محركات">محركات</button>
-      <button class="cat-chip" data-filter="esp32 board بوردة تطوير">بوردات تطوير</button>
+      <button class="cat-chip" data-filter="module display وحدة شاشة">وحدات وشاشات</button>
+      <button class="cat-chip" data-filter="servo motor محرك">محركات</button>
+      <button class="cat-chip" data-filter="esp32 board تطوير">بوردات تطوير</button>
     </nav>
+    <div class="header-spacer"></div>
     <div class="header-actions">
-      <div class="search-inline" id="searchWrap">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <input type="text" id="searchInput" placeholder="فتش على منتج…">
-      </div>
       <button class="icon-btn" id="searchToggleBtn" title="بحث">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
@@ -256,28 +285,22 @@
       </button>
     </div>
   </div>
+  <div class="search-panel" id="searchWrap">
+    <input type="text" id="searchInput" placeholder="فتش على منتج…">
+  </div>
 </header>
 
-<section class="hero">
-  <div class="hero-grid-bg"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-inner">
-    <div class="hero-eyebrow en">ISLEY // ELECTRONICS &amp; ROBOTICS</div>
-    <h1 class="en">BUILD. <span class="accent">CREATE.</span> INNOVATE.</h1>
-    <p>كل حاجة محتاجها عشان تبدأ مشروعك الجاي في الإلكترونيات والأردوينو والروبوتات — بجودة موثوقة وتوصيل لباب بيتك.</p>
-    <div class="hero-ctas">
-      <button class="btn btn-primary en" onclick="document.getElementById('productsSection').scrollIntoView({behavior:'smooth'})">
-        EXPLORE PRODUCTS
-        <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <button class="btn btn-ghost en" onclick="document.getElementById('buildSection').scrollIntoView({behavior:'smooth'})">START A PROJECT</button>
-    </div>
+<!-- ============ الصفحة الرئيسية ============ -->
+<div id="homeView">
 
-    <div class="hero-feats">
-      <div class="hfeat"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5V11C4 16 7.5 20.5 12 22C16.5 20.5 20 16 20 11V5L12 2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span>مكونات أصلية</span></div>
-      <div class="hfeat"><svg viewBox="0 0 24 24" fill="none"><rect x="1" y="7" width="15" height="10" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M16 10H19.5L22 13.5V17H16V10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span>توصيل سريع</span></div>
-      <div class="hfeat"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22C17 20.5 20 16 20 11V5L12 2L4 5V11C4 16 7 20.5 12 22Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>دعم فني</span></div>
-      <div class="hfeat"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12L9 18L21 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>دفع عند الاستلام</span></div>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="sudan-badge">🇸🇩 متجر سوداني 100%</div>
+    <h1>ابنِ. اصنع. <span class="accent">ابتكر.</span></h1>
+    <p>كل حاجة محتاجها عشان تبدأ مشروعك الجاي في الإلكترونيات والأردوينو والروبوتات.</p>
+    <div class="hero-ctas">
+      <button class="btn btn-primary" onclick="document.getElementById('productsSection').scrollIntoView({behavior:'smooth'})">تسوق الآن</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('assistantSection').scrollIntoView({behavior:'smooth'})">ابدأ مشروعك</button>
     </div>
   </div>
 </section>
@@ -285,85 +308,122 @@
 <div class="delivery-strip">
   <div class="delivery-box">
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="7" width="15" height="10" rx="1.5" stroke="currentColor" stroke-width="1.8"/><path d="M16 10H19.5L22 13.5V17H16V10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="6" cy="19" r="1.8" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="19" r="1.8" stroke="currentColor" stroke-width="1.8"/></svg>
-    <div><b>يوجد التوصيل فقط حاليًا:</b> ISLEY متجر إلكتروني بالكامل الفترة دي، لا يوجد فرع فعلي للزيارة — كل الطلبات بتوصل للبيت مباشرة.</div>
+    <div><b>التوصيل فقط حاليًا:</b> لا يوجد فرع فعلي — كل الطلبات بتوصل لعنوانك مباشرة.</div>
   </div>
 </div>
 
 <section class="section" id="catSection">
-  <div class="section-head"><h3>تسوق حسب الفئة</h3><span>اختار الفئة وشوف المنتجات المتاحة</span></div>
-  <div class="cat-grid">
-    <div class="cat-card" data-filter="arduino أردوينو"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="9" y="9" width="6" height="6" stroke="currentColor" stroke-width="1.7"/><path d="M9 2V4M15 2V4M9 20V22M15 20V22M2 9H4M2 15H4M20 9H22M20 15H22" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><span>بوردات أردوينو</span></div>
+  <div class="section-head"><h2>تسوق حسب الفئة</h2></div>
+  <div class="cat-scroll" id="catScroll">
+    <div class="cat-card" data-filter="arduino أردوينو"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="9" y="9" width="6" height="6" stroke="currentColor" stroke-width="1.7"/></svg></div><span>أردوينو</span></div>
     <div class="cat-card" data-filter="sensor حساس"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M8 12C8 9.79 9.79 8 12 8M16 12C16 14.21 14.21 16 12 16M5 12C5 8.13 8.13 5 12 5M19 12C19 15.87 15.87 19 12 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><span>حساسات</span></div>
-    <div class="cat-card" data-filter="module وحدة وحدات"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M7 6V4M12 6V4M17 6V4M7 20V18M12 20V18M17 20V18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><span>وحدات إلكترونية</span></div>
-    <div class="cat-card" data-filter="motor servo محرك محركات"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M12 2V4M12 20V22M22 12H20M4 12H2M19.07 4.93L17.66 6.34M6.34 17.66L4.93 19.07M19.07 19.07L17.66 17.66M6.34 6.34L4.93 4.93" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><span>محركات</span></div>
+    <div class="cat-card" data-filter="module وحدة"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.7"/></svg></div><span>وحدات</span></div>
+    <div class="cat-card" data-filter="motor servo محرك"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M12 2V4M12 20V22M22 12H20M4 12H2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><span>محركات</span></div>
     <div class="cat-card" data-filter="esp32 تطوير"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="3" width="14" height="18" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M9 8H15M9 12H15M9 16H12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><span>بوردات تطوير</span></div>
-    <div class="cat-card" data-filter="display oled tft شاشة شاشات"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M8 21H16M12 17V21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><span>شاشات</span></div>
+    <div class="cat-card" data-filter="display oled tft شاشة"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M8 21H16M12 17V21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><span>شاشات</span></div>
   </div>
+</section>
+
+<!-- المشاريع -->
+<section class="section" id="projectsSection" style="display:none;">
+  <div class="section-head"><h2>مشاريع جاهزة</h2><span>اختار مشروع وشوف مكوناته كاملة</span></div>
+  <div class="wide-scroll" id="projectsScroll"></div>
+</section>
+
+<!-- الأطقم -->
+<section class="section" id="kitsSection" style="display:none;">
+  <div class="section-head"><h2>Arduino Kits & خصومات</h2><span>باقات كاملة بسعر أوفر</span></div>
+  <div class="wide-scroll" id="kitsScroll"></div>
 </section>
 
 <section class="section" id="productsSection">
   <div class="toolbar-row">
-    <div class="section-head" style="margin:0;"><h3><span class="num" id="visibleCount">0</span> منتج</h3></div>
-    <button class="live-badge" id="refreshBtn"><span class="live-dot"></span> ضغط للتحديث الآن</button>
+    <div class="section-head" style="margin:0;"><h2><span class="num" id="visibleCount">0</span> منتج</h2></div>
+    <button class="live-badge" id="refreshBtn"><span class="live-dot"></span> تحديث</button>
   </div>
   <main class="grid" id="grid"><div class="loading-state" id="loadingState">جاري تحميل المنتجات…</div></main>
   <div class="empty-state" id="emptyState">مافي منتجات مطابقة لبحثك 🔍</div>
 </section>
 
-<section class="section build-section" id="buildSection">
-  <div class="section" style="padding:56px 0;">
-    <div class="build-head">
-      <div class="en-tag">START A PROJECT</div>
-      <h3>إيه اللي داير تبنيه؟</h3>
-      <p>اختار نوع المشروع، وهنقترح عليك المكونات المناسبة وأمثلة مشاريع وكود بداية جاهز.</p>
+<section class="section" id="assistantSection">
+  <div class="assistant">
+    <h2>ايه اللي بتبنيه؟</h2>
+    <p>اختار نوع مشروعك، ونقترحلك المكونات المناسبة فورًا</p>
+    <div class="assistant-options" id="assistantOptions">
+      <button class="assist-btn" data-key="arduino">🔧 أردوينو</button>
+      <button class="assist-btn" data-key="robot">🤖 روبوت</button>
+      <button class="assist-btn" data-key="smart">🏠 منزل ذكي</button>
+      <button class="assist-btn" data-key="iot">📡 IoT</button>
+      <button class="assist-btn" data-key="beginner">🌱 مبتدئين</button>
     </div>
-
-    <div class="build-grid" id="buildGrid"></div>
-    <div class="build-result" id="buildResult"></div>
+    <div class="assist-result" id="assistResult"></div>
   </div>
 </section>
 
 <section class="section">
   <div class="trust-grid">
-    <div class="trust-item"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L4 5V11C4 16 7.5 20.5 12 22C16.5 20.5 20 16 20 11V5L12 2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div><div><h4>مكونات أصلية</h4><p>قطع مضمونة الجودة ومختبرة قبل الشحن</p></div></div>
-    <div class="trust-item"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="7" width="15" height="10" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M16 10H19.5L22 13.5V17H16V10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div><div><h4>توصيل داخل ولاية الخرطوم فقط وقريبًا باقي الولايات</h4><p>بنوصل طلبك لعنوانك أينما كنت</p></div></div>
-    <div class="trust-item"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12L9 18L21 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>الدفع عند الاستلام</h4><p>الدفع عند الاستلام فقط, يوجد معاينة قبل الاستلام</p></div></div>
-    <div class="trust-item"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17 20.5 20 16 20 11V5L12 2L4 5V11C4 16 7 20.5 12 22Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>دعم فني</h4><p>هنساعدك تختار المكونات المناسبة لمشروعك</p></div></div>
+    <div class="trust-item"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L4 5V11C4 16 7.5 20.5 12 22C16.5 20.5 20 16 20 11V5L12 2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div><h4>مكونات أصلية</h4><p>مضمونة الجودة</p></div>
+    <div class="trust-item"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="7" width="15" height="10" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M16 10H19.5L22 13.5V17H16V10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div><h4>توصيل سريع</h4><p>داخل الخرطوم</p></div>
+    <div class="trust-item"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12L9 18L21 6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>الدفع عند الاستلام</h4><p>معاينة قبل الدفع</p></div>
+    <div class="trust-item"><div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17 20.5 20 16 20 11V5L12 2L4 5V11C4 16 7 20.5 12 22Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>دعم فني</h4><p>نساعدك تختار</p></div>
   </div>
 </section>
 
+</div><!-- /homeView -->
+
+<!-- ============ صفحة تفاصيل مشروع/طقم ============ -->
+<div id="detailView">
+  <div class="detail-header">
+    <button class="detail-back" id="detailBackBtn">→</button>
+    <h2 id="detailHeaderTitle">تفاصيل</h2>
+  </div>
+  <div id="detailContent"></div>
+</div>
+
 <footer>
   <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo">
-          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="40" height="40" rx="9" fill="#171C25"/><circle cx="12" cy="12" r="2.2" fill="#06B6D4"/><circle cx="28" cy="28" r="2.2" fill="#A3E635"/>
-            <path d="M14 12H23C25.7614 12 28 14.2386 28 17V26" stroke="#2F6BFF" stroke-width="2.2" stroke-linecap="round"/><circle cx="28" cy="12" r="1.6" fill="#2F6BFF"/>
-          </svg>
-          <span class="logo-word">ISLEY</span>
-        </div>
-        <p>ISLEY وجهتك للإلكترونيات والأردوينو والروبوتات ومكونات بوردات التطوير — بنساعد الطلاب والمهندسين يحولوا أفكارهم لمشاريع حقيقية.</p>
-        <p style="margin-top:10px; font-size:12px; color:var(--faint);">أول متجر إلكتروني سوداني لبيع قطع الإلكترونيات والأردوينو والروبوتات ومكونات البوردات</p>
+    <div class="footer-brand">
+      <div class="logo">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="9" fill="#1E3A8A"/><circle cx="12" cy="12" r="2.2" fill="#fff"/><circle cx="28" cy="28" r="2.2" fill="#fff"/><path d="M14 12H23C25.7614 12 28 14.2386 28 17V26" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <span class="logo-word">I<span class="accent">SLEY</span></span>
       </div>
+      <p>ISLEY وجهتك للإلكترونيات والأردوينو والروبوتات — أول متجر إلكتروني سوداني في المجال، بنساعد الصنّاع يحولوا أفكارهم لمشاريع حقيقية.</p>
+    </div>
+    <div class="footer-links">
       <div class="footer-col"><h5>الفئات</h5>
-        <a href="#" data-filter="arduino أردوينو">أردوينو</a><a href="#" data-filter="sensor حساس">حساسات</a>
-        <a href="#" data-filter="motor servo محرك">محركات</a><a href="#" data-filter="esp32 تطوير">بوردات تطوير</a>
+        <a href="#" data-filter="arduino أردوينو">أردوينو</a><a href="#" data-filter="sensor حساس">حساسات</a><a href="#" data-filter="motor servo">محركات</a>
       </div>
       <div class="footer-col"><h5>خدمة العملاء</h5>
-        <a href="#">التوصيل والدفع</a><a href="#">الأسئلة الشائعة</a><a href="#">تتبع طلبك</a>
+        <a href="#">التوصيل والدفع</a><a href="#">الأسئلة الشائعة</a><a href="admin.html">لوحة التحكم</a>
       </div>
-      <div class="footer-col"><h5>عن ISLEY</h5>
-        <a href="#">الثقة</a><a href="#">الجودة</a><a href="#">خدمة ما بعد البيع</a>
-        <a href="https://wa.me/249111328634" target="_blank" rel="noopener">تواصل معنا (واتساب)</a>
+      <div class="footer-col"><h5>تواصل معنا</h5>
+        <a href="https://wa.me/249111328634" target="_blank" rel="noopener">واتساب</a>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 ISLEY. كل الحقوق محفوظة.</span>
-      <span>متجر إلكتروني — توصيل فقط، لا يوجد فرع حاليًا</span>
     </div>
   </div>
+  <div class="footer-inner" style="padding-top:0;">
+    <div class="footer-bottom">© 2026 ISLEY. كل الحقوق محفوظة. — متجر إلكتروني، توصيل فقط.</div>
+  </div>
 </footer>
+
+<nav class="mobile-nav">
+  <button class="active" onclick="goHome()">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 10L12 3L21 10V20A1 1 0 0 1 20 21H4A1 1 0 0 1 3 20V10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+    الرئيسية
+  </button>
+  <button onclick="document.getElementById('catSection').scrollIntoView({behavior:'smooth'}); goHome();">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/></svg>
+    الفئات
+  </button>
+  <button id="mobCartBtn">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.2 16.5H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="19.5" r="1.4" fill="currentColor"/><circle cx="16" cy="19.5" r="1.4" fill="currentColor"/></svg>
+    السلة
+  </button>
+  <button onclick="window.open('https://wa.me/249111328634','_blank')">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 13.8 2.5 15.5 3.3 17L2 22L7.2 20.7C8.6 21.5 10.3 22 12 22Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+    واتساب
+  </button>
+</nav>
 
 <div class="drawer-overlay" id="drawerOverlay"></div>
 <div class="drawer" id="drawer">
@@ -373,277 +433,437 @@
 </div>
 
 <script>
-const grid = document.getElementById('grid');
-const emptyState = document.getElementById('emptyState');
-const loadingState = document.getElementById('loadingState');
-const visibleCount = document.getElementById('visibleCount');
+// ==================================================================
+// إعدادات + حالة عامة
+// ==================================================================
 let allProducts = [];
+let allProjects = [];
+let allKits = [];
 let firstLoad = true;
-let cart = {};
+let cart = {}; // { key: {type:'product'|'kit', id, name, price, img, qty} }
 let activeFilter = '';
 
 const FALLBACK_IMG = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(
   '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">' +
-  '<rect width="200" height="200" fill="#12161D"/>' +
-  '<circle cx="70" cy="70" r="10" fill="#06B6D4"/>' +
-  '<circle cx="140" cy="140" r="10" fill="#A3E635"/>' +
-  '<path d="M85 70H115C128 70 138 80 138 93V130" stroke="#2F6BFF" stroke-width="6" stroke-linecap="round" fill="none"/>' +
-  '<text x="100" y="175" font-family="Arial" font-size="14" font-weight="700" fill="#8B95A8" text-anchor="middle">ISLEY</text>' +
-  '</svg>'
+  '<rect width="200" height="200" fill="#F1F5F9"/><circle cx="70" cy="70" r="10" fill="#0891B2"/><circle cx="140" cy="140" r="10" fill="#2563EB"/>' +
+  '<path d="M85 70H115C128 70 138 80 138 93V130" stroke="#2563EB" stroke-width="6" stroke-linecap="round" fill="none"/>' +
+  '<text x="100" y="175" font-family="Arial" font-size="14" font-weight="700" fill="#64748B" text-anchor="middle">ISLEY</text></svg>'
 );
 
-function fmt(n){
-  const num = Number(n);
-  return isNaN(num) ? '0' : new Intl.NumberFormat('en-US').format(num);
-}
+function fmt(n){ const num = Number(n); return isNaN(num) ? '0' : new Intl.NumberFormat('en-US').format(num); }
+function imgOr(img){ return img && String(img).trim() !== '' ? img : FALLBACK_IMG; }
 
+// ==================================================================
+// جلب البيانات
+// ==================================================================
 function normalizeProduct(item, index) {
-  const getProp = (...keys) => {
-    for (let k of keys) {
-      for (let p in item) {
-        if (p.trim().toLowerCase() === k.trim().toLowerCase()) return item[p];
-      }
-    }
-    return null;
-  };
+  const getProp = (...keys) => { for (let k of keys) for (let p in item) if (p.trim().toLowerCase() === k.trim().toLowerCase()) return item[p]; return null; };
   return {
-    id: getProp('id', 'ID', 'م') || index,
-    name: String(getProp('name', 'Name', 'title', 'الاسم', 'اسم المنتج', 'منتج') || 'منتج بدون اسم'),
-    price: Number(getProp('price', 'Price', 'السعر', 'سعر') || 0),
-    qty: Number(getProp('qty', 'quantity', 'stock', 'الكمية', 'المخزون', 'المتاح') || 0),
-    img: String(getProp('img', 'image', 'photo', 'url', 'الصورة', 'رابط الصورة') || '').trim(),
-    category: String(getProp('category', 'cat', 'type', 'الفئة', 'القسم') || '')
+    id: getProp('id') || index,
+    name: String(getProp('name') || 'منتج بدون اسم'),
+    price: Number(getProp('price') || 0),
+    status: getProp('status') || 'متوفر',
+    img: String(getProp('img') || '').trim(),
+    category: String(getProp('category') || '')
   };
 }
 
+async function fetchAll(){
+  try{
+    const [pRes, projRes, kitRes] = await Promise.all([
+      fetch(`${APPS_SCRIPT_URL}?action=products`),
+      fetch(`${APPS_SCRIPT_URL}?action=projects`),
+      fetch(`${APPS_SCRIPT_URL}?action=kits`)
+    ]);
+    const pJson = await pRes.json();
+    if(pJson.status !== 'ok') throw new Error(pJson.message || 'خطأ في المنتجات');
+    allProducts = pJson.data.map((item, i) => normalizeProduct(item, i));
+
+    try{ const projJson = await projRes.json(); if(projJson.status === 'ok') allProjects = projJson.data; }catch(e){}
+    try{ const kitJson = await kitRes.json(); if(kitJson.status === 'ok') allKits = kitJson.data; }catch(e){}
+
+    if(firstLoad){ document.getElementById('loadingState')?.remove(); firstLoad = false; }
+    renderProjects();
+    renderKits();
+    applyFilters();
+  } catch(err){
+    const ls = document.getElementById('loadingState');
+    if(ls) ls.textContent = 'حصل خطأ في جلب البيانات.';
+    console.error(err);
+  }
+}
+
+// ==================================================================
+// المنتجات
+// ==================================================================
 function matchesFilter(p, filterStr, searchStr){
   const name = p.name.toLowerCase();
   const cat = (p.category || '').toLowerCase();
-  const targetText = name + ' ' + cat;
+  const target = name + ' ' + cat;
   const search = (searchStr || '').toLowerCase();
-  const searchOk = !search || targetText.includes(search);
-  if (!filterStr || filterStr.trim() === '') return searchOk;
-  const filterKeywords = filterStr.toLowerCase().split(' ');
-  const filterOk = filterKeywords.some(kw => targetText.includes(kw));
-  return filterOk && searchOk;
+  const searchOk = !search || target.includes(search);
+  if(!filterStr || filterStr.trim() === '') return searchOk;
+  const kws = filterStr.toLowerCase().split(' ');
+  return kws.some(k => target.includes(k)) && searchOk;
 }
 
 function applyFilters(){
-  const searchInput = document.getElementById('searchInput');
-  const searchStr = searchInput ? searchInput.value.trim() : '';
-  const list = allProducts.filter(p => matchesFilter(p, activeFilter, searchStr));
-  render(list);
+  const s = document.getElementById('searchInput').value.trim();
+  const list = allProducts.filter(p => matchesFilter(p, activeFilter, s));
+  renderProducts(list);
 }
 
-function render(list){
-  if(grid) grid.innerHTML = '';
-  if(!list || list.length === 0){ if(emptyState) emptyState.classList.add('show'); }
-  else{ if(emptyState) emptyState.classList.remove('show'); }
-  if(visibleCount) visibleCount.textContent = list ? list.length : 0;
-  if(!grid) return;
+function renderProducts(list){
+  const grid = document.getElementById('grid');
+  const emptyState = document.getElementById('emptyState');
+  grid.innerHTML = '';
+  if(!list.length){ emptyState.classList.add('show'); } else { emptyState.classList.remove('show'); }
+  document.getElementById('visibleCount').textContent = list.length;
 
   list.forEach(p => {
-    const isOut = p.qty <= 0;
-    const isLow = !isOut && p.qty <= 5;
+    const isOut = p.status && p.status.includes('غير');
     const card = document.createElement('div');
     card.className = 'card';
-    const imgSrc = p.img && p.img !== '' ? p.img : FALLBACK_IMG;
-
     card.innerHTML = `
       <div class="card-img">
-        ${isOut ? '<span class="badge-sold">غير متوفر</span>' : (isLow ? '<span class="badge-low">كمية محدودة</span>' : '')}
-        <img src="${imgSrc}" alt="${p.name}" loading="lazy" onerror="this.onerror=null; this.src='${FALLBACK_IMG}';">
+        ${isOut ? '<span class="badge-sold">غير متوفر</span>' : ''}
+        <img src="${imgOr(p.img)}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src='${FALLBACK_IMG}';">
       </div>
       <div class="card-body">
-        <span class="card-cat">${p.category || 'ISLEY'}</span>
         <h3>${p.name}</h3>
         <div class="card-footer">
           <div class="price">${fmt(p.price)}<small> ج.س</small></div>
-          <div class="${isOut ? 'stock-no' : 'stock-ok'}">${isOut ? 'نفذ' : p.qty + ' متاح'}</div>
+          <div class="${isOut ? 'stock-no' : 'stock-ok'}">${isOut ? 'نفذ' : 'متوفر'}</div>
         </div>
-        <button class="add-btn" data-id="${p.id}" ${isOut ? 'disabled' : ''}>${isOut ? 'غير متوفر' : 'أضف للسلة'}</button>
-      </div>
-    `;
+        <button class="add-btn" data-key="product_${p.id}" ${isOut ? 'disabled' : ''}>${isOut ? 'غير متوفر' : 'أضف للسلة'}</button>
+      </div>`;
     grid.appendChild(card);
   });
 
   grid.querySelectorAll('.add-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const id = btn.dataset.id;
-      const product = allProducts.find(p => String(p.id) === String(id));
-      if(product && cart[id] >= product.qty){ return; }
-      cart[id] = (cart[id] || 0) + 1;
-      updateCartCount();
+      const id = btn.dataset.key.replace('product_', '');
+      const p = allProducts.find(x => String(x.id) === String(id));
+      if(!p) return;
+      addToCart('product', p.id, p.name, p.price, p.img);
       btn.textContent = 'اتضاف ✓';
       setTimeout(() => { if(!btn.disabled) btn.textContent = 'أضف للسلة'; }, 1000);
     });
   });
 }
 
-function updateCartCount(){
-  const total = Object.values(cart).reduce((a,b) => a+b, 0);
-  const cartCountEl = document.getElementById('cartCount');
-  if(cartCountEl) cartCountEl.textContent = total;
+// ==================================================================
+// المشاريع
+// ==================================================================
+function renderProjects(){
+  const section = document.getElementById('projectsSection');
+  const scroll = document.getElementById('projectsScroll');
+  if(!allProjects.length){ section.style.display = 'none'; return; }
+  section.style.display = 'block';
+  scroll.innerHTML = allProjects.map(proj => `
+    <div class="wide-card" data-type="project" data-id="${proj.id}">
+      <div class="w-img"><img src="${imgOr(proj.img)}" onerror="this.onerror=null;this.src='${FALLBACK_IMG}';"></div>
+      <div class="w-body">
+        <h3>${proj.name}</h3>
+        <p>${proj.description || ''}</p>
+        <div class="w-footer"><span class="price">${fmt(proj.finalPrice)}<small> ج.س</small></span><span style="font-size:11px;color:var(--muted)">${proj.components.length} قطعة</span></div>
+      </div>
+    </div>`).join('');
+  scroll.querySelectorAll('.wide-card').forEach(el => el.addEventListener('click', () => openDetail('project', el.dataset.id)));
 }
 
-async function fetchProducts(){
-  try{
-    const res = await fetch(`${APPS_SCRIPT_URL}?action=products`);
-    const json = await res.json();
-    if(json.status !== 'ok') throw new Error(json.message || 'خطأ في جلب البيانات');
-    allProducts = (json.data || []).map((item, index) => normalizeProduct(item, index));
-    if(firstLoad){ if(loadingState) loadingState.remove(); firstLoad = false; }
-    applyFilters();
-  } catch(err){
-    if(loadingState) loadingState.textContent = 'حصل خطأ في جلب البيانات. افحص الكونسول (Console).';
-    console.error("Fetch Error:", err);
-  }
+function renderKits(){
+  const section = document.getElementById('kitsSection');
+  const scroll = document.getElementById('kitsScroll');
+  if(!allKits.length){ section.style.display = 'none'; return; }
+  section.style.display = 'block';
+  scroll.innerHTML = allKits.map(kit => `
+    <div class="wide-card" data-type="kit" data-id="${kit.id}">
+      <div class="w-img">
+        <img src="${imgOr(kit.img)}" onerror="this.onerror=null;this.src='${FALLBACK_IMG}';">
+        ${kit.discountPercent > 0 ? `<span class="badge-kit">خصم ${kit.discountPercent}%</span>` : ''}
+      </div>
+      <div class="w-body">
+        <h3>${kit.name}</h3>
+        <p>${kit.description || ''}</p>
+        <div class="w-footer">
+          <span>
+            ${kit.discountPercent > 0 ? `<span class="price-old">${fmt(kit.originalPrice)}</span> ` : ''}
+            <span class="price">${fmt(kit.finalPrice)}<small> ج.س</small></span>
+          </span>
+          <span style="font-size:11px;color:var(--muted)">${kit.components.length} قطعة</span>
+        </div>
+      </div>
+    </div>`).join('');
+  scroll.querySelectorAll('.wide-card').forEach(el => el.addEventListener('click', () => openDetail('kit', el.dataset.id)));
 }
+
+// ==================================================================
+// صفحة التفاصيل (مشروع أو طقم)
+// ==================================================================
+function openDetail(type, id){
+  const list = type === 'project' ? allProjects : allKits;
+  const item = list.find(x => String(x.id) === String(id));
+  if(!item) return;
+
+  document.getElementById('homeView').style.display = 'none';
+  document.getElementById('detailView').style.display = 'block';
+  document.getElementById('detailHeaderTitle').textContent = type === 'project' ? 'تفاصيل المشروع' : 'تفاصيل الـ Kit';
+  window.scrollTo(0,0);
+
+  const compsHtml = item.components.map(c => `
+    <div class="comp-item">
+      <img src="${imgOr(c.img)}" onerror="this.onerror=null;this.src='${FALLBACK_IMG}';">
+      <div class="c-info"><h4>${c.name}</h4><span>الكمية: ${c.qty}</span></div>
+      <div class="c-price">${fmt(c.price * c.qty)} <small style="font-weight:500;color:var(--muted)">ج.س</small></div>
+    </div>`).join('');
+
+  const totalBoxHtml = item.discountPercent > 0 ? `
+    <div class="detail-total-box">
+      <div class="dt-row"><span>السعر الأصلي</span><span class="val dt-old">${fmt(item.originalPrice)} ج.س</span></div>
+      <div class="dt-row"><span>الخصم (${item.discountPercent}%)</span><span class="val" style="color:var(--danger)">- ${fmt(item.discountValue)} ج.س</span></div>
+      <div class="dt-row final"><span>السعر بعد الخصم</span><span class="val">${fmt(item.finalPrice)} ج.س</span></div>
+    </div>` : `
+    <div class="detail-total-box">
+      <div class="dt-row final"><span>إجمالي سعر القطع</span><span class="val">${fmt(item.finalPrice)} ج.س</span></div>
+    </div>`;
+
+  document.getElementById('detailContent').innerHTML = `
+    <div class="detail-hero-img"><img src="${imgOr(item.img)}" onerror="this.onerror=null;this.src='${FALLBACK_IMG}';"></div>
+    <div class="detail-body">
+      <h1>${item.name}</h1>
+      <p class="desc">${item.description || ''}</p>
+      <h5 style="font-size:11.5px;font-weight:800;color:var(--muted);text-transform:uppercase;margin-bottom:10px;">القطع المطلوبة (${item.components.length})</h5>
+      <div class="comp-list">${compsHtml}</div>
+      ${totalBoxHtml}
+      <button class="detail-add-btn" id="detailAddBtn">إضافة ${type === 'project' ? 'المشروع' : 'الـ Kit'} للسلة</button>
+    </div>`;
+
+  document.getElementById('detailAddBtn').addEventListener('click', () => {
+    addToCart(type, item.id, item.name, item.finalPrice, item.img);
+    document.getElementById('detailAddBtn').textContent = 'اتضاف للسلة ✓';
+    setTimeout(() => openDrawer(), 500);
+  });
+}
+
+document.getElementById('detailBackBtn').addEventListener('click', goHome);
+function goHome(){
+  document.getElementById('detailView').style.display = 'none';
+  document.getElementById('homeView').style.display = 'block';
+  window.scrollTo(0,0);
+}
+
+// ==================================================================
+// السلة
+// ==================================================================
+function addToCart(type, id, name, price, img){
+  const key = type + '_' + id;
+  if(cart[key]){ cart[key].qty += 1; }
+  else{ cart[key] = { type, id, name, price, img, qty: 1 }; }
+  updateCartCount();
+}
+function updateCartCount(){
+  const total = Object.values(cart).reduce((a,c) => a + c.qty, 0);
+  document.getElementById('cartCount').textContent = total;
+}
+function cartTotal(){ return Object.values(cart).reduce((s,c) => s + c.price * c.qty, 0); }
 
 const drawer = document.getElementById('drawer');
 const drawerOverlay = document.getElementById('drawerOverlay');
 const drawerBody = document.getElementById('drawerBody');
 const drawerFooter = document.getElementById('drawerFooter');
 const drawerTitle = document.getElementById('drawerTitle');
-const openCartBtn = document.getElementById('openCartBtn');
-const drawerCloseBtn = document.getElementById('drawerCloseBtn');
 
-function cartTotal(){
-  return Object.entries(cart).reduce((sum, [id, qty]) => {
-    const p = allProducts.find(x => String(x.id) === String(id));
-    return sum + (p ? p.price * qty : 0);
-  }, 0);
-}
-
-function openDrawer(){
-  if(drawer) drawer.classList.add('show');
-  if(drawerOverlay) drawerOverlay.classList.add('show');
-  renderCartView();
-}
-function closeDrawer(){
-  if(drawer) drawer.classList.remove('show');
-  if(drawerOverlay) drawerOverlay.classList.remove('show');
-}
-if(openCartBtn) openCartBtn.addEventListener('click', openDrawer);
-if(drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeDrawer);
-if(drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+function openDrawer(){ drawer.classList.add('show'); drawerOverlay.classList.add('show'); renderCartView(); }
+function closeDrawer(){ drawer.classList.remove('show'); drawerOverlay.classList.remove('show'); }
+document.getElementById('openCartBtn').addEventListener('click', openDrawer);
+document.getElementById('mobCartBtn').addEventListener('click', openDrawer);
+document.getElementById('drawerCloseBtn').addEventListener('click', closeDrawer);
+drawerOverlay.addEventListener('click', closeDrawer);
 
 function renderCartView(){
   drawerTitle.textContent = 'سلة الطلبات';
-  const entries = Object.entries(cart).filter(([id, qty]) => qty > 0);
-  if(entries.length === 0){
-    drawerBody.innerHTML = '<div class="cart-empty">السلة فاضية الآن 🛒<br>ارجع للموقع واختار منتجات</div>';
+  const keys = Object.keys(cart);
+  if(keys.length === 0){
+    drawerBody.innerHTML = '<div class="cart-empty">السلة فاضية دلوقتي 🛒</div>';
     drawerFooter.innerHTML = '';
     return;
   }
-  drawerBody.innerHTML = entries.map(([id, qty]) => {
-    const p = allProducts.find(x => String(x.id) === String(id));
-    if(!p) return '';
-    const imgSrc = p.img && p.img !== '' ? p.img : FALLBACK_IMG;
+  drawerBody.innerHTML = keys.map(key => {
+    const c = cart[key];
     return `
       <div class="cart-item">
-        <img src="${imgSrc}" onerror="this.onerror=null; this.src='${FALLBACK_IMG}';">
+        <img src="${imgOr(c.img)}" onerror="this.onerror=null;this.src='${FALLBACK_IMG}';">
         <div class="cart-item-info">
-          <h4>${p.name}</h4>
-          <div class="cart-price">${fmt(p.price)} ج.س</div>
+          <h4>${c.name}</h4>
+          <div class="cart-price">${fmt(c.price)} ج.س × ${c.qty}</div>
+          <div class="cart-subtotal">${fmt(c.price * c.qty)} ج.س</div>
         </div>
-        <div class="qty-control">
-          <button class="qty-minus" data-id="${id}">−</button>
-          <span>${qty}</span>
-          <button class="qty-plus" data-id="${id}">+</button>
+        <div class="cart-item-actions">
+          <div class="qty-control">
+            <button class="qty-minus" data-key="${key}">−</button>
+            <span>${c.qty}</span>
+            <button class="qty-plus" data-key="${key}">+</button>
+          </div>
+          <button class="remove-btn" data-key="${key}">حذف</button>
         </div>
-      </div>
-    `;
+      </div>`;
   }).join('');
 
+  const itemCount = keys.reduce((s,k) => s + cart[k].qty, 0);
   drawerFooter.innerHTML = `
-    <div class="cart-total"><span>الإجمالي</span><span class="amt num">${fmt(cartTotal())} ج.س</span></div>
+    <div class="summary-row"><span>عدد المنتجات</span><span class="val">${itemCount}</span></div>
+    <div class="summary-row final"><span>الإجمالي</span><span class="val">${fmt(cartTotal())} ج.س</span></div>
     <button class="checkout-btn" id="goCheckoutBtn">إتمام الطلب</button>
   `;
 
   drawerBody.querySelectorAll('.qty-minus').forEach(b => b.addEventListener('click', () => {
-    const id = b.dataset.id;
-    cart[id] = Math.max(0, (cart[id]||0) - 1);
-    if(cart[id] === 0) delete cart[id];
+    const k = b.dataset.key; cart[k].qty = Math.max(0, cart[k].qty - 1); if(cart[k].qty === 0) delete cart[k];
     updateCartCount(); renderCartView();
   }));
   drawerBody.querySelectorAll('.qty-plus').forEach(b => b.addEventListener('click', () => {
-    const id = b.dataset.id;
-    const p = allProducts.find(x => String(x.id) === String(id));
-    if(p && cart[id] >= p.qty) return;
-    cart[id] = (cart[id]||0) + 1;
-    updateCartCount(); renderCartView();
+    const k = b.dataset.key; cart[k].qty += 1; updateCartCount(); renderCartView();
+  }));
+  drawerBody.querySelectorAll('.remove-btn').forEach(b => b.addEventListener('click', () => {
+    delete cart[b.dataset.key]; updateCartCount(); renderCartView();
   }));
   document.getElementById('goCheckoutBtn').addEventListener('click', renderCheckoutForm);
 }
 
+// ==================================================================
+// فورم بيانات العميل
+// ==================================================================
+const GOVERNORATES = ['الخرطوم','الجزيرة','نهر النيل','كسلا','القضارف','سنار','النيل الأبيض','النيل الأزرق','شمال كردفان','جنوب كردفان','غرب كردفان','شمال دارفور','جنوب دارفور','شرق دارفور','غرب دارفور','وسط دارفور','الشمالية','البحر الأحمر'];
+
 function renderCheckoutForm(){
   drawerTitle.textContent = 'بيانات الطلب';
-  const entries = Object.entries(cart).filter(([id, qty]) => qty > 0);
-  const summaryLines = entries.map(([id, qty]) => {
-    const p = allProducts.find(x => String(x.id) === String(id));
-    return p ? `${p.name} × ${qty}` : '';
-  }).join('<br>');
-
   drawerBody.innerHTML = `
     <button class="back-link" id="backToCartBtn">← رجوع للسلة</button>
-    <div class="order-summary">${summaryLines}<br><b>الإجمالي: ${fmt(cartTotal())} ج.س</b></div>
     <form class="checkout-form" id="checkoutForm">
-      <label>الاسم الكامل</label>
+      <label>الاسم الكامل *</label>
       <input type="text" id="custName" required>
-      <label>رقم الهاتف</label>
-      <input type="tel" id="custPhone" required>
-      <label>العنوان بالتفصيل (الولاية - المنطقة - أقرب معلم بارز)</label>
-      <input type="text" id="custAddress" required placeholder="مثال: الخرطوم - حي النزهة - بقرب من صيدلية النزهة">
-      <label>ملاحظات (اختياري)</label>
+      <div class="form-row2">
+        <div><label>رقم الهاتف *</label><input type="tel" id="custPhone" required></div>
+        <div><label>رقم واتساب</label><input type="tel" id="custWhatsapp" placeholder="لو مختلف عن الهاتف"></div>
+      </div>
+      <label>البريد الإلكتروني (اختياري)</label>
+      <input type="email" id="custEmail">
+      <div class="form-row2">
+        <div><label>المحافظة *</label>
+          <select id="custGovernorate" required>
+            <option value="">اختار المحافظة</option>
+            ${GOVERNORATES.map(g => `<option value="${g}">${g}</option>`).join('')}
+          </select>
+        </div>
+        <div><label>المدينة / المنطقة *</label><input type="text" id="custCity" required></div>
+      </div>
+      <label>العنوان بالتفصيل *</label>
+      <input type="text" id="custAddress" required placeholder="اسم الحي والشارع">
+      <label>أقرب علامة مميزة</label>
+      <input type="text" id="custLandmark" placeholder="مثال: بجانب صيدلية النزهة">
+      <label>طريقة الدفع</label>
+      <div class="pay-options" id="payOptions">
+        <label class="pay-option selected"><input type="radio" name="pay" value="الدفع عند الاستلام" checked> الدفع عند الاستلام (كاش)</label>
+        <label class="pay-option"><input type="radio" name="pay" value="تحويل بنكي مسبق"> تحويل بنكي / محفظة إلكترونية</label>
+      </div>
+      <label>ملاحظات إضافية (اختياري)</label>
       <textarea id="custNotes"></textarea>
     </form>
   `;
-  drawerFooter.innerHTML = `<button class="checkout-btn" id="submitOrderBtn">تأكيد الطلب</button>`;
+  drawerFooter.innerHTML = `<button class="checkout-btn" id="reviewOrderBtn">مراجعة الطلب</button>`;
 
   document.getElementById('backToCartBtn').addEventListener('click', renderCartView);
+  document.querySelectorAll('.pay-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('.pay-option').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+    });
+  });
+  document.getElementById('reviewOrderBtn').addEventListener('click', () => {
+    const name = document.getElementById('custName').value.trim();
+    const phone = document.getElementById('custPhone').value.trim();
+    const gov = document.getElementById('custGovernorate').value;
+    const city = document.getElementById('custCity').value.trim();
+    const address = document.getElementById('custAddress').value.trim();
+    if(!name || !phone || !gov || !city || !address){ alert('من فضلك املأ كل الحقول المطلوبة (*)'); return; }
+    renderReviewStep();
+  });
+}
+
+function renderReviewStep(){
+  drawerTitle.textContent = 'مراجعة الطلب';
+  const keys = Object.keys(cart);
+  const custData = {
+    name: document.getElementById('custName').value.trim(),
+    phone: document.getElementById('custPhone').value.trim(),
+    whatsapp: document.getElementById('custWhatsapp').value.trim(),
+    email: document.getElementById('custEmail').value.trim(),
+    governorate: document.getElementById('custGovernorate').value,
+    city: document.getElementById('custCity').value.trim(),
+    address: document.getElementById('custAddress').value.trim(),
+    landmark: document.getElementById('custLandmark').value.trim(),
+    payment: document.querySelector('input[name="pay"]:checked').value,
+    notes: document.getElementById('custNotes').value.trim()
+  };
+  window._pendingOrder = custData;
+
+  const itemsHtml = keys.map(k => {
+    const c = cart[k];
+    return `
+      <div class="cart-item" style="border-bottom:1px solid var(--line);">
+        <img src="${imgOr(c.img)}" onerror="this.onerror=null;this.src='${FALLBACK_IMG}';">
+        <div class="cart-item-info"><h4>${c.name}</h4><div class="cart-price">${fmt(c.price)} × ${c.qty}</div></div>
+        <div class="cart-subtotal">${fmt(c.price * c.qty)} ج.س</div>
+      </div>`;
+  }).join('');
+
+  drawerBody.innerHTML = `
+    <button class="back-link" id="backToFormBtn">← رجوع للبيانات</button>
+    <div class="review-block"><h5>المنتجات</h5>${itemsHtml}</div>
+    <div class="review-block">
+      <h5>بيانات العميل</h5>
+      <div class="review-line"><b>${custData.name}</b> — ${custData.phone}</div>
+      ${custData.email ? `<div class="review-line">${custData.email}</div>` : ''}
+      <div class="review-line">${custData.governorate} - ${custData.city}</div>
+      <div class="review-line">${custData.address}${custData.landmark ? ' (' + custData.landmark + ')' : ''}</div>
+      <div class="review-line">طريقة الدفع: ${custData.payment}</div>
+    </div>
+    <div class="detail-total-box">
+      <div class="dt-row final"><span>الإجمالي النهائي</span><span class="val">${fmt(cartTotal())} ج.س</span></div>
+    </div>
+  `;
+  drawerFooter.innerHTML = `<button class="checkout-btn" id="submitOrderBtn">تأكيد الطلب</button>`;
+
+  document.getElementById('backToFormBtn').addEventListener('click', renderCheckoutForm);
   document.getElementById('submitOrderBtn').addEventListener('click', submitOrder);
 }
 
 async function submitOrder(){
-  const name = document.getElementById('custName').value.trim();
-  const phone = document.getElementById('custPhone').value.trim();
-  const address = document.getElementById('custAddress').value.trim();
-  const notes = document.getElementById('custNotes').value.trim();
-
-  if(!name || !phone || !address){
-    alert('من فضلك املأ الاسم والهاتف والعنوان');
-    return;
-  }
-
-  const items = Object.entries(cart).filter(([id, qty]) => qty > 0).map(([id, qty]) => {
-    const p = allProducts.find(x => String(x.id) === String(id));
-    return { id: id, name: p ? p.name : id, price: p ? p.price : 0, qty: qty };
-  });
+  const custData = window._pendingOrder;
+  const items = Object.values(cart).map(c => ({ id: c.type + '_' + c.id, name: c.name, price: c.price, qty: c.qty }));
 
   const btn = document.getElementById('submitOrderBtn');
-  btn.textContent = 'جاري الإرسال...';
-  btn.disabled = true;
+  btn.textContent = 'جاري الإرسال...'; btn.disabled = true;
 
   try{
     const res = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      body: JSON.stringify({ action: 'placeOrder', customerName: name, phone: phone, address: address, notes: notes, items: items })
+      body: JSON.stringify({
+        action: 'placeOrder', customerName: custData.name, phone: custData.phone,
+        whatsapp: custData.whatsapp, email: custData.email, governorate: custData.governorate,
+        city: custData.city, address: custData.address, landmark: custData.landmark,
+        paymentMethod: custData.payment, notes: custData.notes, items: items
+      })
     });
     const result = await res.json();
 
     if(result.status === 'ok'){
       const orderNumber = result.orderNumber;
+      let waMsg = `مرحباً ISLEY، طلبي رقم ${orderNumber}\n\n`;
+      items.forEach((it,i) => waMsg += `${i+1}. ${it.name} × ${it.qty}\n`);
+      waMsg += `\nالإجمالي: ${fmt(cartTotal())} ج.س\nالاسم: ${custData.name}\nالهاتف: ${custData.phone}\nالعنوان: ${custData.governorate} - ${custData.city} - ${custData.address}`;
 
-      let waMessage = `مرحباً ISLEY، طلبي رقم ${orderNumber}\n\n`;
-      items.forEach((it, i) => {
-        waMessage += `${i+1}. ${it.name} - الكمية: ${it.qty} - ${fmt(it.price * it.qty)} ج.س\n`;
-      });
-      waMessage += `\nالإجمالي: ${fmt(cartTotal())} ج.س\nالاسم: ${name}\nالهاتف: ${phone}\nالعنوان: ${address}`;
-      if(notes) waMessage += `\nملاحظات: ${notes}`;
-
-      cart = {};
-      updateCartCount();
+      cart = {}; updateCartCount();
       drawerTitle.textContent = 'تم الطلب';
       drawerBody.innerHTML = `
         <div class="success-box">
@@ -651,163 +871,71 @@ async function submitOrder(){
           <h3>تم تسجيل طلبك بنجاح</h3>
           <p>رقم الطلب</p>
           <div class="order-num">${orderNumber}</div>
-          <p style="margin-top:14px;">اضغطي تأكيد عبر واتساب عشان نراجع طلبك سريعًا</p>
-        </div>
-      `;
+        </div>`;
       drawerFooter.innerHTML = `
-        <button class="checkout-btn" onclick="window.open('https://wa.me/249111328634?text=${encodeURIComponent(waMessage)}', '_blank')">تأكيد عبر واتساب 📱</button>
-        <button class="checkout-btn" style="background:var(--faint); margin-top:8px;" onclick="closeDrawer(); fetchProducts();">تمام، خلاص</button>
-      `;
+        <button class="checkout-btn" onclick="window.open('https://wa.me/249111328634?text=${encodeURIComponent(waMsg)}','_blank')">تأكيد عبر واتساب 📱</button>
+        <button class="checkout-btn secondary" onclick="closeDrawer(); fetchAll();">تمام، خلاص</button>`;
     } else {
       alert(result.message || 'حصل خطأ، حاول تاني');
-      btn.textContent = 'تأكيد الطلب';
-      btn.disabled = false;
+      btn.textContent = 'تأكيد الطلب'; btn.disabled = false;
     }
   } catch(err){
-    alert('حصل خطأ في الاتصال بالنظام. حاولي تاني.');
-    btn.textContent = 'تأكيد الطلب';
-    btn.disabled = false;
+    alert('حصل خطأ في الاتصال');
+    btn.textContent = 'تأكيد الطلب'; btn.disabled = false;
     console.error(err);
   }
 }
 
-const searchInputEl = document.getElementById('searchInput');
-if(searchInputEl) searchInputEl.addEventListener('input', applyFilters);
-const refreshBtnEl = document.getElementById('refreshBtn');
-if(refreshBtnEl) refreshBtnEl.addEventListener('click', fetchProducts);
-const searchToggleBtnEl = document.getElementById('searchToggleBtn');
-if(searchToggleBtnEl){
-  searchToggleBtnEl.addEventListener('click', () => {
-    const wrap = document.getElementById('searchWrap');
-    if(wrap) wrap.classList.toggle('show');
-    if(searchInputEl) searchInputEl.focus();
+// ==================================================================
+// المساعد الذكي
+// ==================================================================
+const ASSISTANT_MAP = {
+  arduino: { filter: 'arduino أردوينو uno mega', label: 'مشروع أردوينو', tip: 'ابدأ بلوحة Arduino Uno أو Mega مع حساسات بسيطة.' },
+  robot: { filter: 'servo motor محرك wheel encoder', label: 'روبوت', tip: 'هتحتاج محركات وعجلات وحساس مسافة للتحكم في الروبوت.' },
+  smart: { filter: 'sensor حساس module esp32', label: 'منزل ذكي', tip: 'استخدم ESP32 مع حساسات ووحدات تحكم عن بُعد.' },
+  iot: { filter: 'esp32 esp8266 wifi', label: 'إنترنت الأشياء', tip: 'بوردات ESP32/ESP8266 أساس أي مشروع IoT.' },
+  beginner: { filter: 'arduino uno led sensor oled', label: 'مبتدئين', tip: 'Arduino Uno + حساس بسيط + شاشة صغيرة، مثالي كأول مشروع.' }
+};
+document.querySelectorAll('.assist-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.assist-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cfg = ASSISTANT_MAP[btn.dataset.key];
+    if(!cfg) return;
+    activeFilter = cfg.filter;
+    document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+    applyFilters();
+    const matchCount = allProducts.filter(p => matchesFilter(p, cfg.filter, '')).length;
+    const r = document.getElementById('assistResult');
+    r.innerHTML = `<b>${cfg.label}:</b> ${cfg.tip}<br>لقينالك <b>${matchCount}</b> منتج مناسب تحت.`;
+    r.classList.add('show');
+    document.getElementById('productsSection').scrollIntoView({behavior:'smooth'});
   });
-}
+});
+
+// ==================================================================
+// أحداث عامة
+// ==================================================================
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+document.getElementById('refreshBtn').addEventListener('click', fetchAll);
+document.getElementById('searchToggleBtn').addEventListener('click', () => {
+  document.getElementById('searchWrap').classList.toggle('show');
+  document.getElementById('searchInput').focus();
+});
 document.querySelectorAll('[data-filter]').forEach(el => {
   el.addEventListener('click', (e) => {
     if(el.tagName === 'A') e.preventDefault();
     activeFilter = el.dataset.filter || '';
     document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
-    const matchingChip = document.querySelector(`.cat-chip[data-filter="${CSS.escape(activeFilter)}"]`);
-    if(matchingChip) matchingChip.classList.add('active');
-    applyFilters();
-    const prodSec = document.getElementById('productsSection');
-    if(prodSec) prodSec.scrollIntoView({behavior:'smooth'});
-  });
-});
-
-fetchProducts();
-setInterval(fetchProducts, 20000);
-
-/* ============================================================
-   "إيه اللي داير تبنيه؟" — مقترح المكونات والمشاريع
-   ============================================================ */
-const BUILD_TYPES = [
-  {
-    key: 'arduino',
-    title: 'مشروع أردوينو',
-    sub: 'Arduino Project',
-    icon: '<svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><rect x="9" y="9" width="6" height="6" stroke="currentColor" stroke-width="1.7"/></svg>',
-    components: ['Arduino Uno R3', 'بريدبورد', 'أسلاك توصيل (Jumper Wires)', 'مقاومات', 'LED'],
-    filter: 'arduino أردوينو',
-    projects: ['وميض LED متحكم فيه بزرار', 'قياس مسافة بحساس Ultrasonic', 'إنذار حريق بحساس Flame'],
-    code: `<span class="cmt">// مثال بسيط: وميض LED</span>\nvoid setup() {\n  pinMode(13, OUTPUT);\n}\nvoid loop() {\n  digitalWrite(13, HIGH);\n  delay(500);\n  digitalWrite(13, LOW);\n  delay(500);\n}`
-  },
-  {
-    key: 'robot',
-    title: 'روبوت',
-    sub: 'Robot',
-    icon: '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><path d="M12 2V4M12 20V22M22 12H20M4 12H2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
-    components: ['محرك ديسي / سيرفو', 'درايفر محرك (Motor Driver)', 'حساس Ultrasonic', 'Arduino / ESP32', 'عجلات وشاسيه'],
-    filter: 'motor servo محرك محركات',
-    projects: ['روبوت يتفادى العوائق', 'روبوت متتبع خط (Line Follower)', 'ذراع روبوتية بسيطة'],
-    code: `<span class="cmt">// تحريك محرك عبر L298N</span>\nvoid setup() {\n  pinMode(8, OUTPUT);\n  pinMode(9, OUTPUT);\n}\nvoid loop() {\n  digitalWrite(8, HIGH);\n  digitalWrite(9, LOW); <span class="cmt">// للأمام</span>\n}`
-  },
-  {
-    key: 'smarthome',
-    title: 'منزل ذكي',
-    sub: 'Smart Home',
-    icon: '<svg viewBox="0 0 24 24" fill="none"><path d="M3 11L12 4L21 11V20H14V14H10V20H3V11Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>',
-    components: ['ESP32 / ESP8266 (WiFi)', 'ريلاي (Relay Module)', 'حساس حرارة ورطوبة DHT11/DHT22', 'حساس حركة PIR'],
-    filter: 'esp32 sensor module حساس',
-    projects: ['تحكم في إضاءة الغرفة عن بعد', 'مراقبة درجة حرارة البيت', 'إنذار حركة بمصباح تلقائي'],
-    code: `<span class="cmt">// تشغيل ريلاي عبر ESP32</span>\nconst int relayPin = 5;\nvoid setup() {\n  pinMode(relayPin, OUTPUT);\n}\nvoid loop() {\n  digitalWrite(relayPin, HIGH);\n  delay(3000);\n  digitalWrite(relayPin, LOW);\n  delay(3000);\n}`
-  },
-  {
-    key: 'iot',
-    title: 'إنترنت الأشياء',
-    sub: 'IoT',
-    icon: '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M8 12C8 9.79 9.79 8 12 8M16 12C16 14.21 14.21 16 12 16M5 12C5 8.13 8.13 5 12 5M19 12C19 15.87 15.87 19 12 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
-    components: ['ESP32 (WiFi + Bluetooth)', 'حساس DHT11', 'حساس TDS (جودة المياه)', 'وحدة Bluetooth'],
-    filter: 'esp32 sensor حساس',
-    projects: ['إرسال قراءات حساس للسحابة', 'لوحة تحكم عن بعد عبر الموبايل', 'نظام ري ذكي للنباتات'],
-    code: `<span class="cmt">// قراءة حساس وإرسالها عبر WiFi</span>\n#include <WiFi.h>\nvoid setup() {\n  Serial.begin(115200);\n  WiFi.begin("SSID", "PASSWORD");\n}\nvoid loop() {\n  int val = analogRead(A0);\n  Serial.println(val);\n  delay(1000);\n}`
-  },
-  {
-    key: 'beginner',
-    title: 'مشروع للمبتدئين',
-    sub: 'Beginner Project',
-    icon: '<svg viewBox="0 0 24 24" fill="none"><path d="M12 22C17 20.5 20 16 20 11V5L12 2L4 5V11C4 16 7 20.5 12 22Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>',
-    components: ['Arduino Starter Kit', 'بريدبورد', 'LED ومقاومات', 'أسلاك توصيل'],
-    filter: 'arduino kit أردوينو',
-    projects: ['أول دائرة LED', 'زرار يشغل ويطفي لمبة', 'إشارة مرور بسيطة بـ3 لمبات'],
-    code: `<span class="cmt">// أول برنامج: طباعة رسالة</span>\nvoid setup() {\n  Serial.begin(9600);\n  Serial.println("مرحباً من ISLEY!");\n}\nvoid loop() {}`
-  }
-];
-
-const buildGrid = document.getElementById('buildGrid');
-const buildResult = document.getElementById('buildResult');
-let activeBuildKey = null;
-
-BUILD_TYPES.forEach(bt => {
-  const card = document.createElement('div');
-  card.className = 'build-card';
-  card.dataset.key = bt.key;
-  card.innerHTML = `
-    <div class="icon-wrap">${bt.icon}</div>
-    <h4>${bt.title}</h4>
-    <span class="en">${bt.sub}</span>
-  `;
-  card.addEventListener('click', () => selectBuildType(bt.key));
-  buildGrid.appendChild(card);
-});
-
-function selectBuildType(key){
-  activeBuildKey = key;
-  document.querySelectorAll('.build-card').forEach(c => c.classList.toggle('active', c.dataset.key === key));
-  const bt = BUILD_TYPES.find(b => b.key === key);
-  if(!bt) return;
-
-  buildResult.innerHTML = `
-    <div class="build-result-head">
-      <div class="icon-wrap">${bt.icon}</div>
-      <div><h4>${bt.title} <span class="en" style="color:var(--muted); font-weight:600; font-size:13px;">/ ${bt.sub}</span></h4><p>مقترحات مكونات وأمثلة مشاريع لتبدأ بيها</p></div>
-    </div>
-    <div class="build-cols">
-      <div>
-        <div class="build-col-title">المكونات المقترحة</div>
-        <div class="comp-chips">${bt.components.map(c => `<span class="comp-chip">${c}</span>`).join('')}</div>
-        <div class="build-col-title">أفكار مشاريع</div>
-        <ul style="padding-right:18px; font-size:13.5px; color:var(--ink); line-height:2;">
-          ${bt.projects.map(p => `<li>${p}</li>`).join('')}
-        </ul>
-      </div>
-      <div>
-        <div class="build-col-title">كود بداية جاهز</div>
-        <div class="code-block"><pre>${bt.code}</pre></div>
-      </div>
-    </div>
-    <button class="build-shop-btn" id="buildShopBtn">تسوق مكونات ${bt.title} →</button>
-  `;
-  buildResult.classList.add('show');
-
-  document.getElementById('buildShopBtn').addEventListener('click', () => {
-    activeFilter = bt.filter;
-    document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+    const chip = document.querySelector(`.cat-chip[data-filter="${CSS.escape(activeFilter)}"]`);
+    if(chip) chip.classList.add('active');
     applyFilters();
     document.getElementById('productsSection').scrollIntoView({behavior:'smooth'});
   });
-}
+});
+
+fetchAll();
+setInterval(fetchAll, 25000);
 </script>
 
 </body>
