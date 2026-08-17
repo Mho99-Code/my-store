@@ -273,7 +273,8 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 // ===== products =====
 async function loadProducts(){
   try{
-    const res = await fetch(`${APPS_SCRIPT_URL}?action=products`);
+    // أضفنا Date.now() للرابط لمنع الكاش وجلب أحدث أرقام للكميات مباشرة
+    const res = await fetch(`${APPS_SCRIPT_URL}?action=products&_t=${Date.now()}`);
     const json = await res.json();
     if(json.status !== 'ok') throw new Error(json.message);
     renderProducts(json.data);
@@ -297,7 +298,7 @@ function renderProducts(products){
       <td>
         <div class="prod-cell">
           <img src="${p.img}" onerror="this.style.display='none'">
-          <span>${p.name}</span>
+          <span class="prod-name-text" data-id="${p.id}">${p.name}</span>
         </div>
       </td>
       <td><input type="number" class="price-input" value="${p.price}" data-id="${p.id}"></td>
@@ -315,23 +316,45 @@ function renderProducts(products){
       const id = btn.dataset.id;
       const priceInput = productsBody.querySelector(`.price-input[data-id="${id}"]`);
       const qtyInput = productsBody.querySelector(`.qty-input[data-id="${id}"]`);
+      const nameEl = productsBody.querySelector(`.prod-name-text[data-id="${id}"]`);
+
+      btn.textContent = 'جاري الحفظ...';
+      btn.disabled = true;
+
       try{
         const result = await callApi({
-          action: 'updateProduct', token: adminToken, id: id,
-          price: Number(priceInput.value), qty: Number(qtyInput.value)
+          action: 'updateProduct', 
+          token: adminToken, 
+          id: id,
+          name: nameEl ? nameEl.textContent.trim() : undefined,
+          price: Number(priceInput.value), 
+          qty: Number(qtyInput.value)
         });
+
         if(result.unauthorized){ showToast('الجلسة انتهت، سجل دخول تاني'); doLogout(); return; }
+        
         if(result.status === 'ok'){
           btn.textContent = 'اتحفظ ✓';
           btn.classList.add('saved');
-          setTimeout(() => { btn.textContent = 'حفظ'; btn.classList.remove('saved'); }, 1800);
-          showToast('اتحدّث على الموقع');
-          loadProducts();
+          showToast('اتحدّثت البيانات على الموقع');
+
+          setTimeout(() => { 
+            btn.textContent = 'حفظ'; 
+            btn.classList.remove('saved'); 
+            btn.disabled = false;
+          }, 1500);
+
+          // إعادة تحميل البيانات بتسلسل سليم لضمان تحديث الشارة في الواجهة
+          setTimeout(loadProducts, 500);
         } else {
-          showToast(result.message || 'حصل خطأ');
+          showToast(result.message || 'حصل خطأ في التحديث');
+          btn.textContent = 'حفظ';
+          btn.disabled = false;
         }
       } catch(err){
         showToast('حصل خطأ في الاتصال');
+        btn.textContent = 'حفظ';
+        btn.disabled = false;
         console.error(err);
       }
     });
@@ -419,7 +442,7 @@ window.saveNewProduct = async function(){
 // ===== orders =====
 async function loadOrders(){
   try{
-    const res = await fetch(`${APPS_SCRIPT_URL}?action=orders&token=${encodeURIComponent(adminToken)}`);
+    const res = await fetch(`${APPS_SCRIPT_URL}?action=orders&token=${encodeURIComponent(adminToken)}&_t=${Date.now()}`);
     const json = await res.json();
     if(json.unauthorized){ showToast('الجلسة انتهت، سجل دخول تاني'); doLogout(); return; }
     if(json.status !== 'ok') throw new Error(json.message);
