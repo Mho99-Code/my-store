@@ -274,8 +274,9 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 async function loadProducts(){
   try{
     // أضفنا Date.now() للرابط لمنع الكاش وجلب أحدث أرقام للكميات مباشرة
-    const res = await fetch(`${APPS_SCRIPT_URL}?action=products&_t=${Date.now()}`);
+    const res = await fetch(`${APPS_SCRIPT_URL}?action=adminProducts&token=${encodeURIComponent(adminToken)}&_t=${Date.now()}`);
     const json = await res.json();
+    if(json.unauthorized){ showToast('الجلسة انتهت، سجل دخول تاني'); doLogout(); return; }
     if(json.status !== 'ok') throw new Error(json.message);
     renderProducts(json.data);
   } catch(err){
