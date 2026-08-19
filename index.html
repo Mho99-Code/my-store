@@ -492,11 +492,22 @@ function updateCartCount(){
 
 async function fetchProducts(){
   try{
-    const res = await fetch(`${APPS_SCRIPT_URL}?action=products`);
+    // أضفنا خيار redirect: 'follow' لتتبع توجيهات سكريبت جوجل بسلام
+    const res = await fetch(`${APPS_SCRIPT_URL}?action=products`, {
+      method: 'GET',
+      redirect: 'follow'
+    });
+    
     const json = await res.json();
     if(json.status !== 'ok') throw new Error(json.message || 'خطأ في جلب البيانات');
+    
     allProducts = (json.data || []).map((item, index) => normalizeProduct(item, index));
-    if(firstLoad){ if(loadingState) loadingState.remove(); firstLoad = false; }
+    
+    if(firstLoad){ 
+      if(loadingState) loadingState.remove(); 
+      firstLoad = false; 
+    }
+    
     applyFilters();
   } catch(err){
     if(loadingState) loadingState.textContent = 'حصل خطأ في جلب البيانات. افحص الكونسول (Console).';
