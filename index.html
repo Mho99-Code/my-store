@@ -406,11 +406,15 @@ function normalizeProduct(item, index) {
     }
     return null;
   };
+  // ✅ الإصلاح: السيرفر بيرجّع "status" (نص "متوفر"/"غير متوفر")، مش رقم "qty" مباشر.
+  // كنا بندور على qty مش موجود خالص، فكل منتج كان بيتحسب "خلص من المخزون" ويتقفل زرار الشراء.
+  const statusStr = String(getProp('status', 'الحالة') || 'متوفر').trim();
+  const available = statusStr.indexOf('غير') === -1;
   return {
     id: getProp('id', 'ID', 'م') || index,
     name: String(getProp('name', 'Name', 'title', 'الاسم', 'اسم المنتج', 'منتج') || 'منتج بدون اسم'),
     price: Number(getProp('price', 'Price', 'السعر', 'سعر') || 0),
-    qty: Number(getProp('qty', 'quantity', 'stock', 'الكمية', 'المخزون', 'المتاح') || 0),
+    qty: available ? 999 : 0, // مفيش كمية حقيقية متاحة للعميل عمدًا؛ 999 يعني "متوفر" بدون كشف الرقم الحقيقي
     img: String(getProp('img', 'image', 'photo', 'url', 'الصورة', 'رابط الصورة') || '').trim(),
     category: String(getProp('category', 'cat', 'type', 'الفئة', 'القسم') || '')
   };
