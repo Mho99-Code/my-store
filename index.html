@@ -484,20 +484,33 @@ function render(list){
   });
 }
 
-function updateCartCount(){
-  const total = Object.values(cart).reduce((a,b) => a+b, 0);
-  const cartCountEl = document.getElementById('cartCount');
-  if(cartCountEl) cartCountEl.textContent = total;
-}
-
-async function fetchProducts(){
-  try{
-    // أضفنا خيار redirect: 'follow' لتتبع توجيهات سكريبت جوجل بسلام
+async function fetchProducts() {
+  try {
+    // 1. استدعاء API بدون تحديد أي Headers مخصصة وبدعم التوجيه
     const res = await fetch(`${APPS_SCRIPT_URL}?action=products`, {
       method: 'GET',
+      mode: 'cors',
       redirect: 'follow'
     });
-    
+
+    if (!res.ok) throw new Error('شبكة الاتصال غير مستجيبة');
+
+    const json = await res.json();
+    if (json.status !== 'ok') throw new Error(json.message || 'خطأ في جلب البيانات');
+
+    allProducts = (json.data || []).map((item, index) => normalizeProduct(item, index));
+
+    if (firstLoad) {
+      if (loadingState) loadingState.remove();
+      firstLoad = false;
+    }
+
+    applyFilters();
+  } catch (err) {
+    if (loadingState) loadingState.textContent = 'حصل خطأ في جلب البيانات. افحص الكونسول (Console).';
+    console.error("Fetch Error:", err);
+  }
+}
     const json = await res.json();
     if(json.status !== 'ok') throw new Error(json.message || 'خطأ في جلب البيانات');
     
